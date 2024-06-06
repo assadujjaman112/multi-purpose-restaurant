@@ -1,5 +1,6 @@
 import Marquee from "react-fast-marquee";
 import { FaStarOfLife } from "react-icons/fa6";
+import Button from "../Buttons/Button";
 
 const OurRestaurant = () => {
   return (
@@ -13,13 +14,21 @@ const OurRestaurant = () => {
             <img src="https://i.postimg.cc/j5LKgXHP/restaurant-2.png" alt="" />
           </div>
           <div className="absolute top-[50%] left-[15%]">
-            <img src="https://i.postimg.cc/j5cwPKHv/round-txt-img.png" alt="" className="rotate"/>
-            <img src="https://i.postimg.cc/wjXM8g12/round-img.png" alt="" className="absolute top-[30%] left-[30%] bg-white p-3 rounded-full"/>
+            <img
+              src="https://i.postimg.cc/j5cwPKHv/round-txt-img.png"
+              alt=""
+              className="rotate"
+            />
+            <img
+              src="https://i.postimg.cc/wjXM8g12/round-img.png"
+              alt=""
+              className="absolute top-[30%] left-[30%] bg-white p-3 rounded-full"
+            />
           </div>
         </div>
         <div className="lg:w-1/2">
           <p className="text-xl text-[#FFDE9F] flex gap-4 items-center">
-            <FaStarOfLife className="text-lg"></FaStarOfLife> OUR RESTAURANT{" "}
+            <FaStarOfLife className="text-lg"></FaStarOfLife> OUR RESTAURANT
             <FaStarOfLife className="text-lg"></FaStarOfLife>
           </p>
           <h2 className="text-3xl md:text-5xl lg:text-7xl font-elsie text-white mt-5">
@@ -68,9 +77,7 @@ const OurRestaurant = () => {
             </div>
           </div>
           <div className="mt-10">
-            <button className="bg-[#FFDE9F] px-10 py-5 text-lg  font-medium hover:bg-black border-[#FFDE9F] border hover:text-[#FFDE9F]">
-              Explore Us
-            </button>
+            <Button text="Explore Us" />
           </div>
         </div>
       </div>

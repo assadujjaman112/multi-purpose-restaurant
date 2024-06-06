@@ -1,4 +1,5 @@
 import HeroSection from "../../Components/HeroSection/HeroSection";
+import MakeReservation from "../../Components/MakeReservation/MakeReservation";
 import OurRestaurant from "../../Components/OurRestaurant/OurRestaurant";
 import Navbar from "../../Components/Shared/Navbar/Navbar";
 
@@ -21,6 +22,7 @@ const Home = () => {
           </video>
         </div>
         <OurRestaurant></OurRestaurant>
+        <MakeReservation />
     </div>
   );
 };
