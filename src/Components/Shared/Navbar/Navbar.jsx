@@ -2,13 +2,13 @@ import { SlHandbag } from "react-icons/sl";
 const Navbar = () => {
   return (
     <div>
-      <div className="bg-[#0b1315] py-5">
-        <div className="w-11/12 mx-auto flex flex-col lg:flex-row justify-between items-center">
+      <div className="bg-[#0b1315] py-[15px]">
+        <div className="w-[95%] mx-auto flex flex-col lg:flex-row justify-between items-center">
           <div>
-            <img src="/src/assets/logo.png" alt="" />
+            <img src="/src/assets/Images/logo.png" alt="" />
           </div>
           <div>
-            <ul className="flex gap-8 text-white items-center">
+            <ul className="flex flex-wrap gap-8 text-white items-center">
               <li>Home</li>
               <li>Menu</li>
               <li>Blog</li>
