@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily :{
-        elsie: ["Elsie", "serif"]
+        elsie: ["Elsie", "serif"],
+        lexend: ["Lexend", "sans-serif"]
       }
     },
   },

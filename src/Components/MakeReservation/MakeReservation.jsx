@@ -3,14 +3,14 @@ import Button from "../Buttons/Button";
 
 const MakeReservation = () => {
   return (
-    <section className="max-w-[80%] mx-auto ">
+    <section className="max-w-[80%] mx-auto mb-8 md:mb-12 lg:mb-20 ">
       <h1 className="text-center font-elsie text-white text-3xl md:text-5xl lg:text-7xl my-5 md:my-8 lg:my-20 mx-auto">
         Various Quality Specialities Made With A Personal Touch
       </h1>
       {/* chefs secret section */}
       <div className="flex ">
-        <div className="flex-1 flex relative lg:ml-10">
-          <div>
+        <div className="flex-1 flex flex-col lg:flex-row relative lg:ml-10">
+          <div >
             <img src="https://i.ibb.co/R0ddb9S/chefs-1.png" alt="" />
           </div>
           <div className="absolute hidden lg:block right-20 top-20">

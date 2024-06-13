@@ -1,17 +1,21 @@
 import HeroSection from "../../Components/HeroSection/HeroSection";
 import MakeReservation from "../../Components/MakeReservation/MakeReservation";
 import OurRestaurant from "../../Components/OurRestaurant/OurRestaurant";
+import Overview from "../../Components/Overview/Overview";
+import Footer from "../../Components/Shared/Footer/Footer";
 import Navbar from "../../Components/Shared/Navbar/Navbar";
 
 const Home = () => {
   return (
-    <div className="relative">
-      <Navbar></Navbar>
+    <div className="">
+      <div className="relative">
+        <Navbar></Navbar>
         <span className="w-[1px] h-full absolute left-[11.5%] -z-10 bg-[#99A9AD1A]"></span>
         <span className="w-[1px] h-full absolute left-[30.7%] -z-10 bg-[#99A9AD1A]"></span>
         <span className="w-[1px] h-full absolute left-[50%] -z-10 bg-[#99A9AD1A]"></span>
         <span className="w-[1px] h-full absolute left-[69.3%] -z-10 bg-[#99A9AD1A]"></span>
         <span className="w-[1px] h-full absolute left-[88.5%] -z-10 bg-[#99A9AD1A]"></span>
+
         <HeroSection></HeroSection>
         <div className="w-full">
           <video className=" w-full" autoPlay loop>
@@ -23,6 +27,10 @@ const Home = () => {
         </div>
         <OurRestaurant></OurRestaurant>
         <MakeReservation />
+      </div>
+
+      <Overview />
+      <Footer />
     </div>
   );
 };
