@@ -1,10 +1,10 @@
 import { FaStarOfLife } from "react-icons/fa6";
-import Button from "../Buttons/Button";
+import Button from "./Buttons/Button";
 
 const MakeReservation = () => {
   return (
     <section className="max-w-[80%] mx-auto mb-8 md:mb-12 lg:mb-20 ">
-      <h1 className="text-center font-elsie text-white text-3xl md:text-5xl lg:text-7xl my-5 md:my-8 lg:my-20 mx-auto">
+      <h1 className="text-center font-elsie text-white text-3xl md:text-5xl lg:text-7xl my-5 md:my-8 lg:my-20 mx-auto" data-aos="fade-up" data-aos-duration = "800">
         Various Quality Specialities Made With A Personal Touch
       </h1>
       {/* chefs secret section */}
@@ -22,19 +22,19 @@ const MakeReservation = () => {
             <FaStarOfLife className="text-lg"></FaStarOfLife> CHEFS SECRETS
             <FaStarOfLife className="text-lg"></FaStarOfLife>
           </p>
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-elsie text-white mt-5">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-elsie text-white mt-5" data-aos="fade-up" data-aos-duration = "800">
             Truly Exotic & Appetizing Cuisine For Thous Special Moments In Life
           </h1>
-          <p className="text-lg mt-5 lg:mt-7 text-[#99A9AD]">
+          <p className="text-lg mt-5 lg:mt-7 text-[#99A9AD]" data-aos="fade-up" data-aos-duration = "1000">
             Nam turpis quis fermentum egestas nibh diam feugiat faucibus.
             Commodo tellus lorem fames mauris, at praesent gravida. Porttitor eu
             eu sed vestibulum, tortor cursus nunc. Sit egestas diam quam integer
             augue cum erat egestas convallis.
           </p>
-          <h4 className="mt-2 md:mt-3 lg:mt-5 text-white font-bold text-xl">
+          <h4 className="mt-2 md:mt-3 lg:mt-5 text-white font-bold text-xl " data-aos="fade-up" data-aos-duration = "800">
             Booking Request
           </h4>
-          <div className="mt-2 md:mt-4 lg:mt-5">
+          <div className="mt-2 md:mt-4 lg:mt-5" data-aos="fade-up" data-aos-duration = "1000">
             <a
               className="text-3xl text-[#FFDE9F] font-bold "
               href="tel: +01-2345-678-990"

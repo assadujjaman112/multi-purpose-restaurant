@@ -1,11 +1,6 @@
 const HeroSection = () => {
   return (
     <div className="w-[95%] lg:w-[77%] mx-auto relative">
-      {/* <span className="w-[1px] h-full absolute -z-10 bg-[#99A9AD1A]"></span>
-      <span className="w-[1px] h-full absolute left-[25%] -z-10 bg-[#99A9AD1A]"></span>
-      <span className="w-[1px] h-full absolute left-[50%] -z-10 bg-[#99A9AD1A]"></span>
-      <span className="w-[1px] h-full absolute left-[75%] -z-10 bg-[#99A9AD1A]"></span>
-      <span className="w-[1px] h-full absolute left-[100%] -z-10 bg-[#99A9AD1A]"></span> */}
       <div className="pt-10 lg:pt-28 relative pb-14 lg:pb-36">
         <h1 className="text-white text-left font-elsie md:text-left text-5xl md:text-6xl lg:text-9xl">
           Perfectly Light In Every Bite

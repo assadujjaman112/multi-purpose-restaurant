@@ -1,6 +1,6 @@
 import Marquee from "react-fast-marquee";
 import { FaStarOfLife } from "react-icons/fa6";
-import Button from "../Buttons/Button";
+import Button from "./Buttons/Button";
 
 const OurRestaurant = () => {
   return (
@@ -27,27 +27,41 @@ const OurRestaurant = () => {
           </div>
         </div>
         <div className="lg:w-1/2">
-          <p className="text-xl text-[#FFDE9F] flex gap-4 items-center">
+          <p
+            className="text-xl text-[#FFDE9F] flex gap-4 items-center"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
             <FaStarOfLife className="text-lg"></FaStarOfLife> OUR RESTAURANT
             <FaStarOfLife className="text-lg"></FaStarOfLife>
           </p>
-          <h2 className="text-3xl md:text-5xl lg:text-7xl font-elsie text-white mt-5">
+          <h2
+            className="text-3xl md:text-5xl lg:text-7xl font-elsie text-white mt-5"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
             For Every Special Occasion There’s Heritaste
           </h2>
-          <p className="text-lg mt-6 lg:mt-10 text-[#99A9AD]">
+          <p
+            className="text-lg mt-6 lg:mt-10 text-[#99A9AD]"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
             Diam leo massa pellentesque a neque turpis cum mi gravida. Amet
             massa adipiscing mi dictum urna commodo. Fringilla ipsum etiam
             habitasse dolor lacus viverra. Leo ipsum libero at amet ipsum lacus,
             amet non leo nisi, turpis nec.
           </p>
-          <div className="flex items-center gap-8 mt-14">
+          <div className="flex items-center gap-8 mt-14"  data-aos="fade-up" data-aos-duration = "1000">
             <div>
               <img
                 src="https://up2client.com/envato/bermiz-restaurant/main-file/assets/images/Homepage1/restaurant-3.png"
                 alt=""
               />
             </div>
-            <div className="text-white ">
+            <div
+              className="text-white "
+            >
               <h1 className="font-elsie text-[#FFDE9F] text-3xl">
                 Quiet Environment
               </h1>
@@ -57,7 +71,11 @@ const OurRestaurant = () => {
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-8 mt-10">
+          <div
+            className="flex items-center gap-8 mt-10"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
             <div className="w-56 h-32">
               <img
                 src="https://up2client.com/envato/bermiz-restaurant/main-file/assets/images/Homepage1/restaurant-4.png"
