@@ -16,12 +16,28 @@ const AppPromotion = () => {
           Turpis massa et ipsum orci, sem commodo. Sapien hendrerit cursus eros,
           netus lacus, risus in quis vitae.
         </p>
-        <div className="flex gap-10 mt-5 md:mt-8 lg:mt-12">
-          <img src="https://i.ibb.co/nD7VP9G/google.png" alt="" />
-          <img src="https://i.ibb.co/4scxbLM/appstrore.png" alt="" />
+        <div className="flex gap-10 mt-5 md:mt-8 lg:mt-12 items-center">
+          <div className="w-44 h-16">
+            <img
+              src="https://i.postimg.cc/tCMPRjKT/google.png"
+              className="w-full h-full"
+              alt=""
+            />
+          </div>
+          <div className="w-44 h-14">
+            <img
+              src="https://i.postimg.cc/HLGy5ts1/appstrore.png"
+              className="w-full h-full "
+              alt=""
+            />
+          </div>
         </div>
       </div>
-      <div className="flex-1 flex justify-center" data-aos="fade-left" data-aos-duration="1000">
+      <div
+        className="flex-1 flex justify-center"
+        data-aos="fade-left"
+        data-aos-duration="1000"
+      >
         <img src="https://i.ibb.co/bNLvfkz/fast-order-img.png" alt="" />
       </div>
     </div>
