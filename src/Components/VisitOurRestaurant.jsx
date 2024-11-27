@@ -3,7 +3,7 @@ import SectionDetails from "./shared/SectionDetails";
 
 const VisitOurRestaurant = () => {
   return (
-    <div className="flex flex-col md:flex-row gap-5 max-w-[75%] mx-auto py-8 md:py-14 lg:py-20">
+    <div className="flex flex-col lg:flex-row gap-5 max-w-[75%] mx-auto py-8 md:py-14 lg:py-20">
       <div className="flex-1">
         <SectionDetails
           title="RIGHT HERE WAITING"

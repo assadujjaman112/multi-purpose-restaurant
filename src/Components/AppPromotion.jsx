@@ -2,43 +2,35 @@ import { FaStarOfLife } from "react-icons/fa6";
 
 const AppPromotion = () => {
   return (
-    <div className="flex flex-col md:flex-row gap-6 max-w-[75%] mx-auto py-8 md:py-14 lg:py-20">
-      <div className="flex-1" data-aos="fade-right" data-aos-duration="1000">
-        <p className="text-xl text-[#FFDE9F] flex gap-4 items-center">
-          <FaStarOfLife className="text-lg"></FaStarOfLife> FAST ORDERING
+    <div className="flex flex-col gap-6 lg:flex-row w-11/12 lg:w-[75%] mx-auto my-8 md:my-11 lg:my-16">
+      <div className="flex-1 ">
+        <p className="text-xl text-[#FFDE9F] flex gap-4 items-center justify-center lg:justify-start">
+          <FaStarOfLife className="text-lg"></FaStarOfLife> CHEFS SECRETS
           <FaStarOfLife className="text-lg"></FaStarOfLife>
         </p>
-        <h2 className="text-3xl md:text-5xl lg:text-7xl font-elsie text-white mt-5">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-elsie text-white mt-5 text-center lg:text-left">
           Download Our Mobile App
-        </h2>
-        <p className="text-lg mt-6 lg:mt-10 text-[#99A9AD]">
+        </h1>
+        <p className="text-sm md:text-lg lg:text-xl mt-6 lg:mt-10 text-[#99A9AD]">
           Vitae neque libero ullamcorper gravida fusce donec feugiat massa dui.
           Turpis massa et ipsum orci, sem commodo. Sapien hendrerit cursus eros,
           netus lacus, risus in quis vitae.
         </p>
-        <div className="flex gap-10 mt-5 md:mt-8 lg:mt-12 items-center">
-          <div className="w-44 h-16">
-            <img
-              src="https://i.postimg.cc/tCMPRjKT/google.png"
-              className="w-full h-full"
-              alt=""
-            />
-          </div>
-          <div className="w-44 h-14">
-            <img
-              src="https://i.postimg.cc/HLGy5ts1/appstrore.png"
-              className="w-full h-full "
-              alt=""
-            />
-          </div>
+        <div className="flex gap-5 my-8 md:my-16">
+          <img
+            src="https://i.postimg.cc/k4vcSs4P/google.png"
+            alt=""
+            className="w-28 md:w-full h-10 lg:h-full"
+          />
+          <img
+            src="https://i.postimg.cc/dtx9GLq3/appstrore.png"
+            alt=""
+            className="w-28 md:w-full h-10 lg:h-full"
+          />
         </div>
       </div>
-      <div
-        className="flex-1 flex justify-center"
-        data-aos="fade-left"
-        data-aos-duration="1000"
-      >
-        <img src="https://i.ibb.co/bNLvfkz/fast-order-img.png" alt="" />
+      <div className="flex-1">
+        <img src="https://i.postimg.cc/W19tdkjY/fast-order-img.png" alt="" />
       </div>
     </div>
   );

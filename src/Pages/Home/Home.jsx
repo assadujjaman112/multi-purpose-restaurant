@@ -1,4 +1,3 @@
-
 import AppPromotion from "../../components/AppPromotion";
 import HeroSection from "../../components/HeroSection";
 import MakeReservation from "../../components/MakeReservation";
@@ -8,7 +7,6 @@ import Overview from "../../components/Overview";
 import VisitOurRestaurant from "../../components/VisitOurRestaurant";
 import Footer from "../../components/shared/Footer/Footer";
 const Home = () => {
- 
   return (
     <div className="">
       <div className="relative">

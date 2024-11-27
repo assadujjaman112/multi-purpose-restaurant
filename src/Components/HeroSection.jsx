@@ -13,10 +13,10 @@ const HeroSection = () => {
               ingredient that makes all our meals taste better and magical.
             </p>
           </div>
-          <div className="rotate w-[260px] h-[260px] md:w-[400px] md:h-[400px] lg:absolute mt-8 lg:top-[30%] lg:right-5">
+          <div className="rotate w-[220px] h-[220px] md:w-[400px] md:h-[400px] lg:absolute mt-8 lg:top-[30%] lg:right-5">
             <img
               src="https://i.postimg.cc/bwRV6pkP/hero-1.png"
-              className="w-full h-full rounded-full"
+              className="w-[220px] h-[220px] md:w-full md:h-full rounded-full"
               alt=""
             />
           </div>
