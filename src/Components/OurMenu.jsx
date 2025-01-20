@@ -1,8 +1,14 @@
 import { useState } from "react";
 import { FaStarOfLife } from "react-icons/fa6";
+import useMenu from "../hooks/useMenu";
+import MenuCard from "./shared/MenuCard/MenuCard";
+import Button from "./buttons/Button";
+import { Link } from "react-router-dom";
 
 const OurMenu = () => {
   const [isActive, setIsActive] = useState(1);
+  const menu = useMenu();
+  console.log(menu);
   return (
     <div className="w-11/12 lg:w-[77%] mx-auto">
       <p
@@ -133,6 +139,14 @@ const OurMenu = () => {
           </h4>
         </div>
       </div>
+      <div className="my-8 md:mt-10 lg:mt-14 grid grid-cols-1 md:grid-cols-2 gap-6">
+        {menu?.map((item) => (
+          <MenuCard key={item._id} item={item} />
+        ))}
+      </div>
+      <Link to="/menu" className="flex justify-center mt-8 lg:mt-14 lg:mt-20">
+        <Button text="View all" />
+      </Link>
     </div>
   );
 };
