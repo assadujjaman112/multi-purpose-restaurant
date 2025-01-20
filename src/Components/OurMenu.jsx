@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaStarOfLife } from "react-icons/fa6";
 import useMenu from "../hooks/useMenu";
 import MenuCard from "./shared/MenuCard/MenuCard";
@@ -6,9 +6,24 @@ import Button from "./buttons/Button";
 import { Link } from "react-router-dom";
 
 const OurMenu = () => {
-  const [isActive, setIsActive] = useState(1);
   const menu = useMenu();
-  console.log(menu);
+  const [isActive, setIsActive] = useState(1);
+  const [showMenu, setShowMenu] = useState();
+  useEffect(() => {
+    setShowMenu(menu);
+    setIsActive(1);
+  }, [menu]);
+
+  const handleMenu = (category, categoryNumber) => {
+    setIsActive(categoryNumber);
+    if (category === "all") {
+      setShowMenu(menu);
+      return;
+    }
+    const newMenu = menu?.filter((item) => item.category === `${category}`);
+    setShowMenu(newMenu);
+  };
+
   return (
     <div className="w-11/12 lg:w-[77%] mx-auto">
       <p
@@ -37,7 +52,7 @@ const OurMenu = () => {
       </p>
       <div className="overflow-x-auto no-scrollbar flex gap-6 md:gap-0 justify-evenly items-center  h-40 mt-5 md:mt-8 lg:mt-10 lg:w-[70%] mx-auto">
         <div
-          onClick={() => setIsActive(1)}
+          onClick={() => handleMenu("all", 1)}
           className={`w-24 h-full flex flex-col justify-center items-center hover:cursor-pointer ${
             isActive === 1 && "bg-slate-600 rounded-lg px-2"
           }`}
@@ -54,7 +69,7 @@ const OurMenu = () => {
           </h4>
         </div>
         <div
-          onClick={() => setIsActive(2)}
+          onClick={() => handleMenu("breakfast", 2)}
           className={`w-24 h-full flex flex-col justify-center items-center hover:cursor-pointer ${
             isActive === 2 && "bg-slate-600 rounded-lg px-2"
           }`}
@@ -71,7 +86,7 @@ const OurMenu = () => {
           </h4>
         </div>
         <div
-          onClick={() => setIsActive(3)}
+          onClick={() => handleMenu("lunch", 3)}
           className={`w-24 h-full flex flex-col justify-center items-center hover:cursor-pointer ${
             isActive === 3 && "bg-slate-600 rounded-lg px-2"
           }`}
@@ -88,7 +103,7 @@ const OurMenu = () => {
           </h4>
         </div>
         <div
-          onClick={() => setIsActive(4)}
+          onClick={() => handleMenu("dinner", 4)}
           className={`w-24 h-full flex flex-col justify-center items-center hover:cursor-pointer ${
             isActive === 4 && "bg-slate-600 rounded-lg px-2"
           }`}
@@ -105,7 +120,7 @@ const OurMenu = () => {
           </h4>
         </div>
         <div
-          onClick={() => setIsActive(5)}
+          onClick={() => handleMenu("dessert", 5)}
           className={`w-24 h-full flex flex-col justify-center items-center hover:cursor-pointer ${
             isActive === 5 && "bg-slate-600 rounded-lg px-2"
           }`}
@@ -122,7 +137,7 @@ const OurMenu = () => {
           </h4>
         </div>
         <div
-          onClick={() => setIsActive(6)}
+          onClick={() => handleMenu("drink", 6)}
           className={`w-24 h-full flex flex-col justify-center items-center hover:cursor-pointer ${
             isActive === 6 && "bg-slate-600 rounded-lg px-2"
           }`}
@@ -140,11 +155,11 @@ const OurMenu = () => {
         </div>
       </div>
       <div className="my-8 md:mt-10 lg:mt-14 grid grid-cols-1 md:grid-cols-2 gap-6">
-        {menu?.map((item) => (
+        {showMenu?.slice(0, 8).map((item) => (
           <MenuCard key={item._id} item={item} />
         ))}
       </div>
-      <Link to="/menu" className="flex justify-center mt-8 lg:mt-14 lg:mt-20">
+      <Link to="/menu" className="flex justify-center mt-8 md:mt-14 lg:mt-20">
         <Button text="View all" />
       </Link>
     </div>
