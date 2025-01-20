@@ -23,7 +23,7 @@ const VisitOurRestaurant = () => {
           </span>
         </p>
 
-        <Button text="Get Direction" />
+        <Button text=" Get Direction " />
       </div>
       <div className="flex-1 flex gap-5">
         <div className="w-3/5">
