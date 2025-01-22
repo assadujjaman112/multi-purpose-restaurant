@@ -5,7 +5,7 @@ import OurMenu from "../../components/OurMenu";
 import OurRestaurant from "../../components/OurRestaurant";
 import Overview from "../../components/Overview";
 import VisitOurRestaurant from "../../components/VisitOurRestaurant";
-import Footer from "../../components/shared/Footer/Footer";
+// import Footer from "../../components/shared/Footer/Footer";
 const Home = () => {
   return (
     <div className="">
@@ -42,7 +42,7 @@ const Home = () => {
         <VisitOurRestaurant />
         <div className="bg-[#99A9AD1A] h-[1px]"></div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
