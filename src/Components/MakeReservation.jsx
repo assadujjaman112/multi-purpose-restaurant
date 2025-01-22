@@ -53,8 +53,6 @@
 
 // export default MakeReservation;
 
-
-
 import { FaStarOfLife } from "react-icons/fa6";
 import Button from "./buttons/Button";
 
@@ -128,7 +126,9 @@ const MakeReservation = () => {
             </a>
           </div>
           <div className="mt-8 md:mt-12 lg:mt-16">
-            <Button text="Make A Reservation" />
+            <a href="#bookTable">
+              <Button text="Make A Reservation" />
+            </a>
           </div>
         </div>
       </div>

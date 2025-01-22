@@ -128,6 +128,7 @@
 import Marquee from "react-fast-marquee";
 import { FaStarOfLife } from "react-icons/fa6";
 import Button from "./buttons/Button";
+import { Link } from "react-router-dom";
 
 const OurRestaurant = () => {
   return (
@@ -233,7 +234,9 @@ const OurRestaurant = () => {
             </div>
           </div>
           <div className="mt-10">
-            <Button text="Explore Us" />
+            <Link to="/menu">
+              <Button text="Explore Us" />
+            </Link>
           </div>
         </div>
       </div>
