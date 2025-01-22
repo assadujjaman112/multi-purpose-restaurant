@@ -5,7 +5,7 @@ const AppPromotion = () => {
     <div className="flex flex-col gap-6 lg:flex-row w-11/12 lg:w-[75%] mx-auto my-8 md:my-11 lg:my-16">
       <div className="flex-1 ">
         <p className="text-xl text-[#FFDE9F] flex gap-4 items-center justify-center lg:justify-start">
-          <FaStarOfLife className="text-lg"></FaStarOfLife> CHEFS SECRETS
+          <FaStarOfLife className="text-lg"></FaStarOfLife> FAST ORDERING
           <FaStarOfLife className="text-lg"></FaStarOfLife>
         </p>
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-elsie text-white mt-5 text-center lg:text-left">
