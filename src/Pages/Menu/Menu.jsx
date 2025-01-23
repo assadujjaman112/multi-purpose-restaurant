@@ -4,6 +4,7 @@ import MenuCard from "../../components/shared/MenuCard/MenuCard";
 import SectionHeader from "../../components/shared/SectionHeader/SectionHeader";
 import { Link } from "react-router-dom";
 import BookTable from "../../components/BookTable";
+import AppPromotion from "../../components/AppPromotion";
 
 const MenuPage = () => {
   const menu = useMenu();
@@ -60,6 +61,7 @@ const MenuPage = () => {
           ))}
         </div>
         <BookTable />
+        <AppPromotion />
       </div>
     </div>
   );
