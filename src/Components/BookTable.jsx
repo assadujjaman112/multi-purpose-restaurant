@@ -148,7 +148,7 @@ const BookTable = () => {
                 </option>
               </select>
             </div>
-            <div className="flex justify-center mt-5 md:mt-7 lg:mt-10 col-span-3">
+            <div className="flex justify-center mt-5 md:mt-7 lg:mt-10 md:col-span-3">
               <input
                 type="submit"
                 value="Book Now"
