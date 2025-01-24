@@ -1,10 +1,10 @@
-import MenuBanner from "../../components/MenuBanner";
 import useMenu from "../../hooks/useMenu";
 import MenuCard from "../../components/shared/MenuCard/MenuCard";
 import SectionHeader from "../../components/shared/SectionHeader/SectionHeader";
 import { Link } from "react-router-dom";
 import BookTable from "../../components/BookTable";
 import AppPromotion from "../../components/AppPromotion";
+import MenuBanner from "../../components/shared/Banner/MenuBanner";
 
 const MenuPage = () => {
   const menu = useMenu();
@@ -13,7 +13,10 @@ const MenuPage = () => {
   const dinner = menu?.filter((item) => item.category === "dinner");
   return (
     <div>
-      <MenuBanner />
+      <MenuBanner
+        image="https://i.postimg.cc/C1DRkDwP/chicken-wings-barbecue-sweetly-sour-sauce-picnic-summer-menu-tasty-food-top-view-flat-lay-2829-6471.jpg"
+        title="Menu List"
+      />
       <div className="relative">
         <span className="w-[1px] h-full absolute left-[11.5%] -z-10 bg-[#99A9AD1A]"></span>
         <span className="w-[1px] h-full absolute left-[30.7%] -z-10 bg-[#99A9AD1A]"></span>
