@@ -1,14 +1,16 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useMenu from "../../../hooks/useMenu";
 import MenuBanner from "../Banner/MenuBanner";
 import { FaStar } from "react-icons/fa6";
 import { useState } from "react";
+import SuggestionCard from "../SuggestionCard/SuggestionCard";
 
 const FoodDetails = () => {
   const menu = useMenu();
   const { id } = useParams();
   const food = menu?.find((item) => item._id === id);
   const [quantity, setQuantity] = useState(1);
+  const suggestions = menu?.filter((item) => item._id != id);
 
   return (
     <div>
@@ -29,10 +31,18 @@ const FoodDetails = () => {
             className="w-[300px] h-[300px] lg:w-[450px] lg:h-[450px] object-cover"
           />
           <div className="py-5 md:py-7">
-            <h1 className="text-white text-3xl md:text-6xl font-elsie font-medium">
+            <h1
+              className="text-white text-3xl md:text-6xl font-elsie font-medium"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+            >
               {food?.name}
             </h1>
-            <div className=" flex gap-10 items-center  text-[#FFDE9F] my-3 md:my-8">
+            <div
+              className=" flex gap-10 items-center  text-[#FFDE9F] my-3 md:my-8"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+            >
               <p className="text-4xl md:text-8xl font-elsie">${food?.price}</p>
               <p className="flex items-center gap-1 text-2xl md:text-4xl">
                 <FaStar />
@@ -45,7 +55,11 @@ const FoodDetails = () => {
                 </span>
               </p>
             </div>
-            <p className="text-sm  md:text-left md:text-xl mt-6 lg:mt-10 text-[#99A9AD]">
+            <p
+              className="text-sm  md:text-left md:text-xl mt-6 lg:mt-10 text-[#99A9AD]"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+            >
               {food?.description}
             </p>
             <div className="my-6 md:my-14 flex flex-col md:flex-row md:items-center gap-14">
@@ -72,6 +86,20 @@ const FoodDetails = () => {
               </button>
             </div>
           </div>
+        </div>
+        <h1
+          className="text-white text-center text-3xl md:text-6xl font-elsie font-medium my-5 md:my-10 lg:my-16"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          You may also like
+        </h1>
+        <div className="w-11/12 lg:w-[77%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {suggestions?.slice(0, 3).map((food) => (
+            <Link key={food._id} to={`/menu/${food._id}`} onClick={()=> window.location.replace(`/menu/${food._id}`)}>
+              <SuggestionCard food={food} />
+            </Link>
+          ))}
         </div>
       </div>
     </div>

@@ -4,14 +4,26 @@ const AppPromotion = () => {
   return (
     <div className="flex flex-col gap-6 lg:flex-row w-11/12 lg:w-[75%] mx-auto my-8 md:my-11 lg:my-16">
       <div className="flex-1 ">
-        <p className="text-xl text-[#FFDE9F] flex gap-4 items-center justify-center lg:justify-start">
+        <p
+          className="text-xl text-[#FFDE9F] flex gap-4 items-center justify-center lg:justify-start"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
           <FaStarOfLife className="text-lg"></FaStarOfLife> FAST ORDERING
           <FaStarOfLife className="text-lg"></FaStarOfLife>
         </p>
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-elsie text-white mt-5 text-center lg:text-left">
+        <h1
+          className="text-3xl md:text-5xl lg:text-6xl font-elsie text-white mt-5 text-center lg:text-left"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
           Download Our Mobile App
         </h1>
-        <p className="text-sm md:text-lg lg:text-xl mt-6 lg:mt-10 text-[#99A9AD]">
+        <p
+          className="text-sm md:text-lg lg:text-xl mt-6 lg:mt-10 text-[#99A9AD]"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
           Vitae neque libero ullamcorper gravida fusce donec feugiat massa dui.
           Turpis massa et ipsum orci, sem commodo. Sapien hendrerit cursus eros,
           netus lacus, risus in quis vitae.
