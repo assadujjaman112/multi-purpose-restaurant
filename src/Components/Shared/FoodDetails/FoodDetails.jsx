@@ -1,18 +1,20 @@
 import { useParams } from "react-router-dom";
 import useMenu from "../../../hooks/useMenu";
 import MenuBanner from "../Banner/MenuBanner";
+import { FaStar } from "react-icons/fa6";
+import { useState } from "react";
 
 const FoodDetails = () => {
   const menu = useMenu();
   const { id } = useParams();
   const food = menu?.find((item) => item._id === id);
-  console.log(food);
+  const [quantity, setQuantity] = useState(1);
 
   return (
     <div>
       <MenuBanner
         image="https://i.postimg.cc/X7BjPhxT/855a126a-8836-4241-917c-e54ed65f1071-pancakes-lead3.jpg"
-        title="Single Food"
+        title="Single Dish"
       />
       <div className="relative">
         <span className="w-[1px] h-full absolute left-[11.5%] -z-10 bg-[#99A9AD1A]"></span>
@@ -20,18 +22,55 @@ const FoodDetails = () => {
         <span className="w-[1px] h-full absolute left-[50%] -z-10 bg-[#99A9AD1A]"></span>
         <span className="w-[1px] h-full absolute left-[69.3%] -z-10 bg-[#99A9AD1A]"></span>
         <span className="w-[1px] h-full absolute left-[88.5%] -z-10 bg-[#99A9AD1A]"></span>
-        <div className="w-11/12 lg:w-[77%] mx-auto pt-8 md:pt-16 lg:pt-24 flex flex-col md:flex-row items-center gap-6">
+        <div className="w-11/12 lg:w-[77%] mx-auto pt-8 md:pt-16 lg:pt-24 flex flex-col md:flex-row items-center md:items-start gap-6">
           <img
             src={food?.image}
             alt=""
             className="w-[300px] h-[300px] lg:w-[450px] lg:h-[450px] object-cover"
           />
-          <div>
-            <h1 className="text-white">{food?.name}</h1>
-            <p>
-              <span>$</span> {food?.price}
+          <div className="py-5 md:py-7">
+            <h1 className="text-white text-3xl md:text-6xl font-elsie font-medium">
+              {food?.name}
+            </h1>
+            <div className=" flex gap-10 items-center  text-[#FFDE9F] my-3 md:my-8">
+              <p className="text-4xl md:text-8xl font-elsie">${food?.price}</p>
+              <p className="flex items-center gap-1 text-2xl md:text-4xl">
+                <FaStar />
+                <FaStar />
+                <FaStar />
+                <FaStar />
+                <FaStar />
+                <span className="text-sm text-[#99A9AD] ml-2">
+                  (10 Reviews)
+                </span>
+              </p>
+            </div>
+            <p className="text-sm  md:text-left md:text-xl mt-6 lg:mt-10 text-[#99A9AD]">
+              {food?.description}
             </p>
-            <p>{food.description}</p>
+            <div className="my-6 md:my-14 flex flex-col md:flex-row md:items-center gap-14">
+              <div className="flex items-center ">
+                <p className="text-white text-lg md:text-xl mr-3">Quantity :</p>
+                <div className="flex items-center">
+                  <button
+                    className="px-[14px] py-5 border text-white"
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  >
+                    -
+                  </button>
+                  <p className="p-5 border text-white">{quantity}</p>
+                  <button
+                    className="px-3 py-5 border text-white"
+                    onClick={() => setQuantity(quantity + 1)}
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <button className="bg-[#FFDE9F] px-5 py-2 lg:px-10 lg:py-5 text-lg lg:text-xl  font-medium hover:bg-black border-[#FFDE9F] border hover:text-[#FFDE9F]">
+                Add To Cart
+              </button>
+            </div>
           </div>
         </div>
       </div>
