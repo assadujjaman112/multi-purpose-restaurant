@@ -95,9 +95,13 @@ const FoodDetails = () => {
         >
           You may also like
         </h1>
-        <div className="w-11/12 lg:w-[77%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="w-11/12 lg:w-[77%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pb-5 md:pb-10 lg:pb-16">
           {suggestions?.slice(0, 3).map((food) => (
-            <Link key={food._id} to={`/menu/${food._id}`} onClick={()=> window.location.replace(`/menu/${food._id}`)}>
+            <Link
+              key={food._id}
+              to={`/menu/${food._id}`}
+              onClick={() => window.location.replace(`/menu/${food._id}`)}
+            >
               <SuggestionCard food={food} />
             </Link>
           ))}

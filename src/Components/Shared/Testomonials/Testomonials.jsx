@@ -33,31 +33,45 @@ export default function TestimonialCarousel() {
   };
 
   return (
-    <div className="w-11/12 lg:w-[77%] mx-auto">
-      <SectionHeader
-        title="TESTIMONIALS"
-        header="The Reviews Of Customers When Coming To Our Restaurant!"
-        description=" "
+    <div className="relative">
+      <img
+        src="https://i.postimg.cc/fbFFZxRM/catering-wedding-buffet-events-260nw-1008497035.jpg"
+        alt=""
+        className="w-full h-[600px] object-cover opacity-25"
       />
+      <div className="absolute top-0">
+        <div className=" w-11/12 lg:w-[77%] mx-auto">
+          <SectionHeader
+            title="TESTIMONIALS"
+            header="The Reviews Of Customers When Coming To Our Restaurant!"
+            description=" "
+          />
+          <div className="flex flex-col items-center mt-5 md:mt-10 lg:mt-20">
+            <p className="text-lg md:text-2xl mb-4 max-w-xl text-white font-elsie font-medium text-center transition-opacity duration-500 ease-in-out">
+              <span className="text-4xl text-[#FFDE9F] font-bold">&quot;</span>
+              {testimonials[currentIndex].text}
+              <span className="text-4xl text-[#FFDE9F] font-bold">&quot;</span>
+            </p>
+            <p className="text-[#FFDE9F] font-bold text-xl">
+              {testimonials[currentIndex].author}
+            </p>
+            <div className="flex justify-between w-full max-w-xs mt-6">
+              <button
+                onClick={prevTestimonial}
+                className="text-[#FFDE9F] text-2xl"
+              >
+                <FaChevronLeft />
+              </button>
+              <button
+                onClick={nextTestimonial}
+                className="text-[#FFDE9F] text-2xl"
+              >
+                <FaChevronRight />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    // <div className="relative flex flex-col items-center text-center bg-black text-white p-10 rounded-2xl max-w-3xl mx-auto">
-    //   <h2 className="text-yellow-400 text-lg font-semibold mb-4">
-    //     TESTIMONIALS
-    //   </h2>
-    //   <p className="text-xl mb-4 max-w-xl transition-opacity duration-500 ease-in-out">
-    //     {testimonials[currentIndex].text}
-    //   </p>
-    //   <p className="text-yellow-500 font-bold">
-    //     {testimonials[currentIndex].author}
-    //   </p>
-    //   <div className="flex justify-between w-full max-w-xs mt-6">
-    //     <button onClick={prevTestimonial} className="text-yellow-400 text-2xl">
-    //       <FaChevronLeft />
-    //     </button>
-    //     <button onClick={nextTestimonial} className="text-yellow-400 text-2xl">
-    //       <FaChevronRight />
-    //     </button>
-    //   </div>
-    // </div>
   );
 }
