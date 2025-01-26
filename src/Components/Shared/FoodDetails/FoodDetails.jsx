@@ -4,6 +4,7 @@ import MenuBanner from "../Banner/MenuBanner";
 import { FaStar } from "react-icons/fa6";
 import { useState } from "react";
 import SuggestionCard from "../SuggestionCard/SuggestionCard";
+import TestimonialCarousel from "../Testomonials/Testomonials";
 
 const FoodDetails = () => {
   const menu = useMenu();
@@ -102,6 +103,7 @@ const FoodDetails = () => {
           ))}
         </div>
       </div>
+      <TestimonialCarousel />
     </div>
   );
 };
