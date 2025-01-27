@@ -47,7 +47,7 @@ export default function TestimonialCarousel() {
             description=" "
           />
           <div className="flex flex-col items-center mt-5 md:mt-10 lg:mt-20">
-            <p className="text-lg md:text-2xl mb-4 max-w-xl text-white font-elsie font-medium text-center transition-opacity duration-500 ease-in-out">
+            <p className="text-lg md:text-2xl mb-4 max-w-xl text-[#99A9AD] font-elsie font-medium text-center transition-opacity duration-500 ease-in-out">
               <span className="text-4xl text-[#FFDE9F] font-bold">&quot;</span>
               {testimonials[currentIndex].text}
               <span className="text-4xl text-[#FFDE9F] font-bold">&quot;</span>
