@@ -56,16 +56,24 @@ const MenuPage = () => {
           header="Just Relax With Your Family"
           description="Available: Monday to Sunday 8pm to 11.30pm"
         />
-        <div className="w-11/12 lg:w-[77%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 mt-8 md:mt-12 lg:mt-16">
+        <div className="w-11/12 lg:w-[77%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 py-8 md:py-12 lg:py-16">
           {dinner?.map((item) => (
             <Link key={item._id} to={`${item._id}`}>
               <MenuCard item={item} />
             </Link>
           ))}
         </div>
-        <BookTable />
+      </div>
+      <BookTable />
+      <div className="relative">
+        <span className="w-[1px] h-full absolute left-[11.5%] -z-10 bg-[#99A9AD1A]"></span>
+        <span className="w-[1px] h-full absolute left-[30.7%] -z-10 bg-[#99A9AD1A]"></span>
+        <span className="w-[1px] h-full absolute left-[50%] -z-10 bg-[#99A9AD1A]"></span>
+        <span className="w-[1px] h-full absolute left-[69.3%] -z-10 bg-[#99A9AD1A]"></span>
+        <span className="w-[1px] h-full absolute left-[88.5%] -z-10 bg-[#99A9AD1A]"></span>
         <AppPromotion />
       </div>
+      <div className="bg-[#99A9AD1A] h-[1px]"></div>
     </div>
   );
 };

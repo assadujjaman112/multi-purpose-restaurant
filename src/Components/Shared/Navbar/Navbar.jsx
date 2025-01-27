@@ -46,16 +46,6 @@ const Navbar = () => {
       </li>
       <li className="px-5 py-1 lg:px-0 lg:py-0 hover:text-[#FFDE9F] rounded-lg">
         <NavLink
-          to="/pages"
-          className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-[#FFDE9F]" : ""
-          }
-        >
-          Pages
-        </NavLink>
-      </li>
-      <li className="px-5 py-1 lg:px-0 lg:py-0 hover:text-[#FFDE9F] rounded-lg">
-        <NavLink
           to="/about"
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "text-[#FFDE9F]" : ""

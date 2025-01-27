@@ -27,8 +27,8 @@ const BookTable = () => {
           className="w-full h-full"
         />
       </div>
-      <div className="relative top-[60px] w-11/12 lg:w-[77%] mx-auto h-full pb-16">
-        <div className="my-8 md:my-11 lg:my-16">
+      <div className="relative top-[60px] w-11/12 lg:w-[77%] mx-auto h-full pb-8">
+        <div className="">
           <p
             className="text-xl text-center  text-[#FFDE9F] flex gap-4 justify-center items-center"
             data-aos="fade-up"

@@ -2,7 +2,7 @@ import { FaStarOfLife } from "react-icons/fa6";
 
 const AppPromotion = () => {
   return (
-    <div className="flex flex-col gap-6 lg:flex-row w-11/12 lg:w-[75%] mx-auto my-8 md:my-11 lg:my-16">
+    <div className="flex flex-col gap-6 lg:flex-row w-11/12 lg:w-[75%] mx-auto py-8 md:py-11 lg:py-16">
       <div className="flex-1 ">
         <p
           className="text-xl text-[#FFDE9F] flex gap-4 items-center justify-center lg:justify-start"
