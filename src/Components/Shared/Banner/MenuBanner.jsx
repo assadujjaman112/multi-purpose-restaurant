@@ -6,7 +6,7 @@ const MenuBanner = ({ image, title }) => {
       <img
         src={image}
         alt=""
-        className="w-full h-[250px] object-cover opacity-35"
+        className="w-full h-[250px] object-cover opacity-40"
       />
       <div className="absolute top-0 flex justify-center w-full">
         <h5
