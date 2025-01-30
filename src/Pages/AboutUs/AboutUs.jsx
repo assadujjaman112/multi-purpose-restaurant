@@ -1,5 +1,6 @@
 import OurRestaurant from "../../components/OurRestaurant";
 import MenuBanner from "../../components/shared/Banner/MenuBanner";
+import WhyChooseUs from "../../components/WhyChooseUs";
 
 const AboutUs = () => {
   return (
@@ -15,7 +16,7 @@ const AboutUs = () => {
         <span className="w-[1px] h-full absolute left-[69.3%] -z-10 bg-[#99A9AD1A]"></span>
         <span className="w-[1px] h-full absolute left-[88.5%] -z-10 bg-[#99A9AD1A]"></span>
         <OurRestaurant />
-        
+        <WhyChooseUs />
       </div>
     </div>
   );

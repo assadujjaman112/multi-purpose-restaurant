@@ -25,7 +25,7 @@ const OurMenu = () => {
   };
 
   return (
-    <div className="w-11/12 lg:w-[77%] mx-auto">
+    <div className="w-11/12 lg:w-[77%] mx-auto pb-8 md:pb-10 lg:pb-16">
       <p
         className="text-xl text-center  text-[#FFDE9F] flex gap-4 justify-center items-center"
         data-aos="fade-up"
