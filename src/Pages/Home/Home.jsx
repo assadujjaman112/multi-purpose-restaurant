@@ -27,7 +27,7 @@ const Home = () => {
         <OurRestaurant></OurRestaurant>
         <MakeReservation />
       </div>
-      <Overview />
+      <Overview background="background"/>
       <div className="relative">
         <span className="w-[1px] h-full absolute left-[11.5%] -z-10 bg-[#99A9AD1A]"></span>
         <span className="w-[1px] h-full absolute left-[30.7%] -z-10 bg-[#99A9AD1A]"></span>

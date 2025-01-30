@@ -25,8 +25,17 @@ const WhyChooseUs = () => {
             title="Dinner"
             description="Amet, ac enim sed morbi pretium. Scelerisque id in nisi ullamcorper. Bibendum sit viverra enim."
           />
-          <ChooseCard  icon={GiRose} title="Wedding" description="Nullam quis tristique scelerisque proin. Ultricies augue hac eu aliquet in. Urna mattis a gravida."/>
-          <ChooseCard icon={FaBirthdayCake} title="Birthday" description="Lacus, risus, diam sit gravida phasellus pretium sodales. Cursus rutrum lorem nulla eu amet mattis."/>
+          <ChooseCard
+            icon={GiRose}
+            title="Wedding"
+            description="Nullam quis tristique scelerisque proin. Ultricies augue hac eu aliquet in. Urna mattis a gravida."
+          />
+          <ChooseCard
+            icon={FaBirthdayCake}
+            title="Birthday"
+            description="Lacus, risus, diam sit gravida phasellus pretium sodales. Cursus rutrum lorem nulla eu amet mattis."
+            
+          />
         </div>
       </div>
     </div>
