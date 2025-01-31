@@ -1,6 +1,8 @@
+import MakeReservation from "../../components/MakeReservation";
 import OurRestaurant from "../../components/OurRestaurant";
 import RestaurantFeature from "../../components/RestaurantFeature";
 import MenuBanner from "../../components/shared/Banner/MenuBanner";
+import Team from "../../components/shared/TeamSection/Team";
 import WhyChooseUs from "../../components/WhyChooseUs";
 
 const AboutUs = () => {
@@ -20,6 +22,8 @@ const AboutUs = () => {
       </div>
       <WhyChooseUs />
       <RestaurantFeature />
+      <MakeReservation />
+      <Team />
     </div>
   );
 };
