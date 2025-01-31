@@ -17,7 +17,7 @@ const testimonials = [
   },
 ];
 
-export default function TestimonialCarousel() {
+export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const prevTestimonial = () => {
