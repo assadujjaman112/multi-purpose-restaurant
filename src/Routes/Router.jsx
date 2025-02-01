@@ -5,6 +5,7 @@ import AddItem from "../pages/AddItem/AddItem";
 import MenuPage from "../pages/Menu/Menu";
 import FoodDetails from "../components/shared/FoodDetails/FoodDetails";
 import AboutUs from "../pages/AboutUs/AboutUs";
+import SingUp from "../pages/SignUp/SingUp";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <AboutUs />,
+      },
+      {
+        path: "/signup",
+        element: <SingUp />,
       },
     ],
   },
