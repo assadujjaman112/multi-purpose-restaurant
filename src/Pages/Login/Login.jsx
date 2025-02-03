@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const image =
   "https://i.postimg.cc/1tBJ4MxX/pngtree-group-of-fast-food-products-png-image-11219877-removebg-preview.png";
 
-const SingUp = () => {
+const Login = () => {
   return (
     <div className="w-full relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
@@ -26,18 +26,9 @@ const SingUp = () => {
         />
         <div className="md:w-1/2 px-5 py-10 rounded-lg bg-zinc-800 bg-opacity-80">
           <h4 className="font-elsie text-[#FFDE9F] text-center text-4xl mb-5">
-            Register Now
+            Login Now
           </h4>
           <form action="" className="w-full">
-            <div className="flex flex-col w-full mb-2">
-              <span className="font-elsie text-[#FFDE9F] pl-2 mb-1">Name</span>
-              <input
-                type="text"
-                name="name"
-                placeholder="Enter Your Name"
-                className="w-full outline-none py-2 pl-3 placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
-              />
-            </div>
             <div className="flex flex-col w-full mb-2">
               <span className="font-elsie text-[#FFDE9F] pl-2 mb-1">Email</span>
               <input
@@ -45,17 +36,6 @@ const SingUp = () => {
                 name="email"
                 placeholder="Enter Your Email"
                 className="w-full outline-none py-2 pl-3 placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
-              />
-            </div>
-            <div className="flex flex-col w-full mb-2">
-              <span className="font-elsie text-[#FFDE9F] pl-2 mb-1">
-                PhotoURL
-              </span>
-              <input
-                type="text"
-                name="image"
-                placeholder="Enter Item PhotoURL"
-                className="w-full outline-none py-2 pl-3  placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
               />
             </div>
             <div className="flex flex-col w-full mb-2">
@@ -71,7 +51,7 @@ const SingUp = () => {
             </div>
             <input
               type="submit"
-              value="Sign Up"
+              value="Login"
               className="bg-[#FFDE9F] hover:cursor-pointer mt-5 w-full py-2 text-lg lg:text-xl  font-medium hover:bg-zinc-800 border-[#FFDE9F] border hover:text-[#FFDE9F]"
             />
           </form>
@@ -79,9 +59,9 @@ const SingUp = () => {
             <FaGoogle className="text-[#FFDE9F] text-2xl" />
           </div>
           <p className="text-white  mt-5">
-            Already have an account?{" "}
-            <Link to="/login" className="text-[#FFDE9F] font-bold">
-              Login
+            Don&apos;t have an account? {" "}
+            <Link to="/signup" className="text-[#FFDE9F] font-bold">
+               Register
             </Link>
           </p>
         </div>
@@ -90,4 +70,4 @@ const SingUp = () => {
   );
 };
 
-export default SingUp;
+export default Login;

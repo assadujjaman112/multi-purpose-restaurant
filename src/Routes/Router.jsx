@@ -6,6 +6,7 @@ import MenuPage from "../pages/Menu/Menu";
 import FoodDetails from "../components/shared/FoodDetails/FoodDetails";
 import AboutUs from "../pages/AboutUs/AboutUs";
 import SingUp from "../pages/SignUp/SingUp";
+import Login from "../pages/Login/Login";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SingUp />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
     ],
   },
