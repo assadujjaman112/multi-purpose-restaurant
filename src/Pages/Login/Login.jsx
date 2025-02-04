@@ -59,7 +59,7 @@ const Login = () => {
             <FaGoogle className="text-[#FFDE9F] text-2xl" />
           </div>
           <p className="text-white  mt-5">
-            Don&apos;t have an account? {" "}
+            Don&apos;t have an account? {" cle"}
             <Link to="/signup" className="text-[#FFDE9F] font-bold">
                Register
             </Link>
