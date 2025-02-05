@@ -1,11 +1,36 @@
+import { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 const image =
   "https://i.postimg.cc/1tBJ4MxX/pngtree-group-of-fast-food-products-png-image-11219877-removebg-preview.png";
 
 const SingUp = () => {
+  const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const image = e.target.image.value;
+
+    createUser(email, password).then((result) => {
+      updateProfile(result.user, {
+        displayName: name,
+        photoURL: image,
+      }).then(() => {
+        navigate(location.state ? location.state : "/");
+      });
+    });
+  };
+
   return (
     <div className="w-full relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
@@ -28,7 +53,7 @@ const SingUp = () => {
           <h4 className="font-elsie text-[#FFDE9F] text-center text-4xl mb-5">
             Register Now
           </h4>
-          <form action="" className="w-full">
+          <form onSubmit={handleSignIn} className="w-full">
             <div className="flex flex-col w-full mb-2">
               <span className="font-elsie text-[#FFDE9F] pl-2 mb-1">Name</span>
               <input
@@ -64,7 +89,7 @@ const SingUp = () => {
               </span>
               <input
                 type="password"
-                name="image"
+                name="password"
                 placeholder="Enter Your Password"
                 className="w-full outline-none py-2 pl-3  placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
               />
