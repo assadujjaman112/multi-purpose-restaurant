@@ -4,6 +4,8 @@ import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const image =
   "https://i.postimg.cc/1tBJ4MxX/pngtree-group-of-fast-food-products-png-image-11219877-removebg-preview.png";
@@ -12,7 +14,6 @@ const SingUp = () => {
   const { createUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-
   const handleSignIn = (e) => {
     e.preventDefault();
 
@@ -21,12 +22,29 @@ const SingUp = () => {
     const password = e.target.password.value;
     const image = e.target.image.value;
 
+    const user = {
+      name: name,
+      email: email,
+      image: image,
+    };
+
     createUser(email, password).then((result) => {
       updateProfile(result.user, {
         displayName: name,
         photoURL: image,
       }).then(() => {
-        navigate(location.state ? location.state : "/");
+        const res = axios.post(`http://localhost:5000/users`, user);
+        res.then((result) => {
+          console.log(result);
+          if (result.data.insertedId) {
+            Swal.fire({
+              title: "Good job!",
+              text: "You have successfully registered!!",
+              icon: "success",
+            });
+            navigate(location.state ? location.state : "/");
+          }
+        });
       });
     });
   };
