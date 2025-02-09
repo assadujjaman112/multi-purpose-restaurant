@@ -5,6 +5,7 @@ import MakeReservation from "../../components/MakeReservation";
 import OurMenu from "../../components/OurMenu";
 import OurRestaurant from "../../components/OurRestaurant";
 import Overview from "../../components/Overview";
+import Testimonials from "../../components/shared/Testomonials/Testomonials";
 import VisitOurRestaurant from "../../components/VisitOurRestaurant";
 const Home = () => {
   return (
@@ -27,7 +28,7 @@ const Home = () => {
         <OurRestaurant></OurRestaurant>
         <MakeReservation />
       </div>
-      <Overview background="background"/>
+      <Overview background="background" />
       <div className="relative">
         <span className="w-[1px] h-full absolute left-[11.5%] -z-10 bg-[#99A9AD1A]"></span>
         <span className="w-[1px] h-full absolute left-[30.7%] -z-10 bg-[#99A9AD1A]"></span>
@@ -38,6 +39,7 @@ const Home = () => {
         <OurMenu />
         <BookTable />
         <AppPromotion />
+        <Testimonials />
         <VisitOurRestaurant />
         <div className="bg-[#99A9AD1A] h-[1px]"></div>
       </div>
