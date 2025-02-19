@@ -7,6 +7,7 @@ import FoodDetails from "../components/shared/FoodDetails/FoodDetails";
 import AboutUs from "../pages/AboutUs/AboutUs";
 import SingUp from "../pages/SignUp/SingUp";
 import Login from "../pages/Login/Login";
+import ContactUs from "../pages/ContactUs/ContactUs";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/contactUs",
+        element: <ContactUs />,
       },
     ],
   },
