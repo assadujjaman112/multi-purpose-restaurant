@@ -5,7 +5,7 @@ const useMenu = () => {
     const [menu, setMenu] = useState();
 
     useEffect(()=>{
-        axios.get("http://localhost:5000/foods")
+        axios.get("https://multi-purpose-server.vercel.app/foods")
         .then((result)=> {
             setMenu(result.data)
         })
