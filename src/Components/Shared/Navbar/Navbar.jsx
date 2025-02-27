@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SlHandbag } from "react-icons/sl";
 import { IoReorderThreeSharp } from "react-icons/io5";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navNavLinks = (
@@ -74,7 +74,9 @@ const Navbar = () => {
             <button onClick={() => setIsOpen(!isOpen)}>
               <IoReorderThreeSharp className="block lg:hidden text-3xl text-[#FFDE9F]" />
             </button>
-            <img src="https://i.postimg.cc/zvdD8PC3/logo.png" alt="" />
+            <Link to="/">
+              <img src="https://i.postimg.cc/zvdD8PC3/logo.png" alt="" />
+            </Link>
           </div>
           <div className="hidden lg:block">{navNavLinks}</div>
           <button className=" rounded-full h-11 w-11 md:h-14 md:w-14 bg-[#FFDE9F] flex justify-center items-center relative">
