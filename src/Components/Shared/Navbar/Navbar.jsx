@@ -13,8 +13,8 @@ const Navbar = () => {
             isPending
               ? "pending"
               : isActive
-              ? "lg:text-[#FFDE9F] text-white bg-slate-400 lg:bg-transparent px-5 py-2 lg:px-0 lg:py-0 rounded-md"
-              : ""
+                ? "lg:text-[#FFDE9F] text-white bg-slate-400 lg:bg-transparent px-5 py-2 lg:px-0 lg:py-0 rounded-md"
+                : ""
           }
         >
           Home
@@ -37,8 +37,8 @@ const Navbar = () => {
             isPending
               ? "pending"
               : isActive
-              ? "lg:text-[#FFDE9F] text-white bg-slate-400 lg:bg-transparent px-5 py-2 lg:px-0 lg:py-0 rounded-md"
-              : ""
+                ? "lg:text-[#FFDE9F] text-white bg-slate-400 lg:bg-transparent px-5 py-2 lg:px-0 lg:py-0 rounded-md"
+                : ""
           }
         >
           Add Item

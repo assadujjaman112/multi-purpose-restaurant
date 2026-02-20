@@ -54,7 +54,7 @@
 // export default MakeReservation;
 
 import { FaStarOfLife } from "react-icons/fa6";
-import Button from "./buttons/Button";
+import Button from "./Buttons/Button";
 
 const MakeReservation = () => {
   return (

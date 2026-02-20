@@ -127,8 +127,8 @@
 
 import Marquee from "react-fast-marquee";
 import { FaStarOfLife } from "react-icons/fa6";
-import Button from "./buttons/Button";
 import { Link } from "react-router-dom";
+import Button from "./Buttons/Button";
 
 const OurRestaurant = () => {
   return (

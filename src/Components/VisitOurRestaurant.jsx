@@ -1,5 +1,5 @@
-import Button from "./buttons/Button";
-import SectionDetails from "./shared/SectionDetails";
+import Button from "./Buttons/Button";
+import SectionDetails from "./Shared/SectionDetails";
 
 const VisitOurRestaurant = () => {
   return (

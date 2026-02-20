@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { FaStarOfLife } from "react-icons/fa6";
 import useMenu from "../hooks/useMenu";
-import MenuCard from "./shared/MenuCard/MenuCard";
-import Button from "./buttons/Button";
+import MenuCard from "./Shared/MenuCard/MenuCard";
+import Button from "./Buttons/Button";
 import { Link } from "react-router-dom";
 
 const OurMenu = () => {

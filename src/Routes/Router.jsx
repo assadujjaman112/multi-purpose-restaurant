@@ -1,13 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
-import MainLayout from "../layout/MainLayout";
-import Home from "../pages/Home/Home";
-import AddItem from "../pages/AddItem/AddItem";
-import MenuPage from "../pages/Menu/Menu";
-import FoodDetails from "../components/shared/FoodDetails/FoodDetails";
-import AboutUs from "../pages/AboutUs/AboutUs";
-import SingUp from "../pages/SignUp/SingUp";
-import Login from "../pages/Login/Login";
-import ContactUs from "../pages/ContactUs/ContactUs";
+import MainLayout from "../Layout/MainLayout";
+import Home from "../Pages/Home/Home";
+import AddItem from "../Pages/AddItem/AddItem";
+import MenuPage from "../Pages/Menu/Menu";
+import FoodDetails from "../Components/Shared/FoodDetails/FoodDetails";
+import AboutUs from "../Pages/AboutUs/AboutUs";
+import SingUp from "../Pages/SignUp/SingUp";
+import Login from "../Pages/Login/Login";
+import ContactUs from "../Pages/ContactUs/ContactUs";
 
 const router = createBrowserRouter([
   {
