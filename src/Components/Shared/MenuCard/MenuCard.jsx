@@ -1,32 +1,36 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const MenuCard = ({ item }) => {
   return (
-    <div className="flex flex-col lg:flex-row gap-7 p-4 md:p-0 w-full h-full">
-      {/* <div className="w-[170px] h-[170px]"> */}
-      <img
-        src={item?.image}
-        alt=""
-        className="w-full h-48 lg:w-[180px] lg:h-full object-cover"
-      />
-      {/* </div> */}
-      <div className="py-2">
-        <h4 className="text-white font-elsie font-medium text-3xl hover:text-[#FFDE9F]">
-          {item?.name}
-        </h4>
-        <p className="text-[#99A9AD] text-lg font-elsie font-normal mt-5 ">
-          {item.description}
-        </p>
-        <p className="text-[#FFDE9F] text-4xl  font-elsie mt-6">
-          $ {item.price}
-        </p>
+    <Link to={`/menu/${item._id}`} >
+      <div className="flex flex-col lg:flex-row gap-7 p-4 md:p-0 w-full h-full">
+        {/* <div className="w-[170px] h-[170px]"> */}
+        <img
+          src={item?.image}
+          alt=""
+          className="w-full h-48 lg:w-[180px] lg:h-full object-cover"
+        />
+        {/* </div> */}
+        <div className="py-2">
+          <h4 className="text-white font-elsie font-medium text-3xl hover:text-[#FFDE9F]">
+            {item?.name}
+          </h4>
+          <p className="text-[#99A9AD] text-lg font-elsie font-normal mt-5 ">
+            {item.description}
+          </p>
+          <p className="text-[#FFDE9F] text-4xl  font-elsie mt-6">
+            $ {item.price}
+          </p>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
 MenuCard.propTypes = {
   item: PropTypes.shape({
+  _id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
