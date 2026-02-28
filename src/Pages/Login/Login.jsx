@@ -1,11 +1,32 @@
+import { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const image =
   "https://i.postimg.cc/1tBJ4MxX/pngtree-group-of-fast-food-products-png-image-11219877-removebg-preview.png";
 
 const Login = () => {
+  const { googleSingIn } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  if (user) {
+    navigate("/");
+  }
+
+  const handleGoogleSignIn = () => {
+    googleSingIn()
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="w-full relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
@@ -55,13 +76,16 @@ const Login = () => {
               className="bg-[#FFDE9F] hover:cursor-pointer mt-5 w-full py-2 text-lg lg:text-xl  font-medium hover:bg-zinc-800 border-[#FFDE9F] border hover:text-[#FFDE9F]"
             />
           </form>
-          <div className="flex items-center justify-center border border-zinc-800 hover:bg-zinc-800 hover:border-[#FFDE9F] mt-6 py-2 hover:cursor-pointer">
+          <div
+            onClick={handleGoogleSignIn}
+            className="flex items-center justify-center border border-zinc-800 hover:bg-zinc-800 hover:border-[#FFDE9F] mt-6 py-2 hover:cursor-pointer"
+          >
             <FaGoogle className="text-[#FFDE9F] text-2xl" />
           </div>
           <p className="text-white  mt-5">
-            Don&apos;t have an account? {" cle"}
+            Don&apos;t have an account ? {" "}
             <Link to="/signup" className="text-[#FFDE9F] font-bold">
-               Register
+              Register
             </Link>
           </p>
         </div>
