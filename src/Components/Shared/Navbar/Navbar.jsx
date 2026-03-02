@@ -4,6 +4,7 @@ import { IoReorderThreeSharp } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { CiShoppingCart } from "react-icons/ci";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
@@ -119,6 +120,13 @@ const Navbar = () => {
                 </Link>
               )}
             </div>
+
+            <Link
+              to="/cart"
+              className="text-[#FFDE9F] text-2xl md:text-3xl relative"
+            >
+              <CiShoppingCart />
+            </Link>
           </div>
         </div>
       </div>
