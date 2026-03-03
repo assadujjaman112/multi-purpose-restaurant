@@ -1,5 +1,5 @@
-import ChooseCard from "./Shared/ChooseCard/ChooseCard";
-import SectionHeader from "./Shared/SectionHeader/SectionHeader";
+import ChooseCard from "./shared/choose-card/ChooseCard";
+import SectionHeader from "./shared/section-header/SectionHeader";
 import { GiHotMeal, GiRose } from "react-icons/gi";
 import { MdDinnerDining } from "react-icons/md";
 import { FaBirthdayCake } from "react-icons/fa";

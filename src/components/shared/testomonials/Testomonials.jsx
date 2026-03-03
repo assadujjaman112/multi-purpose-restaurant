@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import SectionHeader from "../SectionHeader/SectionHeader";
+import SectionHeader from "../section-header/SectionHeader";
 
 const testimonials = [
   {

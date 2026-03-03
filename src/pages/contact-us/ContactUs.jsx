@@ -1,4 +1,4 @@
-import MenuBanner from "../../Components/Shared/Banner/MenuBanner";
+import MenuBanner from "../../components/shared/banner/MenuBanner";
 
 const ContactUs = () => {
   return (

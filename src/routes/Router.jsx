@@ -1,22 +1,22 @@
 import { createBrowserRouter } from "react-router-dom";
-import MainLayout from "../Layout/MainLayout";
-import Home from "../Pages/Home/Home";
-import AddItem from "../Pages/AddItem/AddItem";
-import MenuPage from "../Pages/Menu/Menu";
-import FoodDetails from "../Components/Shared/FoodDetails/FoodDetails";
-import AboutUs from "../Pages/AboutUs/AboutUs";
-import SingUp from "../Pages/SignUp/SingUp";
-import Login from "../Pages/Login/Login";
-import ContactUs from "../Pages/ContactUs/ContactUs";
+import MainLayout from "../layout/MainLayout";
+import Home from "../pages/home/Home";
+import AddItem from "../pages/add-item/AddItem";
+import MenuPage from "../pages/menu/Menu";
+import FoodDetails from "../components/shared/food-details/FoodDetails";
+import AboutUs from "../pages/about-us/AboutUs";
+import SingUp from "../pages/sign-up/SingUp";
+import Login from "../pages/login/Login";
+import ContactUs from "../pages/contact-us/ContactUs";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout></MainLayout>,
+    element: <MainLayout />,
     children: [
       {
         path: "/",
-        element: <Home></Home>,
+        element: <Home />,
       },
       {
         path: "/addItem",

@@ -1,5 +1,5 @@
-import SectionHeader from "../SectionHeader/SectionHeader";
-import TeamCard from "../TeamCard/TeamCard";
+import SectionHeader from "../section-header/SectionHeader";
+import TeamCard from "../team-card/TeamCard";
 
 const Team = () => {
   return (

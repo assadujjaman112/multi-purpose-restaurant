@@ -1,10 +1,10 @@
-import MakeReservation from "../../Components/MakeReservation";
-import OurRestaurant from "../../Components/OurRestaurant";
-import RestaurantFeature from "../../Components/RestaurantFeature";
-import MenuBanner from "../../Components/Shared/Banner/MenuBanner";
-import Team from "../../Components/Shared/TeamSection/Team";
-import Testimonials from "../../Components/Shared/Testomonials/Testomonials";
-import WhyChooseUs from "../../Components/WhyChooseUs";
+import MakeReservation from "../../components/MakeReservation";
+import OurRestaurant from "../../components/OurRestaurant";
+import RestaurantFeature from "../../components/RestaurantFeature";
+import MenuBanner from "../../components/shared/banner/MenuBanner";
+import Team from "../../components/shared/team-section/Team";
+import Testimonials from "../../components/shared/testomonials/Testomonials";
+import WhyChooseUs from "../../components/WhyChooseUs";
 
 const AboutUs = () => {
   return (

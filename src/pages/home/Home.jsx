@@ -1,12 +1,12 @@
-import AppPromotion from "../../Components/AppPromotion";
-import BookTable from "../../Components/BookTable";
-import HeroSection from "../../Components/HeroSection";
-import MakeReservation from "../../Components/MakeReservation";
-import OurMenu from "../../Components/OurMenu";
-import OurRestaurant from "../../Components/OurRestaurant";
-import Overview from "../../Components/Overview";
-import Testimonials from "../../Components/Shared/Testomonials/Testomonials";
-import VisitOurRestaurant from "../../Components/VisitOurRestaurant";
+import AppPromotion from "../../components/AppPromotion";
+import BookTable from "../../components/BookTable";
+import HeroSection from "../../components/HeroSection";
+import MakeReservation from "../../components/MakeReservation";
+import OurMenu from "../../components/OurMenu";
+import OurRestaurant from "../../components/OurRestaurant";
+import Overview from "../../components/Overview";
+import Testimonials from "../../components/shared/testomonials/Testomonials";
+import VisitOurRestaurant from "../../components/VisitOurRestaurant";
 const Home = () => {
   return (
     <div className="">

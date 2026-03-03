@@ -1,10 +1,10 @@
 import useMenu from "../../hooks/useMenu";
-import MenuCard from "../../Components/Shared/MenuCard/MenuCard";
-import SectionHeader from "../../Components/Shared/SectionHeader/SectionHeader";
+import MenuCard from "../../components/shared/menu-card/MenuCard";
+import SectionHeader from "../../components/shared/section-header/SectionHeader";
 import { Link } from "react-router-dom";
-import BookTable from "../../Components/BookTable";
-import AppPromotion from "../../Components/AppPromotion";
-import MenuBanner from "../../Components/Shared/Banner/MenuBanner";
+import AppPromotion from "../../components/AppPromotion";
+import MenuBanner from "../../components/shared/banner/MenuBanner";
+import BookTable from "../../components/BookTable";
 
 const MenuPage = () => {
   const menu = useMenu();

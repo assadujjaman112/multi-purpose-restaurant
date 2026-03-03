@@ -1,10 +1,10 @@
 import { Link, useParams } from "react-router-dom";
 import useMenu from "../../../hooks/useMenu";
-import MenuBanner from "../Banner/MenuBanner";
+import MenuBanner from "../banner/MenuBanner";
 import { FaStar } from "react-icons/fa6";
 import { useState } from "react";
-import SuggestionCard from "../SuggestionCard/SuggestionCard";
-import Testimonials from "../Testomonials/Testomonials";
+import SuggestionCard from "../suggestion-card/SuggestionCard";
+import Testimonials from "../testomonials/Testomonials";
 
 const FoodDetails = () => {
   const menu = useMenu();
