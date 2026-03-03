@@ -8,6 +8,7 @@ import AboutUs from "../pages/about-us/AboutUs";
 import SingUp from "../pages/sign-up/SingUp";
 import Login from "../pages/login/Login";
 import ContactUs from "../pages/contact-us/ContactUs";
+import { Cart } from "../pages/cart/Cart";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/addItem",
+        path: "/add-item",
         element: <AddItem />,
       },
       {
@@ -43,8 +44,12 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "/contactUs",
+        path: "/contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },
