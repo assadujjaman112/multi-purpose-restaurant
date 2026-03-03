@@ -31,8 +31,8 @@ const OurMenu = () => {
         data-aos="fade-up"
         data-aos-duration="1000"
       >
-        <FaStarOfLife className="text-lg"></FaStarOfLife> OUR MENU
-        <FaStarOfLife className="text-lg"></FaStarOfLife>
+        <FaStarOfLife className="text-lg" /> OUR MENU
+        <FaStarOfLife className="text-lg" />
       </p>
       <h2
         className="text-3xl text-center md:text-5xl lg:text-7xl font-elsie text-white mt-5"

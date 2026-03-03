@@ -17,7 +17,7 @@ const Home = () => {
         <span className="w-[1px] h-full absolute left-[69.3%] -z-10 bg-[#99A9AD1A]"></span>
         <span className="w-[1px] h-full absolute left-[88.5%] -z-10 bg-[#99A9AD1A]"></span>
 
-        <HeroSection></HeroSection>
+        <HeroSection />
         <div className="w-full">
           <iframe
             src="https://customer-fh83ow5syywjxevx.cloudflarestream.com/7d627a1d4b63dd603348b03af3bdc97e/watch"
@@ -25,7 +25,7 @@ const Home = () => {
             allow="autoplay; loop; encrypted-media;"
           />
         </div>
-        <OurRestaurant></OurRestaurant>
+        <OurRestaurant />
         <MakeReservation />
       </div>
       <Overview background="background" />

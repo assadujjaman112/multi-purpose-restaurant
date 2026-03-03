@@ -33,7 +33,7 @@ const SingUp = () => {
         displayName: name,
         photoURL: image,
       }).then(() => {
-        const res = axios.post(`https://multi-purpose-server.vercel.app/users`, user);
+        const res = axios.post(`${import.meta.env.VITE_API_URL}/users`, user);
         res.then((result) => {
           console.log(result);
           if (result.data.insertedId) {

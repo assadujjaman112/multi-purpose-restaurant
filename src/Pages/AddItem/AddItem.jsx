@@ -17,7 +17,7 @@ const AddItem = () => {
 
     const food = { image, name, price, category, description };
 
-    const res = axios.post(`https://multi-purpose-server.vercel.app/foods`, food);
+    const res = axios.post(`${import.meta.env.VITE_API_URL}/foods`, food);
     res.then((res) => {
       if (res.data.insertedId) {
         Swal.fire({
