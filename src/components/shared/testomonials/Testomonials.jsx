@@ -33,13 +33,13 @@ export default function Testimonials() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative ">
       <img
         src="https://i.postimg.cc/fbFFZxRM/catering-wedding-buffet-events-260nw-1008497035.jpg"
         alt=""
         className="w-full h-[600px] object-cover opacity-25"
       />
-      <div className="absolute top-0">
+      <div className="absolute top-0 w-full h-full flex items-center justify-center">
         <div className=" w-11/12 lg:w-[77%] mx-auto">
           <SectionHeader
             title="TESTIMONIALS"
