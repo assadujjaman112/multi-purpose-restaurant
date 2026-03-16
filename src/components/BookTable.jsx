@@ -9,14 +9,55 @@ import {
 } from "react-icons/io5";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
+import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 const BookTable = () => {
   const [selectedDate, setSelectedDate] = useState("");
-  const handleBooking = () => {
-    Swal.fire({
-      title: "Good job!",
-      text: "Thanks For The Reservation",
-      icon: "success",
-    });
+  const { user } = useContext(AuthContext);
+
+  const handleBooking = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const name = form.name.value;
+    const email = user?.email || form.email.value;
+    const phone = form.phone.value;
+    const people = form.people.value;
+    const time = form.time.value;
+
+    if (!name || !email || !phone || !people || !selectedDate || !time) {
+      Swal.fire({
+        title: "Error!",
+        text: "Please fill in all the fields",
+        icon: "error",
+      });
+      return;
+    }
+
+    const isoDate = selectedDate ? new Date(selectedDate).toISOString() : null;
+
+    const bookingData = {
+      name,
+      email,
+      phone,
+      people,
+      date: isoDate,
+      time,
+    };
+    const res = await axios.post(
+      `${import.meta.env.VITE_API_URL}/bookings`,
+      bookingData,
+    );
+    if (res.data.insertedId) {
+      Swal.fire({
+        title: "Good job!",
+        text: "Thanks For The Reservation",
+        icon: "success",
+      });
+      form.reset();
+      setSelectedDate("");
+    }
   };
   return (
     <div className="w-full h-full " id="bookTable">
@@ -91,11 +132,10 @@ const BookTable = () => {
             <div className="w-full flex items-center">
               <select
                 id="dropdown"
-                // value={selectedOption}
-                // onChange={handleChange}
+                name="people"
                 className="bg-transparent w-full py-3 pl-3 text-white border-2 border-[#FFDE9F]"
               >
-                <option value="" disabled className="bg-black text-white">
+                <option value="" className="bg-black text-white">
                   Select an option
                 </option>
                 <option value="1" className="bg-black">
@@ -127,24 +167,25 @@ const BookTable = () => {
             <div className="w-full flex items-center">
               <select
                 id="dropdown"
+                name="time"
                 // value={selectedOption}
                 // onChange={handleChange}
                 className="bg-transparent w-full py-3 pl-3 text-white border-2 border-[#FFDE9F]"
               >
-                <option value="" disabled className="bg-black text-white">
+                <option value="" className="bg-black text-white">
                   Select Time
                 </option>
-                <option value="1" className="bg-black">
-                  8 : AM
+                <option value="8:00 AM" className="bg-black">
+                  8 : 00 AM
                 </option>
-                <option value="2" className="bg-black">
-                  9 : AM
+                <option value="9:00 AM" className="bg-black">
+                  9 : 00 AM
                 </option>
-                <option value="3" className="bg-black">
-                  10 : AM
+                <option value="10:00 AM" className="bg-black">
+                  10 : 00 AM
                 </option>
-                <option value="4" className="bg-black">
-                  11 : AM
+                <option value="11:00 AM" className="bg-black">
+                  11 : 00 AM
                 </option>
               </select>
             </div>

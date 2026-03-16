@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 
 const AddItem = () => {
   const navigate = useNavigate();
-  const handleAddItem = (event) => {
+  const handleAddItem = async (event) => {
     event.preventDefault();
 
     const form = event.target;
@@ -17,7 +17,7 @@ const AddItem = () => {
 
     const food = { image, name, price, category, description };
 
-    const res = axios.post(`${import.meta.env.VITE_API_URL}/foods`, food);
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}/foods`, food);
     res.then((res) => {
       if (res.data.insertedId) {
         Swal.fire({

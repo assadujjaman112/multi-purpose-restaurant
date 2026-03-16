@@ -35,7 +35,6 @@ const SingUp = () => {
       }).then(() => {
         const res = axios.post(`${import.meta.env.VITE_API_URL}/users`, user);
         res.then((result) => {
-          console.log(result);
           if (result.data.insertedId) {
             Swal.fire({
               title: "Good job!",
