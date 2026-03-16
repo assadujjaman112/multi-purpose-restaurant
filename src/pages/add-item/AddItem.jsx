@@ -7,27 +7,33 @@ const AddItem = () => {
   const handleAddItem = async (event) => {
     event.preventDefault();
 
-    const form = event.target;
-
-    const name = form.name.value;
-    const image = form.image.value;
-    const price = form.price.value;
-    const category = form.category.value;
-    const description = form.description.value;
+    const form = event?.target;
+    const name = form?.name?.value;
+    const image = form?.image?.value;
+    const price = form?.price?.value;
+    const category = form?.category?.value;
+    const description = form?.description?.value;
+    if (!name || !image || !price || !category || !description) {
+      Swal.fire({
+        title: "Error!",
+        text: "Please fill in all the fields.",
+        icon: "error",
+      });
+      return;
+    }
 
     const food = { image, name, price, category, description };
 
     const res = await axios.post(`${import.meta.env.VITE_API_URL}/foods`, food);
-    res.then((res) => {
-      if (res.data.insertedId) {
-        Swal.fire({
-          title: "Good job!",
-          text: "You have successfully added a food!!",
-          icon: "success",
-        });
-        navigate("/");
-      }
-    });
+
+    if (res.data.insertedId) {
+      Swal.fire({
+        title: "Good job!",
+        text: "You have successfully added a food!!",
+        icon: "success",
+      });
+      navigate("/");
+    }
   };
   return (
     <div className="relative min-h-screen">
