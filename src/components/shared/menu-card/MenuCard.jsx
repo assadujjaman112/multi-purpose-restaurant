@@ -3,34 +3,41 @@ import { Link } from "react-router-dom";
 
 const MenuCard = ({ item }) => {
   return (
-    <Link to={`/menu/${item._id}`} >
-      <div className="flex flex-col lg:flex-row gap-7 p-4 md:p-0 w-full h-full">
-        {/* <div className="w-[170px] h-[170px]"> */}
-        <img
-          src={item?.image}
-          alt=""
-          className="w-full h-48 lg:w-[180px] lg:h-full object-cover"
-        />
-        {/* </div> */}
-        <div className="py-2">
-          <h4 className="text-white font-elsie font-medium text-3xl hover:text-[#FFDE9F]">
-            {item?.name}
-          </h4>
-          <p className="text-[#99A9AD] text-lg font-elsie font-normal mt-5 ">
-            {item.description}
-          </p>
-          <p className="text-[#FFDE9F] text-4xl  font-elsie mt-6">
-            $ {item.price}
-          </p>
+    <div className="relative">
+      <Link to={`/menu/${item._id}`}>
+        <div className="flex flex-col lg:flex-row gap-7 p-4 md:p-0 w-full h-full">
+          {/* <div className="w-[170px] h-[170px]"> */}
+          <img
+            src={item?.image}
+            alt=""
+            className="w-full h-48 lg:w-[180px] lg:h-full object-cover"
+          />
+          {/* </div> */}
+          <div className="py-2">
+            <h4 className="text-white font-elsie font-medium text-3xl hover:text-[#FFDE9F]">
+              {item?.name}
+            </h4>
+            <p className="text-[#99A9AD] text-lg font-elsie font-normal mt-5 ">
+              {item.description}
+            </p>
+            <p className="text-[#FFDE9F] text-4xl  font-elsie mt-6">
+              $ {item.price}
+            </p>
+          </div>
         </div>
+      </Link>
+      <div className="absolute h-full w-full flex items-center justify-center bg-slate-300/50 bg-opacity-0 hover:bg-opacity-90 opacity-0 hover:opacity-100 transition-opacity duration-300 z-10 top-0">
+        <button className="text-black bg-[#FFDE9F] hover:bg-[#FFDE9F]/90 px-10 py-4 text-lg font-medium ">
+          Add to Cart
+        </button>
       </div>
-    </Link>
+    </div>
   );
 };
 
 MenuCard.propTypes = {
   item: PropTypes.shape({
-  _id: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
