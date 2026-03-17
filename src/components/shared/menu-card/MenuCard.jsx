@@ -1,7 +1,23 @@
 import PropTypes from "prop-types";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
+import { addToCart } from "../../../lib/helper";
 
 const MenuCard = ({ item }) => {
+  const { user } = useContext(AuthContext);
+  const customerEmail = user?.email;
+  const navigate = useNavigate();
+  const handleAddToCart = async () => {
+    if (!user) {
+      navigate("/login");
+      return;
+    }
+    console.log({ ...item, customerEmail, quantity: 1 });
+    const result = await addToCart({ ...item, customerEmail }, 1);
+    console.log(result);
+  };
   return (
     <div className="relative">
       <Link to={`/menu/${item._id}`}>
@@ -27,7 +43,10 @@ const MenuCard = ({ item }) => {
         </div>
       </Link>
       <div className="absolute h-full w-full flex items-center justify-center bg-slate-300/50 bg-opacity-0 hover:bg-opacity-90 opacity-0 hover:opacity-100 transition-opacity duration-300 z-10 top-0">
-        <button className="text-black bg-[#FFDE9F] hover:bg-[#FFDE9F]/90 px-10 py-4 text-lg font-medium ">
+        <button
+          onClick={handleAddToCart}
+          className="text-black bg-[#FFDE9F] hover:bg-[#FFDE9F]/90 px-10 py-4 text-lg font-medium "
+        >
           Add to Cart
         </button>
       </div>
