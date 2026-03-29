@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../../lib/helper";
+import Swal from "sweetalert2";
 
 const MenuCard = ({ item }) => {
   const { user } = useContext(AuthContext);
@@ -14,9 +15,16 @@ const MenuCard = ({ item }) => {
       navigate("/login");
       return;
     }
-    console.log({ ...item, customerEmail, quantity: 1 });
     const result = await addToCart({ ...item, customerEmail }, 1);
-    console.log(result);
+    if (result.data.insertedId) {
+      Swal.fire({
+        title: "Added to cart",
+        text: "Item added to cart successfully",
+        icon: "success",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "OK",
+      });
+    }
   };
   return (
     <div className="relative">
@@ -42,7 +50,7 @@ const MenuCard = ({ item }) => {
           </div>
         </div>
       </Link>
-      <div className="absolute h-full w-full flex items-center justify-center bg-slate-300/50 bg-opacity-0 hover:bg-opacity-90 opacity-0 hover:opacity-100 transition-opacity duration-300 z-10 top-0">
+      <div className="absolute h-full inset-0 w-full hidden  hover:flex items-center justify-center z-10 top-0">
         <button
           onClick={handleAddToCart}
           className="text-black bg-[#FFDE9F] hover:bg-[#FFDE9F]/90 px-10 py-4 text-lg font-medium "
