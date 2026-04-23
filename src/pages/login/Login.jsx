@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
@@ -9,19 +9,36 @@ const image =
   "https://i.postimg.cc/1tBJ4MxX/pngtree-group-of-fast-food-products-png-image-11219877-removebg-preview.png";
 
 const Login = () => {
-  const { googleSingIn } = useContext(AuthContext);
+  const { googleSingIn, signIn } = useContext(AuthContext);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const redirectTo = location.state?.pathname || "/";
 
   if (user) {
-    navigate("/");
+    navigate(redirectTo);
   }
+
+  const handleEmailLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    signIn(email, password)
+      .then(() => {
+        navigate(redirectTo);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const handleGoogleSignIn = () => {
     googleSingIn()
-      .then((result) => {
-        const loggedUser = result.user;
-        console.log(loggedUser);
+      .then(() => {
+        navigate(redirectTo);
       })
       .catch((error) => {
         console.log(error);
@@ -49,7 +66,7 @@ const Login = () => {
           <h4 className="font-elsie text-[#FFDE9F] text-center text-4xl mb-5">
             Login Now
           </h4>
-          <form action="" className="w-full">
+          <form onSubmit={handleEmailLogin} className="w-full">
             <div className="flex flex-col w-full mb-2">
               <span className="font-elsie text-[#FFDE9F] pl-2 mb-1">Email</span>
               <input
@@ -65,7 +82,7 @@ const Login = () => {
               </span>
               <input
                 type="password"
-                name="image"
+                name="password"
                 placeholder="Enter Your Password"
                 className="w-full outline-none py-2 pl-3  placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
               />
