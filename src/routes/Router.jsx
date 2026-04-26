@@ -11,6 +11,7 @@ import ContactUs from "../pages/contact-us/ContactUs";
 import { Cart } from "../pages/cart/Cart";
 import PrivateRoute from "./PrivateRoute";
 import Profile from "../pages/profile/Profile";
+import MyOrders from "../pages/my-orders/MyOrders";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
           {
             path: "/profile",
             element: <Profile />,
+          },
+          {
+            path: "/myOrders",
+            element: <MyOrders />,
           },
         ],
       },
