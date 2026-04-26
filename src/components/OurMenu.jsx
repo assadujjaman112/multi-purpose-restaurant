@@ -50,108 +50,29 @@ const OurMenu = () => {
         adipiscing mi dictum urna commodo. Fringilla ipsum etiam habitasse dolor
         lacus viverra.
       </p>
-      <div className="overflow-x-auto no-scrollbar flex gap-6 md:gap-0 justify-evenly items-center  h-40 mt-5 md:mt-8 lg:mt-10 lg:w-[70%] mx-auto">
-        <div
-          onClick={() => handleMenu("all", 1)}
-          className={`w-24 h-full flex flex-col justify-center items-center hover:cursor-pointer ${
-            isActive === 1 && "bg-slate-600 rounded-lg px-2"
-          }`}
-        >
-          <div className="w-20 h-20 flex justify-center items-center ">
-            <img
-              src="https://i.postimg.cc/L8mZKPPh/Artboard-13.png"
-              alt=""
-              className="w-full h-full"
-            />
-          </div>
-          <h4 className="mt-2 text-white text-xl font-medium font-elsie text-center">
-            All
-          </h4>
-        </div>
-        <div
-          onClick={() => handleMenu("breakfast", 2)}
-          className={`w-24 h-full flex flex-col justify-center items-center hover:cursor-pointer ${
-            isActive === 2 && "bg-slate-600 rounded-lg px-2"
-          }`}
-        >
-          <div className="w-20 h-20 flex justify-center items-center ">
-            <img
-              src="https://i.postimg.cc/8kH7d59S/Artboard-12.png"
-              alt=""
-              className="w-full h-full"
-            />
-          </div>
-          <h4 className="mt-2 text-white text-xl font-medium font-elsie text-center">
-            Breakfast
-          </h4>
-        </div>
-        <div
-          onClick={() => handleMenu("lunch", 3)}
-          className={`w-24 h-full flex flex-col justify-center items-center hover:cursor-pointer ${
-            isActive === 3 && "bg-slate-600 rounded-lg px-2"
-          }`}
-        >
-          <div className="w-20 h-20 flex justify-center items-center ">
-            <img
-              src="https://i.postimg.cc/ZKn5rL68/Artboard-10.png"
-              alt=""
-              className="w-full h-full"
-            />
-          </div>
-          <h4 className="mt-2 text-white text-xl font-medium font-elsie text-center">
-            Lunch
-          </h4>
-        </div>
-        <div
-          onClick={() => handleMenu("dinner", 4)}
-          className={`w-24 h-full flex flex-col justify-center items-center hover:cursor-pointer ${
-            isActive === 4 && "bg-slate-600 rounded-lg px-2"
-          }`}
-        >
-          <div className="w-20 h-20 flex justify-center items-center ">
-            <img
-              src="https://i.postimg.cc/8c5Nm1fp/Artboard-11.png"
-              alt=""
-              className="w-full h-full"
-            />
-          </div>
-          <h4 className="mt-2 text-white text-xl font-medium font-elsie text-center">
-            Dinner
-          </h4>
-        </div>
-        <div
-          onClick={() => handleMenu("dessert", 5)}
-          className={`w-24 h-full flex flex-col justify-center items-center hover:cursor-pointer ${
-            isActive === 5 && "bg-slate-600 rounded-lg px-2"
-          }`}
-        >
-          <div className="w-20 h-20 flex justify-center items-center ">
-            <img
-              src="https://i.postimg.cc/x8n9xpqp/Artboard-14.png"
-              alt=""
-              className="w-full h-full"
-            />
-          </div>
-          <h4 className="mt-2 text-white text-xl font-medium font-elsie text-center">
-            Dessert
-          </h4>
-        </div>
-        <div
-          onClick={() => handleMenu("drink", 6)}
-          className={`w-24 h-full flex flex-col justify-center items-center hover:cursor-pointer ${
-            isActive === 6 && "bg-slate-600 rounded-lg px-2"
-          }`}
-        >
-          <div className="w-20 h-20 flex justify-center items-center ">
-            <img
-              src="https://i.postimg.cc/8k4GkH7D/Artboard-1.png"
-              alt=""
-              className="w-full h-full"
-            />
-          </div>
-          <h4 className="mt-2 text-white text-xl font-medium font-elsie text-center">
-            Drink
-          </h4>
+      <div className="overflow-x-auto no-scrollbar mt-8 md:mt-10 lg:mt-12">
+        <div className="flex gap-3 justify-start md:justify-center min-w-max md:min-w-0 mx-auto px-1 pb-1">
+          {[
+            { category: "all",       id: 1, label: "All",       img: "https://i.postimg.cc/L8mZKPPh/Artboard-13.png" },
+            { category: "breakfast", id: 2, label: "Breakfast", img: "https://i.postimg.cc/8kH7d59S/Artboard-12.png" },
+            { category: "lunch",     id: 3, label: "Lunch",     img: "https://i.postimg.cc/ZKn5rL68/Artboard-10.png" },
+            { category: "dinner",    id: 4, label: "Dinner",    img: "https://i.postimg.cc/8c5Nm1fp/Artboard-11.png" },
+            { category: "dessert",   id: 5, label: "Dessert",   img: "https://i.postimg.cc/x8n9xpqp/Artboard-14.png" },
+            { category: "drink",     id: 6, label: "Drink",     img: "https://i.postimg.cc/8k4GkH7D/Artboard-1.png" },
+          ].map(({ category, id, label, img }) => (
+            <button
+              key={id}
+              onClick={() => handleMenu(category, id)}
+              className={`flex items-center gap-2.5 px-4 py-2.5 rounded-full border transition-all duration-200 whitespace-nowrap cursor-pointer ${
+                isActive === id
+                  ? "border-[#FFDE9F] bg-[#FFDE9F]/10 text-[#FFDE9F]"
+                  : "border-[#99A9AD]/30 bg-white/5 text-[#99A9AD] hover:border-[#FFDE9F]/50 hover:text-white"
+              }`}
+            >
+              <img src={img} alt={label} className="w-6 h-6 object-contain" />
+              <span className="font-elsie text-base">{label}</span>
+            </button>
+          ))}
         </div>
       </div>
       <div className="my-8 md:mt-10 lg:mt-14 grid grid-cols-1 md:grid-cols-2 gap-6">
