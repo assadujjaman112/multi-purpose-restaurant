@@ -2,93 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FaStarOfLife } from "react-icons/fa6";
-import { MdOutlineReceiptLong } from "react-icons/md";
 import { BiPackage } from "react-icons/bi";
-import { LuChefHat, LuBike } from "react-icons/lu";
-import { IoCheckmarkCircle } from "react-icons/io5";
-
-const STATUS_CONFIG = {
-  Placed: {
-    color: "text-blue-400",
-    bg: "bg-blue-400/10 border-blue-400/30",
-    dot: "bg-blue-400",
-    icon: MdOutlineReceiptLong,
-    step: 0,
-  },
-  Preparing: {
-    color: "text-yellow-400",
-    bg: "bg-yellow-400/10 border-yellow-400/30",
-    dot: "bg-yellow-400",
-    icon: LuChefHat,
-    step: 1,
-  },
-  "On the way": {
-    color: "text-orange-400",
-    bg: "bg-orange-400/10 border-orange-400/30",
-    dot: "bg-orange-400",
-    icon: LuBike,
-    step: 2,
-  },
-  Delivered: {
-    color: "text-green-400",
-    bg: "bg-green-400/10 border-green-400/30",
-    dot: "bg-green-400",
-    icon: IoCheckmarkCircle,
-    step: 3,
-  },
-};
-
-const STEPS = [
-  { label: "Placed",     icon: MdOutlineReceiptLong },
-  { label: "Preparing",  icon: LuChefHat },
-  { label: "On the way", icon: LuBike },
-  { label: "Delivered",  icon: IoCheckmarkCircle },
-];
-
-const STATUSES = ["Placed", "Preparing", "On the way", "Delivered"];
-
-const StatusBadge = ({ status }) => {
-  const cfg = STATUS_CONFIG[status];
-  const Icon = cfg.icon;
-  return (
-    <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border ${cfg.bg} ${cfg.color}`}>
-      <span className={`w-1.5 h-1.5 rounded-full ${cfg.dot}`} />
-      <Icon className="text-sm" />
-      {status}
-    </span>
-  );
-};
-
-const ProgressTracker = ({ status }) => {
-  const currentStep = STATUS_CONFIG[status].step;
-  return (
-    <div className="flex items-center mt-4">
-      {STEPS.map((step, i) => {
-        const Icon = step.icon;
-        const done = i <= currentStep;
-        const active = i === currentStep;
-        return (
-          <div key={step.label} className="flex items-center flex-1 last:flex-none">
-            <div className="flex flex-col items-center gap-1">
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-colors
-                ${done ? "border-[#FFDE9F] bg-[#FFDE9F]/10 text-[#FFDE9F]" : "border-zinc-600 bg-zinc-800 text-zinc-600"}
-                ${active ? "ring-2 ring-[#FFDE9F]/30" : ""}`}
-              >
-                <Icon className="text-sm" />
-              </div>
-              <span className={`text-[10px] whitespace-nowrap ${done ? "text-[#FFDE9F]" : "text-zinc-600"}`}>
-                {step.label}
-              </span>
-            </div>
-            {i < STEPS.length - 1 && (
-              <div className={`flex-1 h-[2px] mx-1 mb-4 rounded ${i < currentStep ? "bg-[#FFDE9F]" : "bg-zinc-700"}`} />
-            )}
-          </div>
-        );
-      })}
-    </div>
-  );
-};
+import { STATUSES } from "../../components/my-orders/orderConfig";
+import StatusBadge from "../../components/my-orders/StatusBadge";
+import ProgressTracker from "../../components/my-orders/ProgressTracker";
 
 const buildOrders = (foods) => {
   if (!foods || foods.length === 0) return [];
