@@ -10,6 +10,7 @@ import Login from "../pages/login/Login";
 import ContactUs from "../pages/contact-us/ContactUs";
 import { Cart } from "../pages/cart/Cart";
 import PrivateRoute from "./PrivateRoute";
+import Profile from "../pages/profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
           {
             path: "/cart",
             element: <Cart />,
+          },
+          {
+            path: "/profile",
+            element: <Profile />,
           },
         ],
       },
