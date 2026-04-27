@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+
 const BookTable = () => {
   const [selectedDate, setSelectedDate] = useState("");
   const { user } = useContext(AuthContext);
@@ -49,14 +50,25 @@ const BookTable = () => {
       `${import.meta.env.VITE_API_URL}/bookings`,
       bookingData,
     );
-    if (res.data.insertedId) {
+
+    if (!res.ok) throw new Error("Failed to book table");
+    try {
+      const data = await res.json();
+      if (data.insertedId) {
+        Swal.fire({
+          title: "Good job!",
+          text: "Table booked successfully",
+          icon: "success",
+        });
+      } else {
+        throw new Error("Failed to book table");
+      }
+    } catch (error) {
       Swal.fire({
-        title: "Good job!",
-        text: "Thanks For The Reservation",
-        icon: "success",
+        title: "Error!",
+        text: "Failed to book table",
+        icon: "error",
       });
-      form.reset();
-      setSelectedDate("");
     }
   };
   return (
