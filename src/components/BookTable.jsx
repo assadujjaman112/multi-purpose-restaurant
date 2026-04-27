@@ -50,18 +50,20 @@ const BookTable = () => {
       `${import.meta.env.VITE_API_URL}/bookings`,
       bookingData,
     );
+    console.log(res);
 
-    if (!res.ok) throw new Error("Failed to book table");
+    if (res.statusText !== "OK") throw new Error("Failed to book table");
     try {
-      const data = await res.json();
+      const data = await res.data;
       if (data.insertedId) {
         Swal.fire({
-          title: "Good job!",
+          title: "Success!",
           text: "Table booked successfully",
           icon: "success",
+        }).then(() => {
+          form.reset();
+          setSelectedDate("");
         });
-      } else {
-        throw new Error("Failed to book table");
       }
     } catch (error) {
       Swal.fire({
