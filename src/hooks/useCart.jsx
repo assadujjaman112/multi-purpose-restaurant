@@ -19,7 +19,7 @@ const useCart = () => {
         params: { email: user.email },
       })
       .then((res) => {
-        setCartItems(res.data);
+        setCartItems(Array.isArray(res.data.data) ? res.data.data : []);
       })
       .finally(() => setLoading(false));
   }, [user?.email]);
