@@ -13,7 +13,7 @@ export const Cart = () => {
 
   const subtotal = cartItems.reduce(
     (sum, item) => sum + parseFloat(item.price) * item.quantity,
-    0
+    0,
   );
   const tax = subtotal * TAX_RATE;
   const total = subtotal + tax;
@@ -31,8 +31,25 @@ export const Cart = () => {
       color: "#fff",
     });
     if (!result.isConfirmed) return;
-    await removeFromCart(id);
-    refetch();
+    const res = await removeFromCart(id);
+    if (res.data.data.deletedCount) {
+      refetch();
+      Swal.fire({
+        title: "Removed from cart",
+        text: "Item removed from cart successfully",
+        icon: "success",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "OK",
+      });
+    } else {
+      Swal.fire({
+        title: "Error",
+        text: "Failed to remove item from cart",
+        icon: "error",
+        confirmButtonColor: "#FFDE9F",
+        confirmButtonText: "OK",
+      });
+    }
   };
 
   const handleQuantityChange = async (item, delta) => {

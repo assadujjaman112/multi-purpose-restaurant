@@ -5,20 +5,33 @@ import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { CiShoppingCart } from "react-icons/ci";
-import { MdOutlineHome, MdOutlineRestaurantMenu, MdOutlineAddBox, MdOutlineInfo, MdOutlineContactMail } from "react-icons/md";
+import {
+  MdOutlineHome,
+  MdOutlineRestaurantMenu,
+  MdOutlineAddBox,
+  MdOutlineInfo,
+  MdOutlineContactMail,
+} from "react-icons/md";
+import useCart from "../../../hooks/useCart";
 
 const navItems = [
-  { to: "/",          label: "Home",       icon: MdOutlineHome },
-  { to: "/menu",      label: "Menu",       icon: MdOutlineRestaurantMenu },
-  { to: "/add-item",  label: "Add Item",   icon: MdOutlineAddBox },
-  { to: "/about",     label: "About Us",   icon: MdOutlineInfo },
-  { to: "/contact-us",label: "Contact Us", icon: MdOutlineContactMail },
+  { to: "/", label: "Home", icon: MdOutlineHome },
+  { to: "/menu", label: "Menu", icon: MdOutlineRestaurantMenu },
+  { to: "/add-item", label: "Add Item", icon: MdOutlineAddBox },
+  { to: "/about", label: "About Us", icon: MdOutlineInfo },
+  { to: "/contact-us", label: "Contact Us", icon: MdOutlineContactMail },
 ];
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const [cartItems, loading] = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-  const { user, logOut } = useContext(AuthContext);
+
+  const cartItemCount = cartItems.length;
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   const close = () => setIsOpen(false);
 
@@ -28,9 +41,7 @@ const Navbar = () => {
         <li key={to} className="hover:text-[#FFDE9F]">
           <NavLink
             to={to}
-            className={({ isActive }) =>
-              isActive ? "text-[#FFDE9F]" : ""
-            }
+            className={({ isActive }) => (isActive ? "text-[#FFDE9F]" : "")}
           >
             {label}
           </NavLink>
@@ -95,7 +106,12 @@ const Navbar = () => {
                 Sign In
               </Link>
             )}
-            <Link to="/cart" className="text-[#FFDE9F] text-2xl md:text-3xl">
+            <Link to="/cart" className="relative text-[#FFDE9F] text-2xl md:text-3xl">
+              {cartItemCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-[#FFDE9F] text-black rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                  {cartItemCount}
+                </span>
+              )}
               <CiShoppingCart />
             </Link>
           </div>
@@ -122,7 +138,10 @@ const Navbar = () => {
             My Orders
           </Link>
           <button
-            onClick={() => { logOut(); setIsProfileMenuOpen(false); }}
+            onClick={() => {
+              logOut();
+              setIsProfileMenuOpen(false);
+            }}
             className="text-black font-elsie text-lg hover:bg-[#f0c981] rounded-md px-2 py-0.5 text-left"
           >
             Log out
@@ -134,7 +153,9 @@ const Navbar = () => {
       <div
         onClick={close}
         className={`fixed inset-0 bg-black/60 transition-opacity duration-300 lg:hidden ${
-          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          isOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
       />
 
@@ -153,7 +174,11 @@ const Navbar = () => {
               className="w-28"
             />
           </Link>
-          <button onClick={close} className="text-[#FFDE9F] text-2xl" aria-label="Close menu">
+          <button
+            onClick={close}
+            className="text-[#FFDE9F] text-2xl"
+            aria-label="Close menu"
+          >
             <IoClose />
           </button>
         </div>
@@ -176,7 +201,9 @@ const Navbar = () => {
               <p className="text-white font-elsie text-lg leading-tight">
                 {user.displayName || "User"}
               </p>
-              <p className="text-[#99A9AD] text-xs truncate max-w-[160px]">{user.email}</p>
+              <p className="text-[#99A9AD] text-xs truncate max-w-[160px]">
+                {user.email}
+              </p>
             </div>
           </div>
         )}
@@ -218,7 +245,10 @@ const Navbar = () => {
                 Profile
               </Link>
               <button
-                onClick={() => { logOut(); close(); }}
+                onClick={() => {
+                  logOut();
+                  close();
+                }}
                 className="w-full mt-1 py-2.5 border border-[#FFDE9F] text-[#FFDE9F] font-elsie text-base rounded-lg hover:bg-[#FFDE9F] hover:text-black transition-colors"
               >
                 Log out
