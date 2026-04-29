@@ -1,10 +1,14 @@
 import { Link, useParams } from "react-router-dom";
-import useMenu from "../../../hooks/useMenu";
-import MenuBanner from "../banner/MenuBanner";
+import useMenu from "../../hooks/useMenu";
+import MenuBanner from "../../components/shared/banner/MenuBanner";
 import { FaStar } from "react-icons/fa6";
 import { useState } from "react";
-import SuggestionCard from "../suggestion-card/SuggestionCard";
-import Testimonials from "../testomonials/Testomonials";
+import SuggestionCard from "../../components/shared/suggestion-card/SuggestionCard";
+import Testimonials from "../../components/shared/testomonials/Testomonials";
+import { addToCart } from "../../lib/helper";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const FoodDetails = () => {
   const menu = useMenu();
@@ -12,6 +16,21 @@ const FoodDetails = () => {
   const food = menu?.find((item) => item._id === id);
   const [quantity, setQuantity] = useState(1);
   const suggestions = menu?.filter((item) => item._id != id);
+  const { user } = useContext(AuthContext);
+  const customerEmail = user?.email;
+
+  const handleAddToCart = async () => {
+    const result = await addToCart(food, quantity, customerEmail);
+    if (result.data.data.insertedId) {
+      Swal.fire({
+        title: "Added to cart",
+        text: "Item added to cart successfully",
+        icon: "success",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "OK",
+      });
+    }
+  };
 
   return (
     <div>
@@ -82,7 +101,10 @@ const FoodDetails = () => {
                   </button>
                 </div>
               </div>
-              <button className="bg-[#FFDE9F] px-5 py-2 lg:px-10 lg:py-5 text-lg lg:text-xl  font-medium hover:bg-black border-[#FFDE9F] border hover:text-[#FFDE9F]">
+              <button
+                onClick={handleAddToCart}
+                className="bg-[#FFDE9F] px-5 py-2 lg:px-10 lg:py-5 text-lg lg:text-xl  font-medium hover:bg-black border-[#FFDE9F] border hover:text-[#FFDE9F]"
+              >
                 Add To Cart
               </button>
             </div>

@@ -3,7 +3,7 @@ import TeamCard from "../team-card/TeamCard";
 
 const Team = () => {
   return (
-    <div>
+    <div className="pb-4 md:pb-8 lg:pb-16">
       <SectionHeader header="AMAZING TEAM" title="Meet Our Chef" />
       <div className="w-11/12 lg:w-[77%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 md:mt-10 lg:mt-16">
         <TeamCard

@@ -1,9 +1,10 @@
 import axios from "axios";
 
-export const addToCart = async (item, quantity) => {
+export const addToCart = async (item, quantity, customerEmail) => {
   const res = await axios.post(`${import.meta.env.VITE_API_URL}/carts`, {
     ...item,
     quantity,
+    customerEmail,
   });
   return res;
 };

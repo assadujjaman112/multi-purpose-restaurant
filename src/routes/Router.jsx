@@ -3,7 +3,7 @@ import MainLayout from "../layout/MainLayout";
 import Home from "../pages/home/Home";
 import AddItem from "../pages/add-item/AddItem";
 import MenuPage from "../pages/menu/Menu";
-import FoodDetails from "../components/shared/food-details/FoodDetails";
+import FoodDetails from "../pages/food-details/FoodDetails";
 import AboutUs from "../pages/about-us/AboutUs";
 import SingUp from "../pages/sign-up/SingUp";
 import Login from "../pages/login/Login";
