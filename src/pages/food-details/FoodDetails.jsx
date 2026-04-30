@@ -1,12 +1,11 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import useMenu from "../../hooks/useMenu";
 import MenuBanner from "../../components/shared/banner/MenuBanner";
 import { FaStar } from "react-icons/fa6";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import SuggestionCard from "../../components/shared/suggestion-card/SuggestionCard";
 import Testimonials from "../../components/shared/testomonials/Testomonials";
 import { addToCart } from "../../lib/helper";
-import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 
@@ -18,8 +17,13 @@ const FoodDetails = () => {
   const suggestions = menu?.filter((item) => item._id != id);
   const { user } = useContext(AuthContext);
   const customerEmail = user?.email;
+  const navigate = useNavigate();
 
   const handleAddToCart = async () => {
+    if (!user) {
+      navigate("/login");
+      return;
+    }
     const result = await addToCart(food, quantity, customerEmail);
     if (result.success) {
       Swal.fire({
