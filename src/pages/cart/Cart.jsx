@@ -74,8 +74,10 @@ export const Cart = () => {
     }
   };
 
-  const handleConfirm = async (item) => {
-    await updateCartQuantity(item._id, getQty(item));
+  const handleConfirm = async (item, qty) => {
+    const newQty = qty ?? getQty(item);
+    setQuantities((prev) => ({ ...prev, [item._id]: newQty }));
+    await updateCartQuantity(item._id, newQty);
   };
 
   if (loading) {

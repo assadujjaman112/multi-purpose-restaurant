@@ -6,12 +6,48 @@ const CartRow = ({
   item,
   quantity,
   onRemove,
-  onQuantityChange,
+  // onQuantityChange,
   onQuantityInput,
   onConfirm,
 }) => {
   const [editing, setEditing] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const [error, setError] = useState("");
   const rowTotal = (parseFloat(item.price) * quantity).toFixed(2);
+
+  const startEditing = () => {
+    setInputValue(String(quantity));
+    setError("");
+    setEditing(true);
+  };
+
+  const handleMinus = () => {
+    const current = parseInt(inputValue, 10);
+    if (!isNaN(current) && current > 1) {
+      const next = current - 1;
+      setInputValue(String(next));
+      onQuantityInput(item, String(next));
+    }
+  };
+
+  const handlePlus = () => {
+    const current = parseInt(inputValue, 10);
+    const base = isNaN(current) ? quantity : current;
+    const next = base + 1;
+    setInputValue(String(next));
+    onQuantityInput(item, String(next));
+  };
+
+  const handleCheck = () => {
+    const parsed = parseInt(inputValue, 10);
+    if (isNaN(parsed) || parsed < 1) {
+      setError("Quantity must be at least 1");
+      return;
+    }
+    setError("");
+    onConfirm(item, parsed);
+    setEditing(false);
+  };
 
   return (
     <div className="bg-zinc-800/40 px-4 md:px-6 py-4 grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr_5rem] gap-4 items-center">
@@ -41,31 +77,43 @@ const CartRow = ({
       </p>
 
       {/* Quantity — read-only or stepper */}
-      <div className="flex items-center gap-2 justify-start md:justify-center">
+      <div className="flex flex-col items-start md:items-center gap-1">
         {editing ? (
-          <>
+          <div className="flex items-center gap-2">
             <button
-              onClick={() => onQuantityChange(item, -1)}
-              disabled={quantity <= 1}
+              onClick={handleMinus}
+              disabled={parseInt(inputValue, 10) <= 1}
               className="w-8 h-8 rounded-md border border-zinc-600 flex items-center justify-center text-white hover:border-[#FFDE9F] hover:text-[#FFDE9F] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
             >
               <FiMinus className="text-sm" />
             </button>
-            <input
-              type="number"
-              min={1}
-              value={quantity}
-              autoFocus
-              onChange={(e) => onQuantityInput(item, e.target.value)}
-              className="w-12 text-center text-white font-medium bg-zinc-700 border border-zinc-600 rounded-md py-0.5 focus:outline-none focus:border-[#FFDE9F] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-            />
+            <div className="flex flex-col items-center">
+              <input
+                type="text"
+                inputMode="numeric"
+                value={inputValue}
+                autoFocus
+                onChange={(e) => {
+                  setInputValue(e.target.value);
+                  setError("");
+                }}
+                className={`w-12 text-center text-white font-medium bg-zinc-700 border rounded-md py-0.5 focus:outline-none transition-colors [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
+                  error ? "border-red-400" : "border-zinc-600 focus:border-[#FFDE9F]"
+                }`}
+              />
+              {error && (
+                <span className="text-red-400 text-[10px] mt-0.5 whitespace-nowrap">
+                  {error}
+                </span>
+              )}
+            </div>
             <button
-              onClick={() => onQuantityChange(item, 1)}
+              onClick={handlePlus}
               className="w-8 h-8 rounded-md border border-zinc-600 flex items-center justify-center text-white hover:border-[#FFDE9F] hover:text-[#FFDE9F] transition-colors"
             >
               <FiPlus className="text-sm" />
             </button>
-          </>
+          </div>
         ) : (
           <span className="w-8 text-center text-white font-medium tabular-nums">
             {quantity}
@@ -81,14 +129,7 @@ const CartRow = ({
       {/* Actions: edit toggle + remove */}
       <div className="flex items-center gap-2 justify-end md:justify-center">
         <button
-          onClick={() => {
-            if (editing) {
-              onConfirm(item);
-              setEditing(false);
-            } else {
-              setEditing(true);
-            }
-          }}
+          onClick={editing ? handleCheck : startEditing}
           aria-label={editing ? "Done editing" : "Edit quantity"}
           className={`w-8 h-8 rounded-md border flex items-center justify-center transition-colors ${
             editing
