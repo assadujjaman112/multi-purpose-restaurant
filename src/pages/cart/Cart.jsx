@@ -1,18 +1,22 @@
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { FiTrash2, FiMinus, FiPlus, FiShoppingCart } from "react-icons/fi";
+import { useState } from "react";
 import Swal from "sweetalert2";
 import MenuBanner from "../../components/shared/banner/MenuBanner";
 import useCart from "../../hooks/useCart";
 import { removeFromCart, updateCartQuantity } from "../../lib/helper";
+import CartRow from "../../components/cart/CartRow";
+import OrderSummary from "../../components/cart/OrderSummary";
+import EmptyCart from "../../components/cart/EmptyCart";
 
 const TAX_RATE = 0.1;
 
 export const Cart = () => {
   const [cartItems, loading, refetch] = useCart();
+  const [quantities, setQuantities] = useState({});
+
+  const getQty = (item) => quantities[item._id] ?? item.quantity;
 
   const subtotal = cartItems.reduce(
-    (sum, item) => sum + parseFloat(item.price) * item.quantity,
+    (sum, item) => sum + parseFloat(item.price) * getQty(item),
     0,
   );
   const tax = subtotal * TAX_RATE;
@@ -33,6 +37,11 @@ export const Cart = () => {
     if (!result.isConfirmed) return;
     const res = await removeFromCart(id);
     if (res.data.data.deletedCount) {
+      setQuantities((prev) => {
+        const next = { ...prev };
+        delete next[id];
+        return next;
+      });
       refetch();
       Swal.fire({
         title: "Removed from cart",
@@ -52,11 +61,21 @@ export const Cart = () => {
     }
   };
 
-  const handleQuantityChange = async (item, delta) => {
-    const newQty = item.quantity + delta;
+  const applyQty = async (id, newQty) => {
     if (newQty < 1) return;
-    await updateCartQuantity(item._id, newQty);
-    refetch();
+    setQuantities((prev) => ({ ...prev, [id]: newQty }));
+    await updateCartQuantity(id, newQty);
+  };
+
+  const handleQuantityChange = (item, delta) => {
+    applyQty(item._id, getQty(item) + delta);
+  };
+
+  const handleQuantityInput = (item, raw) => {
+    const parsed = parseInt(raw, 10);
+    if (!isNaN(parsed) && parsed >= 1) {
+      applyQty(item._id, parsed);
+    }
   };
 
   if (loading) {
@@ -101,12 +120,12 @@ export const Cart = () => {
               </h2>
               <div className="rounded-xl overflow-hidden border border-zinc-700">
                 {/* Table header */}
-                <div className="hidden md:grid grid-cols-[2fr_1fr_1fr_1fr_auto] gap-4 px-6 py-3 bg-zinc-800 text-[#99A9AD] text-sm uppercase tracking-wider">
+                <div className="hidden md:grid grid-cols-[2fr_1fr_1fr_1fr_5rem] gap-4 px-6 py-3 bg-zinc-800 text-[#99A9AD] text-sm uppercase tracking-wider">
                   <span>Item</span>
                   <span className="text-center">Price</span>
                   <span className="text-center">Quantity</span>
                   <span className="text-center">Total</span>
-                  <span />
+                  <span className="text-center">Actions</span>
                 </div>
 
                 {/* Rows */}
@@ -115,8 +134,10 @@ export const Cart = () => {
                     <CartRow
                       key={item._id}
                       item={item}
+                      quantity={getQty(item)}
                       onRemove={handleRemove}
                       onQuantityChange={handleQuantityChange}
+                      onQuantityInput={handleQuantityInput}
                     />
                   ))}
                 </div>
@@ -138,154 +159,3 @@ export const Cart = () => {
     </div>
   );
 };
-
-const CartRow = ({ item, onRemove, onQuantityChange }) => {
-  const rowTotal = (parseFloat(item.price) * item.quantity).toFixed(2);
-  return (
-    <div className="bg-zinc-800/40 px-4 md:px-6 py-4 grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr_auto] gap-4 items-center">
-      {/* Item info */}
-      <div className="flex items-center gap-4">
-        <img
-          src={item.image}
-          alt={item.name}
-          className="w-16 h-16 object-cover rounded-lg shrink-0"
-        />
-        <div className="min-w-0">
-          <p className="text-white font-elsie text-lg leading-tight truncate">
-            {item.name}
-          </p>
-          <p className="text-[#99A9AD] text-sm mt-0.5 line-clamp-1">
-            {item.description}
-          </p>
-          <p className="text-[#FFDE9F] text-sm font-medium md:hidden mt-1">
-            ${parseFloat(item.price).toFixed(2)}
-          </p>
-        </div>
-      </div>
-
-      {/* Unit price (desktop) */}
-      <p className="hidden md:block text-[#FFDE9F] font-elsie text-xl text-center">
-        ${parseFloat(item.price).toFixed(2)}
-      </p>
-
-      {/* Quantity stepper */}
-      <div className="flex items-center gap-2 justify-start md:justify-center">
-        <button
-          onClick={() => onQuantityChange(item, -1)}
-          disabled={item.quantity <= 1}
-          className="w-8 h-8 rounded-md border border-zinc-600 flex items-center justify-center text-white hover:border-[#FFDE9F] hover:text-[#FFDE9F] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-        >
-          <FiMinus className="text-sm" />
-        </button>
-        <span className="w-8 text-center text-white font-medium">
-          {item.quantity}
-        </span>
-        <button
-          onClick={() => onQuantityChange(item, 1)}
-          className="w-8 h-8 rounded-md border border-zinc-600 flex items-center justify-center text-white hover:border-[#FFDE9F] hover:text-[#FFDE9F] transition-colors"
-        >
-          <FiPlus className="text-sm" />
-        </button>
-      </div>
-
-      {/* Row total (desktop) */}
-      <p className="hidden md:block text-white font-elsie text-xl text-center">
-        ${rowTotal}
-      </p>
-
-      {/* Remove */}
-      <button
-        onClick={() => onRemove(item._id, item.name)}
-        className="text-zinc-500 hover:text-red-400 transition-colors justify-self-end md:justify-self-auto"
-        aria-label="Remove item"
-      >
-        <FiTrash2 className="text-lg" />
-      </button>
-    </div>
-  );
-};
-
-CartRow.propTypes = {
-  item: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    quantity: PropTypes.number.isRequired,
-  }).isRequired,
-  onRemove: PropTypes.func.isRequired,
-  onQuantityChange: PropTypes.func.isRequired,
-};
-
-const OrderSummary = ({ itemCount, subtotal, tax, total }) => (
-  <div className="sticky top-24 bg-zinc-800/80 border border-zinc-700 rounded-xl p-6">
-    <h3 className="font-elsie text-2xl text-white mb-6">Order Summary</h3>
-
-    <div className="space-y-3 text-sm">
-      <div className="flex justify-between text-[#99A9AD]">
-        <span>Items ({itemCount})</span>
-        <span>${subtotal.toFixed(2)}</span>
-      </div>
-      <div className="flex justify-between text-[#99A9AD]">
-        <span>Tax (10%)</span>
-        <span>${tax.toFixed(2)}</span>
-      </div>
-      <div className="h-[1px] bg-zinc-700 my-4" />
-      <div className="flex justify-between items-center">
-        <span className="text-white font-medium text-base">Total</span>
-        <span className="text-[#FFDE9F] font-elsie text-2xl">
-          ${total.toFixed(2)}
-        </span>
-      </div>
-    </div>
-
-    <button
-      onClick={() =>
-        Swal.fire({
-          title: "Coming Soon",
-          text: "Checkout functionality is on its way!",
-          icon: "info",
-          confirmButtonColor: "#FFDE9F",
-          background: "#1c2628",
-          color: "#fff",
-        })
-      }
-      className="mt-6 w-full bg-[#FFDE9F] hover:bg-[#f0c981] text-black font-elsie text-lg py-3 rounded-lg transition-colors"
-    >
-      Proceed to Checkout
-    </button>
-
-    <Link
-      to="/menu"
-      className="mt-3 block text-center text-[#99A9AD] hover:text-[#FFDE9F] text-sm transition-colors"
-    >
-      ← Continue Shopping
-    </Link>
-  </div>
-);
-
-OrderSummary.propTypes = {
-  itemCount: PropTypes.number.isRequired,
-  subtotal: PropTypes.number.isRequired,
-  tax: PropTypes.number.isRequired,
-  total: PropTypes.number.isRequired,
-};
-
-const EmptyCart = () => (
-  <div className="flex flex-col items-center justify-center py-28 gap-6 text-center">
-    <FiShoppingCart className="text-7xl text-zinc-600" />
-    <div>
-      <h3 className="font-elsie text-4xl text-white">Your cart is empty</h3>
-      <p className="text-[#99A9AD] mt-2 text-lg">
-        Looks like you haven&apos;t added anything yet.
-      </p>
-    </div>
-    <Link
-      to="/menu"
-      className="mt-2 border border-[#FFDE9F] text-[#FFDE9F] hover:bg-[#FFDE9F] hover:text-black font-elsie text-lg px-8 py-3 rounded-lg transition-colors"
-    >
-      Browse Menu
-    </Link>
-  </div>
-);
