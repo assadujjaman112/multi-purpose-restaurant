@@ -21,10 +21,13 @@ const FoodDetails = () => {
 
   const handleAddToCart = async () => {
     const result = await addToCart(food, quantity, customerEmail);
-    if (result.data.data.insertedId) {
+    if (result.success) {
       Swal.fire({
-        title: "Added to cart",
-        text: "Item added to cart successfully",
+        title: result.type === "updated" ? "Cart updated" : "Added to cart",
+        text:
+          result.type === "updated"
+            ? "Quantity updated in your cart"
+            : "Item added to cart successfully",
         icon: "success",
         confirmButtonColor: "#3085d6",
         confirmButtonText: "OK",
