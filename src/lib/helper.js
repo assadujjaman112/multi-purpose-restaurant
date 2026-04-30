@@ -9,15 +9,17 @@ const getCart = async (email) => {
 
 export const addToCart = async (item, quantity, customerEmail) => {
   const cart = await getCart(customerEmail);
-  const existing = cart.find((c) => c.name === item.name);
+  const existing = cart.find((c) => c.foodId === item._id);
 
   if (existing) {
     await updateCartQuantity(existing._id, existing.quantity + quantity);
     return { success: true, type: "updated" };
   }
 
+  const { _id, ...itemData } = item;
   await axios.post(`${import.meta.env.VITE_API_URL}/carts`, {
-    ...item,
+    ...itemData,
+    foodId: _id,
     quantity,
     customerEmail,
   });
