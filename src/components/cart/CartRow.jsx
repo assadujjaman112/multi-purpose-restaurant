@@ -8,6 +8,7 @@ const CartRow = ({
   onRemove,
   onQuantityChange,
   onQuantityInput,
+  onConfirm,
 }) => {
   const [editing, setEditing] = useState(false);
   const rowTotal = (parseFloat(item.price) * quantity).toFixed(2);
@@ -80,7 +81,14 @@ const CartRow = ({
       {/* Actions: edit toggle + remove */}
       <div className="flex items-center gap-2 justify-end md:justify-center">
         <button
-          onClick={() => setEditing((v) => !v)}
+          onClick={() => {
+            if (editing) {
+              onConfirm(item);
+              setEditing(false);
+            } else {
+              setEditing(true);
+            }
+          }}
           aria-label={editing ? "Done editing" : "Edit quantity"}
           className={`w-8 h-8 rounded-md border flex items-center justify-center transition-colors ${
             editing
@@ -89,10 +97,7 @@ const CartRow = ({
           }`}
         >
           {editing ? (
-            <button>
-              {" "}
-              <FiCheck className="text-sm" />
-            </button>
+            <FiCheck className="text-sm" />
           ) : (
             <FiEdit2 className="text-sm" />
           )}
@@ -122,6 +127,7 @@ CartRow.propTypes = {
   onRemove: PropTypes.func.isRequired,
   onQuantityChange: PropTypes.func.isRequired,
   onQuantityInput: PropTypes.func.isRequired,
+  onConfirm: PropTypes.func.isRequired,
 };
 
 export default CartRow;

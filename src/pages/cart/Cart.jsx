@@ -61,21 +61,21 @@ export const Cart = () => {
     }
   };
 
-  const applyQty = async (id, newQty) => {
-    if (newQty < 1) return;
-    setQuantities((prev) => ({ ...prev, [id]: newQty }));
-    await updateCartQuantity(id, newQty);
-  };
-
   const handleQuantityChange = (item, delta) => {
-    applyQty(item._id, getQty(item) + delta);
+    const newQty = getQty(item) + delta;
+    if (newQty < 1) return;
+    setQuantities((prev) => ({ ...prev, [item._id]: newQty }));
   };
 
   const handleQuantityInput = (item, raw) => {
     const parsed = parseInt(raw, 10);
     if (!isNaN(parsed) && parsed >= 1) {
-      applyQty(item._id, parsed);
+      setQuantities((prev) => ({ ...prev, [item._id]: parsed }));
     }
+  };
+
+  const handleConfirm = async (item) => {
+    await updateCartQuantity(item._id, getQty(item));
   };
 
   if (loading) {
@@ -138,6 +138,7 @@ export const Cart = () => {
                       onRemove={handleRemove}
                       onQuantityChange={handleQuantityChange}
                       onQuantityInput={handleQuantityInput}
+                      onConfirm={handleConfirm}
                     />
                   ))}
                 </div>
