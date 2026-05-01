@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const OurMenu = () => {
   const menu = useMenu();
   const [isActive, setIsActive] = useState(1);
-  const [showMenu, setShowMenu] = useState();
+  const [showMenu, setShowMenu] = useState([]);
   useEffect(() => {
     setShowMenu(menu);
     setIsActive(1);

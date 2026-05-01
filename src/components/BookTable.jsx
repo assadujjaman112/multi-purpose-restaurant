@@ -46,30 +46,33 @@ const BookTable = () => {
       date: isoDate,
       time,
     };
-    const res = await axios.post(
-      `${import.meta.env.VITE_API_URL}/bookings`,
-      bookingData,
-    );
-    console.log(res);
-
-    if (res.statusText !== "OK") throw new Error("Failed to book table");
     try {
-      const data = await res.data;
-      if (data.insertedId) {
-        Swal.fire({
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/bookings`,
+        bookingData,
+      );
+      if (res.data?.data?.insertedId) {
+        await Swal.fire({
           title: "Success!",
           text: "Table booked successfully",
           icon: "success",
-        }).then(() => {
-          form.reset();
-          setSelectedDate("");
+          confirmButtonColor: "#FFDE9F",
+          background: "#1c2628",
+          color: "#fff",
         });
+        form.reset();
+        setSelectedDate("");
+      } else {
+        throw new Error("Unexpected response from server");
       }
-    } catch (error) {
+    } catch {
       Swal.fire({
         title: "Error!",
-        text: "Failed to book table",
+        text: "Failed to book table. Please try again.",
         icon: "error",
+        confirmButtonColor: "#FFDE9F",
+        background: "#1c2628",
+        color: "#fff",
       });
     }
   };
