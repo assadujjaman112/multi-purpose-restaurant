@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
 
 const OrderSummary = ({ itemCount, subtotal, tax, total }) => (
   <div className="sticky top-24 bg-zinc-800/80 border border-zinc-700 rounded-xl p-6">
@@ -24,21 +23,12 @@ const OrderSummary = ({ itemCount, subtotal, tax, total }) => (
       </div>
     </div>
 
-    <button
-      onClick={() =>
-        Swal.fire({
-          title: "Coming Soon",
-          text: "Checkout functionality is on its way!",
-          icon: "info",
-          confirmButtonColor: "#FFDE9F",
-          background: "#1c2628",
-          color: "#fff",
-        })
-      }
-      className="mt-6 w-full bg-[#FFDE9F] hover:bg-[#f0c981] text-black font-elsie text-lg py-3 rounded-lg transition-colors"
+    <Link
+      to="/checkout"
+      className="mt-6 block text-center w-full bg-[#FFDE9F] hover:bg-[#f0c981] text-black font-elsie text-lg py-3 rounded-lg transition-colors"
     >
       Proceed to Checkout
-    </button>
+    </Link>
 
     <Link
       to="/menu"
