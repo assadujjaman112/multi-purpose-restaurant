@@ -122,38 +122,42 @@ const BookTable = () => {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
           >
             <div className="w-full flex items-center">
+              <label htmlFor="booking-name" className="sr-only">Name</label>
               <input
                 type="text"
                 name="name"
-                id=""
+                id="booking-name"
                 placeholder="Name"
                 className="text-white placeholder:text-white bg-transparent border-2 border-[#FFDE9F] outline-none  w-full py-3 pl-3"
               />
-              <IoPersonOutline className="text-[#FFDE9F] text-2xl -ml-10" />
+              <IoPersonOutline aria-hidden="true" className="text-[#FFDE9F] text-2xl -ml-10" />
             </div>
             <div className="w-full flex items-center">
+              <label htmlFor="booking-email" className="sr-only">Email</label>
               <input
                 type="email"
                 name="email"
-                id=""
+                id="booking-email"
                 placeholder="Email"
                 className="text-white placeholder:text-white bg-transparent border-2 border-[#FFDE9F] outline-none  w-full py-3 pl-3"
               />
-              <IoMailOutline className="text-[#FFDE9F] text-2xl -ml-10" />
+              <IoMailOutline aria-hidden="true" className="text-[#FFDE9F] text-2xl -ml-10" />
             </div>
             <div className="w-full flex items-center">
+              <label htmlFor="booking-phone" className="sr-only">Phone number</label>
               <input
                 type="text"
                 name="phone"
-                id=""
+                id="booking-phone"
                 placeholder="Phone No"
                 className="text-white placeholder:text-white bg-transparent border-2 border-[#FFDE9F] outline-none  w-full py-3 pl-3"
               />
-              <IoPhonePortraitOutline className="text-[#FFDE9F] text-2xl -ml-10" />
+              <IoPhonePortraitOutline aria-hidden="true" className="text-[#FFDE9F] text-2xl -ml-10" />
             </div>
             <div className="w-full flex items-center">
+              <label htmlFor="booking-people" className="sr-only">Number of people</label>
               <select
-                id="dropdown"
+                id="booking-people"
                 name="people"
                 className="bg-transparent w-full py-3 pl-3 text-white border-2 border-[#FFDE9F]"
               >
@@ -175,23 +179,23 @@ const BookTable = () => {
               </select>
             </div>
             <div className="w-full flex items-center">
+              <label htmlFor="booking-date" className="sr-only">Date</label>
               <DatePicker
                 selected={selectedDate}
                 onChange={(date) => setSelectedDate(date)}
                 customInput={
-                  <input className="appearance-none block w-full pl-3 py-3 bg-transparent border-2 border-[#FFDE9F] rounded-md text-white placeholder:text-white outline-none" />
+                  <input id="booking-date" className="appearance-none block w-full pl-3 py-3 bg-transparent border-2 border-[#FFDE9F] rounded-md text-white placeholder:text-white outline-none" />
                 }
                 placeholderText="Select a date"
                 wrapperClassName="w-full"
               />
-              <IoCalendarOutline className="text-[#FFDE9F] text-2xl -ml-10" />
+              <IoCalendarOutline aria-hidden="true" className="text-[#FFDE9F] text-2xl -ml-10" />
             </div>
             <div className="w-full flex items-center">
+              <label htmlFor="booking-time" className="sr-only">Time</label>
               <select
-                id="dropdown"
+                id="booking-time"
                 name="time"
-                // value={selectedOption}
-                // onChange={handleChange}
                 className="bg-transparent w-full py-3 pl-3 text-white border-2 border-[#FFDE9F]"
               >
                 <option value="" className="bg-black text-white">
