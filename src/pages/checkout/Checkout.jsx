@@ -11,6 +11,7 @@ import PaymentSection from "../../components/checkout/PaymentSection";
 import CheckoutOrderReview from "../../components/checkout/CheckoutOrderReview";
 
 const TAX_RATE = parseFloat(import.meta.env.VITE_TAX_RATE) || 0.1;
+const DEFAULT_DELIVERY = parseFloat(import.meta.env.VITE_DELIVERY_CHARGE) || 0;
 
 const Checkout = () => {
   const { user } = useContext(AuthContext);
@@ -27,6 +28,7 @@ const Checkout = () => {
     note: "",
     payment: "cod",
   });
+  const [deliveryCharge, setDeliveryCharge] = useState(DEFAULT_DELIVERY);
   const [placing, setPlacing] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -35,7 +37,7 @@ const Checkout = () => {
     0,
   );
   const tax = subtotal * TAX_RATE;
-  const total = subtotal + tax;
+  const total = subtotal + tax + deliveryCharge;
 
   const validate = () => {
     const e = {};
@@ -143,6 +145,8 @@ const Checkout = () => {
               cartItems={cartItems}
               subtotal={subtotal}
               tax={tax}
+              deliveryCharge={deliveryCharge}
+              onDeliveryChange={(val) => setDeliveryCharge(val)}
               total={total}
               placing={placing}
               onPlaceOrder={handlePlaceOrder}
