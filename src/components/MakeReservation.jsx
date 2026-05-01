@@ -1,5 +1,4 @@
 import { FaStarOfLife } from "react-icons/fa6";
-import Button from "./buttons/Button";
 
 const MakeReservation = () => {
   return (
@@ -64,15 +63,18 @@ const MakeReservation = () => {
             data-aos-duration="1000"
           >
             <a
-              className="text-3xl text-[#FFDE9F] font-bold"
-              href="tel: +01-2345-678-990"
+              className="text-xl text-[#FFDE9F] font-bold"
+              href={`tel:${import.meta.env.VITE_PHONE}`}
             >
-              +01-2345-678-990
+              Tel: {import.meta.env.VITE_PHONE}
             </a>
           </div>
           <div className="mt-8 md:mt-12 lg:mt-16">
-            <a href="#bookTable">
-              <Button text="Make A Reservation" />
+            <a
+              href="#bookTable"
+              className="bg-[#FFDE9F] px-5 py-2 lg:px-10 lg:py-5 text-lg lg:text-xl font-medium hover:bg-black border-[#FFDE9F] border hover:text-[#FFDE9F]"
+            >
+              Make A Reservation
             </a>
           </div>
         </div>

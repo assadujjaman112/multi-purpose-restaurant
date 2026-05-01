@@ -108,7 +108,12 @@ const BookTable = () => {
             data-aos-duration="1000"
           >
             You can Call Us directly at{" "}
-            <span className="text-[#FFDE9F]"> +01 (234) 567 8899</span>
+            <a
+              href={`tel:${import.meta.env.VITE_PHONE}`}
+              className="text-[#FFDE9F] hover:underline"
+            >
+              {import.meta.env.VITE_PHONE}
+            </a>
           </p>
         </div>
         <div className="my-8 md:my-11 lg:my-16 ">

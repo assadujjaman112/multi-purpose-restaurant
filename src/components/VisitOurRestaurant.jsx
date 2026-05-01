@@ -18,9 +18,12 @@ const VisitOurRestaurant = () => {
         </p>
         <p className="text-[#FFDE9F] text-xl font-medium mt-1 mb-4 md:mb-8 lg:mb-14">
           T:
-          <span className="text-white hover:text-[#FFDE9F]">
-            +1(234)567 8899
-          </span>
+          <a
+            href={`tel:${import.meta.env.VITE_PHONE}`}
+            className="text-white hover:text-[#FFDE9F]"
+          >
+            {import.meta.env.VITE_PHONE}
+          </a>
         </p>
 
         <Button text=" Get Direction " />
