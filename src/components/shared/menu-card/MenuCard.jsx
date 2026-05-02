@@ -10,12 +10,13 @@ const MenuCard = ({ item }) => {
   const { user } = useContext(AuthContext);
   const customerEmail = user?.email;
   const navigate = useNavigate();
+
   const handleAddToCart = async () => {
     if (!user) {
       navigate("/login");
       return;
     }
-    const result = await addToCart({ ...item, customerEmail }, 1);
+    const result = await addToCart(item, 1, customerEmail);
     if (result.success) {
       Swal.fire({
         title: result.type === "updated" ? "Cart updated" : "Added to cart",
@@ -53,11 +54,14 @@ const MenuCard = ({ item }) => {
           </div>
         </div>
       </Link>
-      <div className="absolute h-full inset-0 w-full hidden  hover:flex items-center justify-center z-10 top-0">
+      <div className="absolute inset-0 w-full h-full sm:flex hidden opacity-0 hover:opacity-100 transition-opacity duration-300 items-center justify-center z-10 bg-black/60 backdrop-blur-sm">
         <button
           onClick={handleAddToCart}
-          className="text-black bg-[#FFDE9F] hover:bg-[#FFDE9F]/90 px-10 py-4 text-lg font-medium "
+          className="flex items-center gap-2 bg-[#FFDE9F] hover:bg-[#FFDE9F]/80 text-black font-semibold text-sm uppercase tracking-widest px-8 py-3 transition-transform duration-200 hover:scale-105 active:scale-95 shadow-lg"
         >
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.4 7h12.8M7 13H5.4M9 21a1 1 0 100-2 1 1 0 000 2zm10 0a1 1 0 100-2 1 1 0 000 2z" />
+          </svg>
           Add to Cart
         </button>
       </div>
