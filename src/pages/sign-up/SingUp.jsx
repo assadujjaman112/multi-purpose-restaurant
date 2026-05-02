@@ -11,10 +11,12 @@ const image =
   "https://i.postimg.cc/1tBJ4MxX/pngtree-group-of-fast-food-products-png-image-11219877-removebg-preview.png";
 
 const SingUp = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, googleSingIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const handleSignIn = (e) => {
+  const redirectTo = location.state?.pathname ?? "/";
+
+  const handleSignIn = async (e) => {
     e.preventDefault();
 
     const name = e.target.name.value;
@@ -22,30 +24,45 @@ const SingUp = () => {
     const password = e.target.password.value;
     const image = e.target.image.value;
 
-    const user = {
-      name: name,
-      email: email,
-      image: image,
-    };
-
-    createUser(email, password).then((result) => {
-      updateProfile(result.user, {
-        displayName: name,
-        photoURL: image,
-      }).then(() => {
-        const res = axios.post(`${import.meta.env.VITE_API_URL}/users`, user);
-        res.then((result) => {
-          if (result.data.insertedId) {
-            Swal.fire({
-              title: "Good job!",
-              text: "You have successfully registered!!",
-              icon: "success",
-            });
-            navigate(location.state ? location.state : "/");
-          }
-        });
+    try {
+      const result = await createUser(email, password);
+      await updateProfile(result.user, { displayName: name, photoURL: image });
+      await axios.post(`${import.meta.env.VITE_API_URL}/users`, { name, email, image });
+      Swal.fire({
+        title: "Good job!",
+        text: "You have successfully registered!",
+        icon: "success",
       });
-    });
+      navigate(redirectTo);
+    } catch (error) {
+      Swal.fire({
+        title: "Registration Failed",
+        text: error.message,
+        icon: "error",
+        confirmButtonColor: "#FFDE9F",
+      });
+    }
+  };
+
+  const handleGoogleSignUp = async () => {
+    try {
+      const result = await googleSingIn();
+      const { displayName: name, email, photoURL: image } = result.user;
+      await axios.post(`${import.meta.env.VITE_API_URL}/users`, { name, email, image });
+      Swal.fire({
+        title: "Welcome!",
+        text: "You have successfully signed up with Google!",
+        icon: "success",
+      });
+      navigate(redirectTo);
+    } catch (error) {
+      Swal.fire({
+        title: "Google Sign-Up Failed",
+        text: error.message,
+        icon: "error",
+        confirmButtonColor: "#FFDE9F",
+      });
+    }
   };
 
   return (
@@ -117,9 +134,14 @@ const SingUp = () => {
               className="bg-[#FFDE9F] hover:cursor-pointer mt-5 w-full py-2 text-lg lg:text-xl  font-medium hover:bg-zinc-800 border-[#FFDE9F] border hover:text-[#FFDE9F]"
             />
           </form>
-          <div className="flex items-center justify-center border border-zinc-800 hover:bg-zinc-800 hover:border-[#FFDE9F] mt-6 py-2 hover:cursor-pointer">
+          <button
+            type="button"
+            onClick={handleGoogleSignUp}
+            aria-label="Sign up with Google"
+            className="flex items-center justify-center w-full border border-zinc-800 hover:bg-zinc-800 hover:border-[#FFDE9F] mt-6 py-2 hover:cursor-pointer"
+          >
             <FaGoogle className="text-[#FFDE9F] text-2xl" />
-          </div>
+          </button>
           <p className="text-white  mt-5">
             Already have an account?{" "}
             <Link to="/login" className="text-[#FFDE9F] font-bold">
