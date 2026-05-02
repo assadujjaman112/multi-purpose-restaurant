@@ -9,7 +9,7 @@ const image =
   "https://i.postimg.cc/1tBJ4MxX/pngtree-group-of-fast-food-products-png-image-11219877-removebg-preview.png";
 
 const Login = () => {
-  const { googleSingIn, signIn, user } = useContext(AuthContext);
+  const { googleSignIn, signIn, user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -37,7 +37,7 @@ const Login = () => {
   };
 
   const handleGoogleSignIn = () => {
-    googleSingIn()
+    googleSignIn()
       .then(() => {
         navigate(redirectTo);
       })

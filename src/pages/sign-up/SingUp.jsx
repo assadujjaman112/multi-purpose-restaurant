@@ -11,7 +11,7 @@ const image =
   "https://i.postimg.cc/1tBJ4MxX/pngtree-group-of-fast-food-products-png-image-11219877-removebg-preview.png";
 
 const SingUp = () => {
-  const { createUser, googleSingIn } = useContext(AuthContext);
+  const { createUser, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const redirectTo = location.state?.pathname ?? "/";
@@ -46,7 +46,7 @@ const SingUp = () => {
 
   const handleGoogleSignUp = async () => {
     try {
-      const result = await googleSingIn();
+      const result = await googleSignIn();
       const { displayName: name, email, photoURL: image } = result.user;
       await axios.post(`${import.meta.env.VITE_API_URL}/users`, { name, email, image });
       Swal.fire({
