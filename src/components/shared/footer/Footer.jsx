@@ -14,18 +14,18 @@ const Footer = () => {
               cursus eros.
             </p>
             <div className="flex">
-              <div className="mt-7 text-gray-300  hover:text-black w-12 h-12 hover:bg-[#f6dfb4] flex justify-center items-center rounded-full">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="mt-7 text-gray-300 hover:text-black w-12 h-12 hover:bg-[#f6dfb4] flex justify-center items-center rounded-full">
                 <FaFacebookF className="text-3xl" />
-              </div>
-              <div className="mt-7 text-gray-300  hover:text-black w-12 h-12 hover:bg-[#f6dfb4] flex justify-center items-center rounded-full">
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="mt-7 text-gray-300 hover:text-black w-12 h-12 hover:bg-[#f6dfb4] flex justify-center items-center rounded-full">
                 <FaTwitter className="text-3xl" />
-              </div>
-              <div className="mt-7 text-gray-300  hover:text-black w-12 h-12 hover:bg-[#f6dfb4] flex justify-center items-center rounded-full">
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="mt-7 text-gray-300 hover:text-black w-12 h-12 hover:bg-[#f6dfb4] flex justify-center items-center rounded-full">
                 <AiFillInstagram className="text-3xl" />
-              </div>
-              <div className="mt-7 text-gray-300  hover:text-black w-12 h-12 hover:bg-[#f6dfb4] flex justify-center items-center rounded-full">
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="mt-7 text-gray-300 hover:text-black w-12 h-12 hover:bg-[#f6dfb4] flex justify-center items-center rounded-full">
                 <FaYoutube className="text-3xl" />
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -54,21 +54,24 @@ const Footer = () => {
           <p className="text-sm md:text-lg lg:text-xl text-[#99A9AD]">
             Receive the latest news from us.
           </p>
-          <div className="w-full mt-5 border-b-2 border-[#99A9AD] pb-2 relative ">
+          <div className="w-full mt-5 border-b-2 border-[#99A9AD] pb-2 relative">
+            <label htmlFor="newsletter-email" className="sr-only">
+              Your Email Address
+            </label>
             <input
-              type="text"
-              name=""
-              id=""
+              type="email"
+              name="newsletter-email"
+              id="newsletter-email"
               placeholder="Your Email Address"
-              className="bg-transparent outline-none text-[#eaeded] text-xl font-semibold placeholder:text-[#eaeded] placeholder:font-bold placeholder:text-xl w-3/5"
+              className="bg-transparent outline-none text-[#eaeded] text-lg font-semibold placeholder:text-[#eaeded] placeholder:font-bold placeholder:text-lg w-4/5"
             />
             <GrSend className="text-2xl text-[#FFDE9F] absolute right-0 top-0" />
           </div>
           <div className="flex items-center mt-12">
-            <input type="checkbox" name="" id="" className="h-5 w-5" />
-            <p className="text-sm md:text-lg lg:text-xl text-[#99A9AD] ml-3">
+            <input type="checkbox" name="privacy-policy" id="privacy-policy" className="h-5 w-5" />
+            <label htmlFor="privacy-policy" className="text-sm md:text-lg lg:text-xl text-[#99A9AD] ml-3">
               I agree to the Privacy Policy
-            </p>
+            </label>
           </div>
         </div>
       </div>
