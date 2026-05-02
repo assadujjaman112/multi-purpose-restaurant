@@ -1,6 +1,14 @@
 import MenuBanner from "../../components/shared/banner/MenuBanner";
 
 const ContactUs = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target));
+    console.log(data);
+    
+    e.target.reset();
+  };
+
   return (
     <div>
       <MenuBanner
@@ -30,7 +38,7 @@ const ContactUs = () => {
               Use the form below to get in touch with the support team
             </p>
 
-            <form action="" className="w-full mt-10">
+            <form onSubmit={handleSubmit} className="w-full mt-10">
               <div className="flex flex-col w-full mb-5">
                 <input
                   type="text"
@@ -56,11 +64,11 @@ const ContactUs = () => {
                 />
               </div>
               <div className="flex flex-col w-full mb-5">
-                <input
-                  type="text"
-                  name="phone"
-                  placeholder="Enter Your Phone No"
-                  className="w-full outline-none pt-5 pb-20 pl-3  placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
+                <textarea
+                  name="message"
+                  placeholder="Enter Your Message"
+                  rows={5}
+                  className="w-full outline-none pt-5 pb-5 pl-3 placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white resize-none"
                 />
               </div>
               <input
