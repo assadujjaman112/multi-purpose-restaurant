@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { FaGoogle } from "react-icons/fa";
 
 import { Link, useLocation } from "react-router-dom";
@@ -9,16 +9,17 @@ const image =
   "https://i.postimg.cc/1tBJ4MxX/pngtree-group-of-fast-food-products-png-image-11219877-removebg-preview.png";
 
 const Login = () => {
-  const { googleSingIn, signIn } = useContext(AuthContext);
-  const { user } = useContext(AuthContext);
+  const { googleSingIn, signIn, user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
   const redirectTo = location.state?.pathname || "/";
 
-  if (user) {
-    navigate(redirectTo);
-  }
+  useEffect(() => {
+    if (user) {
+      navigate(redirectTo);
+    }
+  }, [user, navigate, redirectTo]);
 
   const handleEmailLogin = (e) => {
     e.preventDefault();
