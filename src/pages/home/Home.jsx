@@ -19,6 +19,7 @@ const Home = () => {
         <HeroSection />
         <div className="w-full overflow-hidden h-[280px] md:h-[570px] lg:h-[680px] relative">
           <iframe
+            title="Restaurant background video"
             src="https://customer-fh83ow5syywjxevx.cloudflarestream.com/7d627a1d4b63dd603348b03af3bdc97e/iframe?autoplay=true&muted=true&loop=true&controls=false&preload=true"
             style={{
               position: "absolute",
