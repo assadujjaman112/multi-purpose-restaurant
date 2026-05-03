@@ -24,15 +24,35 @@ const AddItem = () => {
 
     const food = { image, name, price, category, description };
 
-    const res = await axios.post(`${import.meta.env.VITE_API_URL}/foods`, food);
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/foods`,
+        food,
+      );
 
-    if (res.data.insertedId) {
+      if (res.data?.data?.insertedId) {
+        console.log(res.data?.data?.insertedId);
+        Swal.fire({
+          title: "Good job!",
+          text: "You have successfully added a food!!",
+          icon: "success",
+        });
+        navigate(`/menu/${res.data?.data?.insertedId}`);
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "Something went wrong. Please try again.",
+          icon: "error",
+        });
+      }
+    } catch (error) {
       Swal.fire({
-        title: "Good job!",
-        text: "You have successfully added a food!!",
-        icon: "success",
+        title: "Error!",
+        text:
+          error?.response?.data?.message ||
+          "Failed to add item. Please try again.",
+        icon: "error",
       });
-      navigate("/");
     }
   };
   return (
