@@ -72,6 +72,14 @@ const FoodDetails = () => {
         confirmButtonColor: "#3085d6",
         confirmButtonText: "OK",
       });
+    } else {
+      Swal.fire({
+        title: "Error",
+        text: result.error || "Failed to add item to cart",
+        icon: "error",
+        confirmButtonColor: "#FFDE9F",
+        confirmButtonText: "OK",
+      });
     }
   };
 

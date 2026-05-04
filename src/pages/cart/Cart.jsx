@@ -36,7 +36,7 @@ export const Cart = () => {
     });
     if (!result.isConfirmed) return;
     const res = await removeFromCart(id);
-    if (res.data.data.deletedCount) {
+    if (res.success) {
       setQuantities((prev) => {
         const next = { ...prev };
         delete next[id];
@@ -53,7 +53,7 @@ export const Cart = () => {
     } else {
       Swal.fire({
         title: "Error",
-        text: "Failed to remove item from cart",
+        text: res.error || "Failed to remove item from cart",
         icon: "error",
         confirmButtonColor: "#FFDE9F",
         confirmButtonText: "OK",
@@ -77,7 +77,16 @@ export const Cart = () => {
   const handleConfirm = async (item, qty) => {
     const newQty = qty ?? getQty(item);
     setQuantities((prev) => ({ ...prev, [item._id]: newQty }));
-    await updateCartQuantity(item._id, newQty);
+    const res = await updateCartQuantity(item._id, newQty);
+    if (!res.success) {
+      Swal.fire({
+        title: "Error",
+        text: res.error || "Failed to update quantity",
+        icon: "error",
+        confirmButtonColor: "#FFDE9F",
+        confirmButtonText: "OK",
+      });
+    }
   };
 
   if (loading) {

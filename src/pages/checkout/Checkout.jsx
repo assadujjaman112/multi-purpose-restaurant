@@ -63,7 +63,8 @@ const Checkout = () => {
     }
     setPlacing(true);
     try {
-      await Promise.all(cartItems.map((item) => removeFromCart(item._id)));
+      const results = await Promise.all(cartItems.map((item) => removeFromCart(item._id)));
+      if (results.some((r) => !r.success)) throw new Error("Failed to clear cart items");
       refetch();
       await Swal.fire({
         title: "Order Placed!",
