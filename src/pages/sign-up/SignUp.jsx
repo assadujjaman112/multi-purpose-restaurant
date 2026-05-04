@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 const image =
   "https://i.postimg.cc/1tBJ4MxX/pngtree-group-of-fast-food-products-png-image-11219877-removebg-preview.png";
 
-const SingUp = () => {
+const SignUp = () => {
   const { createUser, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -154,4 +154,4 @@ const SingUp = () => {
   );
 };
 
-export default SingUp;
+export default SignUp;
