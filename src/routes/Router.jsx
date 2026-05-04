@@ -13,6 +13,7 @@ import Profile from "../pages/profile/Profile";
 import MyOrders from "../pages/my-orders/MyOrders";
 import Checkout from "../pages/checkout/Checkout";
 import SignUp from "../pages/sign-up/SignUp";
+import NotFound from "../pages/not-found/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
       {
         path: "/contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },
