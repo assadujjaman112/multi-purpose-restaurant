@@ -67,13 +67,14 @@ const MyOrders = () => {
     axios
       .get(`${import.meta.env.VITE_API_URL}/foods`)
       .then((res) => {
-        setOrders(buildOrders(res.data));
+        setOrders(buildOrders(res.data?.data));
       })
       .finally(() => setLoading(false));
   }, []);
 
   const filters = ["All", ...STATUSES];
-  const filtered = filter === "All" ? orders : orders.filter((o) => o.status === filter);
+  const filtered =
+    filter === "All" ? orders : orders.filter((o) => o.status === filter);
 
   const totalSpent = orders.reduce((s, o) => s + o.total, 0);
 
@@ -88,13 +89,16 @@ const MyOrders = () => {
       <div className="relative z-10 w-11/12 md:w-4/5 lg:w-3/5 xl:w-1/2 mx-auto py-16">
         {/* Header */}
         <p className="text-[#FFDE9F] flex gap-3 items-center justify-center text-sm tracking-widest uppercase mb-4">
-          <FaStarOfLife className="text-xs" /> My Orders <FaStarOfLife className="text-xs" />
+          <FaStarOfLife className="text-xs" /> My Orders{" "}
+          <FaStarOfLife className="text-xs" />
         </p>
         <h2 className="text-3xl md:text-5xl font-elsie text-white text-center mb-2">
           Order History
         </h2>
         <p className="text-[#99A9AD] text-center text-sm mb-10">
-          {user?.displayName ? `Welcome back, ${user.displayName}` : "Track and manage your orders"}
+          {user?.displayName
+            ? `Welcome back, ${user.displayName}`
+            : "Track and manage your orders"}
         </p>
 
         {loading ? (
@@ -107,12 +111,23 @@ const MyOrders = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
               {[
                 { label: "Total Orders", value: orders.length },
-                { label: "Delivered",    value: orders.filter((o) => o.status === "Delivered").length },
-                { label: "In Progress",  value: orders.filter((o) => o.status !== "Delivered").length },
-                { label: "Total Spent",  value: `$${totalSpent.toFixed(2)}` },
+                {
+                  label: "Delivered",
+                  value: orders.filter((o) => o.status === "Delivered").length,
+                },
+                {
+                  label: "In Progress",
+                  value: orders.filter((o) => o.status !== "Delivered").length,
+                },
+                { label: "Total Spent", value: `$${totalSpent.toFixed(2)}` },
               ].map((card) => (
-                <div key={card.label} className="bg-zinc-800/70 border border-zinc-700 rounded-lg px-4 py-4 text-center">
-                  <p className="text-[#FFDE9F] text-xl md:text-2xl font-elsie">{card.value}</p>
+                <div
+                  key={card.label}
+                  className="bg-zinc-800/70 border border-zinc-700 rounded-lg px-4 py-4 text-center"
+                >
+                  <p className="text-[#FFDE9F] text-xl md:text-2xl font-elsie">
+                    {card.value}
+                  </p>
                   <p className="text-[#99A9AD] text-xs mt-1">{card.label}</p>
                 </div>
               ))}
@@ -146,22 +161,37 @@ const MyOrders = () => {
                 {filtered.map((order) => {
                   const isExpanded = expandedId === order.id;
                   return (
-                    <div key={order.id} className="bg-zinc-800/80 border border-zinc-700 rounded-xl overflow-hidden">
+                    <div
+                      key={order.id}
+                      className="bg-zinc-800/80 border border-zinc-700 rounded-xl overflow-hidden"
+                    >
                       {/* Header row */}
                       <button
-                        onClick={() => setExpandedId(isExpanded ? null : order.id)}
+                        onClick={() =>
+                          setExpandedId(isExpanded ? null : order.id)
+                        }
                         className="w-full text-left px-5 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 hover:bg-zinc-700/30 transition-colors"
                       >
                         <div className="flex flex-col gap-1">
                           <div className="flex items-center gap-3 flex-wrap">
-                            <span className="text-white font-medium font-elsie text-lg">{order.id}</span>
+                            <span className="text-white font-medium font-elsie text-lg">
+                              {order.id}
+                            </span>
                             <StatusBadge status={order.status} />
                           </div>
-                          <span className="text-[#99A9AD] text-sm">{order.date}</span>
+                          <span className="text-[#99A9AD] text-sm">
+                            {order.date}
+                          </span>
                         </div>
                         <div className="flex items-center gap-4">
-                          <span className="text-[#FFDE9F] font-elsie text-xl">${order.total.toFixed(2)}</span>
-                          <span className={`text-[#99A9AD] text-xs transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`}>▼</span>
+                          <span className="text-[#FFDE9F] font-elsie text-xl">
+                            ${order.total.toFixed(2)}
+                          </span>
+                          <span
+                            className={`text-[#99A9AD] text-xs transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`}
+                          >
+                            ▼
+                          </span>
                         </div>
                       </button>
 
@@ -172,27 +202,42 @@ const MyOrders = () => {
 
                           <div className="flex flex-col gap-3 mt-5">
                             {order.items.map((item) => (
-                              <div key={item.id} className="flex items-center gap-4 bg-zinc-900/50 rounded-lg p-3">
+                              <div
+                                key={item.id}
+                                className="flex items-center gap-4 bg-zinc-900/50 rounded-lg p-3"
+                              >
                                 <img
                                   src={item.image}
                                   alt={item.name}
                                   className="w-14 h-14 object-cover rounded-lg flex-shrink-0"
                                 />
                                 <div className="flex-1 min-w-0">
-                                  <p className="text-white font-elsie text-base truncate">{item.name}</p>
-                                  <p className="text-[#99A9AD] text-xs capitalize">{item.category}</p>
+                                  <p className="text-white font-elsie text-base truncate">
+                                    {item.name}
+                                  </p>
+                                  <p className="text-[#99A9AD] text-xs capitalize">
+                                    {item.category}
+                                  </p>
                                 </div>
                                 <div className="text-right flex-shrink-0">
-                                  <p className="text-[#FFDE9F] font-elsie">${(item.price * item.qty).toFixed(2)}</p>
-                                  <p className="text-[#99A9AD] text-xs">× {item.qty}</p>
+                                  <p className="text-[#FFDE9F] font-elsie">
+                                    ${(item.price * item.qty).toFixed(2)}
+                                  </p>
+                                  <p className="text-[#99A9AD] text-xs">
+                                    × {item.qty}
+                                  </p>
                                 </div>
                               </div>
                             ))}
                           </div>
 
                           <div className="flex justify-between items-center mt-4 pt-4 border-t border-zinc-700">
-                            <span className="text-[#99A9AD] text-sm">Order Total</span>
-                            <span className="text-[#FFDE9F] font-elsie text-xl">${order.total.toFixed(2)}</span>
+                            <span className="text-[#99A9AD] text-sm">
+                              Order Total
+                            </span>
+                            <span className="text-[#FFDE9F] font-elsie text-xl">
+                              ${order.total.toFixed(2)}
+                            </span>
                           </div>
 
                           {order.status === "Delivered" && (
