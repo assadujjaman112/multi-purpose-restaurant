@@ -10,7 +10,7 @@ import EmptyCart from "../../components/cart/EmptyCart";
 const TAX_RATE = parseFloat(import.meta.env.VITE_TAX_RATE) || 0.1;
 
 export const Cart = () => {
-  const [cartItems, loading, refetch] = useCart();
+  const [cartItems, loading, refetch, cartError] = useCart();
   const [quantities, setQuantities] = useState({});
 
   const getQty = (item) => quantities[item._id] ?? item.quantity;
@@ -89,6 +89,26 @@ export const Cart = () => {
         />
         <div className="flex justify-center items-center py-32">
           <div className="w-12 h-12 rounded-full border-4 border-[#FFDE9F] border-t-transparent animate-spin" />
+        </div>
+      </div>
+    );
+  }
+
+  if (cartError) {
+    return (
+      <div>
+        <MenuBanner
+          image="https://i.postimg.cc/C1DRkDwP/chicken-wings-barbecue-sweetly-sour-sauce-picnic-summer-menu-tasty-food-top-view-flat-lay-2829-6471.jpg"
+          title="My Cart"
+        />
+        <div className="flex flex-col items-center justify-center gap-4 py-32">
+          <p className="text-red-400 text-lg text-center">{cartError}</p>
+          <button
+            onClick={refetch}
+            className="border border-[#FFDE9F] px-6 py-2 text-[#FFDE9F] hover:bg-[#FFDE9F] hover:text-black transition-colors"
+          >
+            Retry
+          </button>
         </div>
       </div>
     );

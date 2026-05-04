@@ -24,14 +24,11 @@ const navItems = [
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [cartItems, loading] = useCart();
+  const [cartItems] = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   const cartItemCount = cartItems.length;
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   const close = () => setIsOpen(false);
 
