@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { FaGoogle } from "react-icons/fa";
-
+import Swal from "sweetalert2";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
@@ -21,29 +21,41 @@ const Login = () => {
     }
   }, [user, navigate, redirectTo]);
 
-  const handleEmailLogin = (e) => {
+  const handleEmailLogin = async (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
 
-    signIn(email, password)
-      .then(() => {
-        navigate(redirectTo);
-      })
-      .catch((error) => {
-        console.log(error);
+    try {
+      await signIn(email, password);
+      navigate(redirectTo);
+    } catch (error) {
+      Swal.fire({
+        title: "Login Failed",
+        text: error.message,
+        icon: "error",
+        confirmButtonColor: "#FFDE9F",
+        background: "#1c2628",
+        color: "#fff",
       });
+    }
   };
 
-  const handleGoogleSignIn = () => {
-    googleSignIn()
-      .then(() => {
-        navigate(redirectTo);
-      })
-      .catch((error) => {
-        console.log(error);
+  const handleGoogleSignIn = async () => {
+    try {
+      await googleSignIn();
+      navigate(redirectTo);
+    } catch (error) {
+      Swal.fire({
+        title: "Google Sign-In Failed",
+        text: error.message,
+        icon: "error",
+        confirmButtonColor: "#FFDE9F",
+        background: "#1c2628",
+        color: "#fff",
       });
+    }
   };
   return (
     <div className="w-full relative min-h-screen flex items-center justify-center overflow-hidden">
