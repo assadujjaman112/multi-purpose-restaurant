@@ -6,7 +6,7 @@ import Button from "./buttons/Button";
 import { Link } from "react-router-dom";
 
 const OurMenu = () => {
-  const menu = useMenu();
+  const { menu, loading, error } = useMenu();
   const [isActive, setIsActive] = useState(1);
   const [showMenu, setShowMenu] = useState([]);
   useEffect(() => {
@@ -76,9 +76,25 @@ const OurMenu = () => {
         </div>
       </div>
       <div className="my-8 md:mt-10 lg:mt-14 grid grid-cols-1 md:grid-cols-2 gap-6">
-        {showMenu?.slice(0, 8).map((item) => (
-          <MenuCard key={item._id} item={item} />
-        ))}
+        {loading ? (
+          <div className="col-span-2 flex justify-center py-16">
+            <span className="h-12 w-12 animate-spin rounded-full border-4 border-gray-600 border-t-yellow-500"></span>
+          </div>
+        ) : error ? (
+          <div className="col-span-2 flex flex-col items-center gap-3 py-16">
+            <p className="text-red-400 text-center">{error}</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="border border-[#FFDE9F] px-5 py-2 text-sm text-[#FFDE9F] hover:bg-[#FFDE9F] hover:text-black transition-colors"
+            >
+              Retry
+            </button>
+          </div>
+        ) : (
+          showMenu?.slice(0, 8).map((item) => (
+            <MenuCard key={item._id} item={item} />
+          ))
+        )}
       </div>
       <Link to="/menu" className="flex justify-center mt-8 md:mt-14 lg:mt-20">
         <Button text="View all" />

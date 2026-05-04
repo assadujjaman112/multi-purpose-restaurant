@@ -10,14 +10,50 @@ import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 
 const FoodDetails = () => {
-  const menu = useMenu();
+  const { menu, loading, error } = useMenu();
   const { id } = useParams();
   const food = menu?.find((item) => item._id === id);
   const [quantity, setQuantity] = useState(1);
-  const suggestions = menu?.filter((item) => item._id != id);
+  const suggestions = menu?.filter((item) => item._id !== id);
   const { user } = useContext(AuthContext);
   const customerEmail = user?.email;
   const navigate = useNavigate();
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <span className="h-12 w-12 animate-spin rounded-full border-4 border-gray-200 border-t-yellow-500"></span>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4">
+        <p className="text-red-400 text-lg">{error}</p>
+        <button
+          onClick={() => window.location.reload()}
+          className="border border-[#FFDE9F] px-6 py-2 text-[#FFDE9F] hover:bg-[#FFDE9F] hover:text-black transition-colors"
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
+
+  if (!food) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4">
+        <p className="text-[#99A9AD] text-lg">Item not found.</p>
+        <button
+          onClick={() => navigate("/menu")}
+          className="border border-[#FFDE9F] px-6 py-2 text-[#FFDE9F] hover:bg-[#FFDE9F] hover:text-black transition-colors"
+        >
+          Back to Menu
+        </button>
+      </div>
+    );
+  }
 
   const handleAddToCart = async () => {
     if (!user) {
