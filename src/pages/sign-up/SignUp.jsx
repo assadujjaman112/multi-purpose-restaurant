@@ -113,7 +113,7 @@ const SignUp = () => {
               <input
                 type="text"
                 name="image"
-                placeholder="Enter Item PhotoURL"
+                placeholder="Enter Your Photo URL"
                 className="w-full outline-none py-2 pl-3  placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
               />
             </div>
