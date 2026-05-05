@@ -13,7 +13,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const redirectTo = location.state?.pathname || "/";
+  const redirectTo = location.state?.from || "/";
 
   useEffect(() => {
     if (user) {
