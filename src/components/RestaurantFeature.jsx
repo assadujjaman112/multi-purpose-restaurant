@@ -13,7 +13,7 @@ const RestaurantFeature = () => {
         <div className="w-11/12 lg:w-[77%] mx-auto py-8 md:py-10 lg:py-20">
           <div className="flex flex-col lg:flex-row items-center gap-7">
             <h1 className="text-5xl md:text-6xl text-white font-elsie text-center lg:text-left md:flex-1">
-              Dining With Modern Cusine & Deliver the Effective Facilities to
+              Dining With Modern Cuisine & Deliver the Effective Facilities to
               You.
             </h1>
             <div className="flex flex-col md:flex-row gap-8 md:flex-1">

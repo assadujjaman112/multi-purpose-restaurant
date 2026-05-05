@@ -3,7 +3,7 @@ import OurRestaurant from "../../components/OurRestaurant";
 import RestaurantFeature from "../../components/RestaurantFeature";
 import MenuBanner from "../../components/shared/banner/MenuBanner";
 import Team from "../../components/shared/team-section/Team";
-import Testimonials from "../../components/shared/testomonials/Testomonials";
+import Testimonials from "../../components/shared/testimonials/Testimonials";
 import WhyChooseUs from "../../components/WhyChooseUs";
 
 const AboutUs = () => {

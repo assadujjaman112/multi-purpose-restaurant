@@ -4,7 +4,7 @@ import MenuBanner from "../../components/shared/banner/MenuBanner";
 import { FaStar } from "react-icons/fa6";
 import { useState, useContext } from "react";
 import SuggestionCard from "../../components/shared/suggestion-card/SuggestionCard";
-import Testimonials from "../../components/shared/testomonials/Testomonials";
+import Testimonials from "../../components/shared/testimonials/Testimonials";
 import { addToCart } from "../../lib/helper";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";

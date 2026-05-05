@@ -5,7 +5,7 @@ import MakeReservation from "../../components/MakeReservation";
 import OurMenu from "../../components/OurMenu";
 import OurRestaurant from "../../components/OurRestaurant";
 import Overview from "../../components/Overview";
-import Testimonials from "../../components/shared/testomonials/Testomonials";
+import Testimonials from "../../components/shared/testimonials/Testimonials";
 import VisitOurRestaurant from "../../components/VisitOurRestaurant";
 const Home = () => {
   return (
