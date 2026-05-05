@@ -60,14 +60,19 @@ const MyOrders = () => {
   const { user } = useContext(AuthContext);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [expandedId, setExpandedId] = useState(null);
   const [filter, setFilter] = useState("All");
 
   useEffect(() => {
+    setError(null);
     axios
       .get(`${import.meta.env.VITE_API_URL}/foods`)
       .then((res) => {
         setOrders(buildOrders(res.data?.data));
+      })
+      .catch(() => {
+        setError("Failed to load your orders. Please try again.");
       })
       .finally(() => setLoading(false));
   }, []);
@@ -104,6 +109,27 @@ const MyOrders = () => {
         {loading ? (
           <div className="flex justify-center items-center py-32">
             <div className="w-10 h-10 border-2 border-[#FFDE9F] border-t-transparent rounded-full animate-spin" />
+          </div>
+        ) : error ? (
+          <div className="flex flex-col items-center justify-center py-20 text-center">
+            <BiPackage className="text-6xl text-zinc-700 mb-4" />
+            <p className="text-red-400 text-lg mb-4">{error}</p>
+            <button
+              onClick={() => {
+                setLoading(true);
+                setError(null);
+                axios
+                  .get(`${import.meta.env.VITE_API_URL}/foods`)
+                  .then((res) => setOrders(buildOrders(res.data?.data)))
+                  .catch(() =>
+                    setError("Failed to load your orders. Please try again.")
+                  )
+                  .finally(() => setLoading(false));
+              }}
+              className="px-6 py-2 border border-[#FFDE9F] text-[#FFDE9F] rounded-lg hover:bg-[#FFDE9F] hover:text-black transition-colors text-sm"
+            >
+              Try Again
+            </button>
           </div>
         ) : (
           <>
