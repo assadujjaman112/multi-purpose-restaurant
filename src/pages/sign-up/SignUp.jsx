@@ -16,7 +16,7 @@ const SignUp = () => {
   const location = useLocation();
   const redirectTo = location.state?.from ?? "/";
 
-  const handleSignIn = async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
 
     const name = e.target.name.value;
@@ -24,9 +24,11 @@ const SignUp = () => {
     const password = e.target.password.value;
     const image = e.target.image.value;
 
+    let firebaseUser = null;
     try {
       const result = await createUser(email, password);
-      await updateProfile(result.user, { displayName: name, photoURL: image });
+      firebaseUser = result.user;
+      await updateProfile(firebaseUser, { displayName: name, photoURL: image });
       await axios.post(`${import.meta.env.VITE_API_URL}/users`, { name, email, image });
       Swal.fire({
         title: "Good job!",
@@ -35,6 +37,9 @@ const SignUp = () => {
       });
       navigate(redirectTo);
     } catch (error) {
+      if (firebaseUser) {
+        await firebaseUser.delete().catch(() => {});
+      }
       Swal.fire({
         title: "Registration Failed",
         text: error.message,
@@ -87,7 +92,7 @@ const SignUp = () => {
           <h4 className="font-elsie text-[#FFDE9F] text-center text-4xl mb-5">
             Register Now
           </h4>
-          <form onSubmit={handleSignIn} className="w-full">
+          <form onSubmit={handleSignUp} className="w-full">
             <div className="flex flex-col w-full mb-2">
               <span className="font-elsie text-[#FFDE9F] pl-2 mb-1">Name</span>
               <input
