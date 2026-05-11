@@ -10,7 +10,8 @@ import DeliverySection from "../../components/checkout/DeliverySection";
 import PaymentSection from "../../components/checkout/PaymentSection";
 import CheckoutOrderReview from "../../components/checkout/CheckoutOrderReview";
 
-const TAX_RATE = parseFloat(import.meta.env.VITE_TAX_RATE) || 0.1;
+const _parsedTax = parseFloat(import.meta.env.VITE_TAX_RATE);
+const TAX_RATE = Number.isFinite(_parsedTax) ? _parsedTax : 0.1;
 const DEFAULT_DELIVERY = parseFloat(import.meta.env.VITE_DELIVERY_CHARGE) || 0;
 
 const Checkout = () => {
@@ -165,6 +166,7 @@ const Checkout = () => {
             <CheckoutOrderReview
               cartItems={cartItems}
               subtotal={subtotal}
+              taxRate={TAX_RATE}
               tax={tax}
               deliveryCharge={deliveryCharge}
               onDeliveryChange={(val) => setDeliveryCharge(val)}

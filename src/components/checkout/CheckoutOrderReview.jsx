@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 const CheckoutOrderReview = ({
   cartItems,
   subtotal,
+  taxRate,
   tax,
   deliveryCharge,
   onDeliveryChange,
@@ -53,7 +54,7 @@ const CheckoutOrderReview = ({
           <span>${subtotal.toFixed(2)}</span>
         </div>
         <div className="flex justify-between text-[#99A9AD]">
-          <span>Tax ({(parseFloat(import.meta.env.VITE_TAX_RATE) * 100 || 10).toFixed(0)}%)</span>
+          <span>Tax ({(taxRate * 100).toFixed(0)}%)</span>
           <span>${tax.toFixed(2)}</span>
         </div>
 
@@ -105,6 +106,7 @@ CheckoutOrderReview.propTypes = {
     }),
   ).isRequired,
   subtotal: PropTypes.number.isRequired,
+  taxRate: PropTypes.number.isRequired,
   tax: PropTypes.number.isRequired,
   deliveryCharge: PropTypes.number.isRequired,
   onDeliveryChange: PropTypes.func.isRequired,
