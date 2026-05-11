@@ -1,9 +1,12 @@
 import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const AddItem = () => {
   const navigate = useNavigate();
+  const [submitting, setSubmitting] = useState(false);
+
   const handleAddItem = async (event) => {
     event.preventDefault();
 
@@ -24,6 +27,7 @@ const AddItem = () => {
 
     const food = { image, name, price, category, description };
 
+    setSubmitting(true);
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/foods`,
@@ -31,7 +35,6 @@ const AddItem = () => {
       );
 
       if (res.data?.data?.insertedId) {
-        console.log(res.data?.data?.insertedId);
         Swal.fire({
           title: "Good job!",
           text: "You have successfully added a food!!",
@@ -53,8 +56,11 @@ const AddItem = () => {
           "Failed to add item. Please try again.",
         icon: "error",
       });
+    } finally {
+      setSubmitting(false);
     }
   };
+
   return (
     <div className="relative min-h-screen">
       <img
@@ -77,7 +83,6 @@ const AddItem = () => {
                   <input
                     type="text"
                     name="name"
-                    id=""
                     placeholder="Enter Item Name"
                     className="w-full outline-none py-2 pl-3 placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
                   />
@@ -89,7 +94,6 @@ const AddItem = () => {
                   <input
                     type="text"
                     name="image"
-                    id=""
                     placeholder="Enter Item PhotoURL"
                     className="w-full outline-none py-2 pl-3 placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
                   />
@@ -103,7 +107,6 @@ const AddItem = () => {
                   <input
                     type="text"
                     name="price"
-                    id=""
                     placeholder="Enter Item Price"
                     className="w-full outline-none py-2 pl-3 placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
                   />
@@ -113,7 +116,7 @@ const AddItem = () => {
                     Select Category
                   </span>
                   <select
-                    id="fruits"
+                    id="category"
                     name="category"
                     className="h-[43px] bg-transparent text-[#D3D3D3] border-2 border-[#FFDE9F]"
                   >
@@ -146,18 +149,19 @@ const AddItem = () => {
                   <input
                     type="text"
                     name="description"
-                    id=""
                     placeholder="Enter Item Description"
                     className="w-full outline-none py-2 pl-3 placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
                   />
                 </div>
               </div>
               <div>
-                <input
+                <button
                   type="submit"
-                  value="Add Item"
-                  className="w-full mt-5 bg-[#FFDE9F] py-2 hover:cursor-pointer"
-                />
+                  disabled={submitting}
+                  className="w-full mt-5 bg-[#FFDE9F] py-2 font-medium disabled:opacity-60 disabled:cursor-not-allowed hover:cursor-pointer hover:bg-[#f0c981] transition-colors"
+                >
+                  {submitting ? "Adding…" : "Add Item"}
+                </button>
               </div>
             </form>
           </div>
