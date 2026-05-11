@@ -14,7 +14,7 @@ const SignUp = () => {
   const { createUser, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const redirectTo = location.state?.pathname ?? "/";
+  const redirectTo = location.state?.from ?? "/";
 
   const handleSignIn = async (e) => {
     e.preventDefault();
