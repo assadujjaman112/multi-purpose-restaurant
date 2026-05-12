@@ -1,12 +1,10 @@
-import axios from "axios";
+import api from "./api";
 
 const getErrorMessage = (err) =>
   err?.response?.data?.message || err?.message || "Something went wrong. Please try again.";
 
 const getCart = async (email) => {
-  const res = await axios.get(`${import.meta.env.VITE_API_URL}/carts`, {
-    params: { email },
-  });
+  const res = await api.get("/carts", { params: { email } });
   return Array.isArray(res.data.data) ? res.data.data : [];
 };
 
@@ -21,7 +19,7 @@ export const addToCart = async (item, quantity, customerEmail) => {
     }
 
     const { _id, ...itemData } = item;
-    await axios.post(`${import.meta.env.VITE_API_URL}/carts`, {
+    await api.post("/carts", {
       ...itemData,
       foodId: _id,
       quantity,
@@ -35,7 +33,7 @@ export const addToCart = async (item, quantity, customerEmail) => {
 
 export const removeFromCart = async (id) => {
   try {
-    const res = await axios.delete(`${import.meta.env.VITE_API_URL}/carts/${id}`);
+    const res = await api.delete(`/carts/${id}`);
     const deletedCount = res.data?.data?.deletedCount ?? 0;
     return { success: deletedCount > 0, deletedCount };
   } catch (err) {
@@ -45,7 +43,7 @@ export const removeFromCart = async (id) => {
 
 export const updateCartQuantity = async (id, quantity) => {
   try {
-    await axios.patch(`${import.meta.env.VITE_API_URL}/carts/${id}`, { quantity });
+    await api.patch(`/carts/${id}`, { quantity });
     return { success: true };
   } catch (err) {
     return { success: false, error: getErrorMessage(err) };

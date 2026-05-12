@@ -9,7 +9,8 @@ import {
 } from "react-icons/io5";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
-import axios from "axios";
+import api from "../lib/api";
+import { PHONE } from "../lib/env";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 
@@ -47,10 +48,7 @@ const BookTable = () => {
       time,
     };
     try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/bookings`,
-        bookingData,
-      );
+      const res = await api.post("/bookings", bookingData);
       if (res.data?.data?.insertedId) {
         await Swal.fire({
           title: "Success!",
@@ -102,19 +100,21 @@ const BookTable = () => {
           >
             Book A Table
           </h2>
-          <p
-            className="text-sm text-center md:text-lg lg:text-xl w-full md:w-[70%] mx-auto mt-6 lg:mt-10 text-[#99A9AD]"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-          >
-            You can Call Us directly at{" "}
-            <a
-              href={`tel:${import.meta.env.VITE_PHONE}`}
-              className="text-[#FFDE9F] hover:underline"
+          {PHONE && (
+            <p
+              className="text-sm text-center md:text-lg lg:text-xl w-full md:w-[70%] mx-auto mt-6 lg:mt-10 text-[#99A9AD]"
+              data-aos="fade-up"
+              data-aos-duration="1000"
             >
-              {import.meta.env.VITE_PHONE}
-            </a>
-          </p>
+              You can Call Us directly at{" "}
+              <a
+                href={`tel:${PHONE}`}
+                className="text-[#FFDE9F] hover:underline"
+              >
+                {PHONE}
+              </a>
+            </p>
+          )}
         </div>
         <div className="my-8 md:my-11 lg:my-16 ">
           <form

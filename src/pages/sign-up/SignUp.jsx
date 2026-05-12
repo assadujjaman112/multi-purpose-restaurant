@@ -4,7 +4,7 @@ import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
-import axios from "axios";
+import api from "../../lib/api";
 import Swal from "sweetalert2";
 
 const image =
@@ -29,7 +29,7 @@ const SignUp = () => {
       const result = await createUser(email, password);
       firebaseUser = result.user;
       await updateProfile(firebaseUser, { displayName: name, photoURL: image });
-      await axios.post(`${import.meta.env.VITE_API_URL}/users`, { name, email, image });
+      await api.post("/users", { name, email, image });
       Swal.fire({
         title: "Good job!",
         text: "You have successfully registered!",
@@ -53,7 +53,7 @@ const SignUp = () => {
     try {
       const result = await googleSignIn();
       const { displayName: name, email, photoURL: image } = result.user;
-      await axios.post(`${import.meta.env.VITE_API_URL}/users`, { name, email, image });
+      await api.post("/users", { name, email, image });
       Swal.fire({
         title: "Welcome!",
         text: "You have successfully signed up with Google!",

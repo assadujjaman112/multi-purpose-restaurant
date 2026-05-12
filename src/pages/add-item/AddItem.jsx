@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../lib/api";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -29,10 +29,7 @@ const AddItem = () => {
 
     setSubmitting(true);
     try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/foods`,
-        food,
-      );
+      const res = await api.post("/foods", food);
 
       if (res.data?.data?.insertedId) {
         Swal.fire({

@@ -1,4 +1,5 @@
 import { FaStarOfLife } from "react-icons/fa6";
+import { PHONE } from "../lib/env";
 
 const MakeReservation = () => {
   return (
@@ -57,18 +58,20 @@ const MakeReservation = () => {
           >
             Booking Request
           </h4>
-          <div
-            className="mt-2 md:mt-4 lg:mt-5"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-          >
-            <a
-              className="text-xl text-[#FFDE9F] font-bold"
-              href={`tel:${import.meta.env.VITE_PHONE}`}
+          {PHONE && (
+            <div
+              className="mt-2 md:mt-4 lg:mt-5"
+              data-aos="fade-up"
+              data-aos-duration="1000"
             >
-              Tel: {import.meta.env.VITE_PHONE}
-            </a>
-          </div>
+              <a
+                className="text-xl text-[#FFDE9F] font-bold"
+                href={`tel:${PHONE}`}
+              >
+                Tel: {PHONE}
+              </a>
+            </div>
+          )}
           <div className="mt-8 md:mt-12 lg:mt-16">
             <a
               href="#bookTable"

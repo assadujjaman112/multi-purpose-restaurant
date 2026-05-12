@@ -1,5 +1,6 @@
 import Button from "./buttons/Button";
 import SectionDetails from "./shared/SectionDetails";
+import { PHONE } from "../lib/env";
 
 const VisitOurRestaurant = () => {
   return (
@@ -16,15 +17,17 @@ const VisitOurRestaurant = () => {
             booking@bermiz.com
           </span>
         </p>
-        <p className="text-[#FFDE9F] text-xl font-medium mt-1 mb-4 md:mb-8 lg:mb-14">
-          T:
-          <a
-            href={`tel:${import.meta.env.VITE_PHONE}`}
-            className="text-white hover:text-[#FFDE9F]"
-          >
-            {import.meta.env.VITE_PHONE}
-          </a>
-        </p>
+        {PHONE && (
+          <p className="text-[#FFDE9F] text-xl font-medium mt-1 mb-4 md:mb-8 lg:mb-14">
+            T:
+            <a
+              href={`tel:${PHONE}`}
+              className="text-white hover:text-[#FFDE9F]"
+            >
+              {PHONE}
+            </a>
+          </p>
+        )}
 
         <Button text=" Get Direction " />
       </div>

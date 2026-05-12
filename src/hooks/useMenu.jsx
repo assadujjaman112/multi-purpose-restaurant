@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import api from "../lib/api";
 
 const useMenu = () => {
   const [menu, setMenu] = useState([]);
@@ -9,8 +9,8 @@ const useMenu = () => {
   useEffect(() => {
     setLoading(true);
     setError(null);
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/foods`)
+    api
+      .get("/foods")
       .then((result) => {
         setMenu(Array.isArray(result.data.data) ? result.data.data : []);
       })

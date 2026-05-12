@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useCallback, useContext, useEffect, useState } from "react";
+import api from "../lib/api";
 import { AuthContext } from "../providers/AuthProvider";
 
 const useCart = () => {
@@ -17,10 +17,8 @@ const useCart = () => {
     }
     setLoading(true);
     setError(null);
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/carts`, {
-        params: { email: user.email },
-      })
+    api
+      .get("/carts", { params: { email: user.email } })
       .then((res) => {
         setCartItems(Array.isArray(res.data.data) ? res.data.data : []);
       })

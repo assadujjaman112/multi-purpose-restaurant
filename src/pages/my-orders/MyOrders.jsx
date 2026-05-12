@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../lib/api";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FaStarOfLife } from "react-icons/fa6";
 import { BiPackage } from "react-icons/bi";
@@ -66,8 +66,8 @@ const MyOrders = () => {
 
   useEffect(() => {
     setError(null);
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/foods`)
+    api
+      .get("/foods")
       .then((res) => {
         setOrders(buildOrders(res.data?.data));
       })
@@ -118,8 +118,8 @@ const MyOrders = () => {
               onClick={() => {
                 setLoading(true);
                 setError(null);
-                axios
-                  .get(`${import.meta.env.VITE_API_URL}/foods`)
+                api
+                  .get("/foods")
                   .then((res) => setOrders(buildOrders(res.data?.data)))
                   .catch(() =>
                     setError("Failed to load your orders. Please try again.")
