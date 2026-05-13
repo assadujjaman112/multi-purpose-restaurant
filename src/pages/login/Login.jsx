@@ -106,12 +106,14 @@ const Login = () => {
               className="bg-[#FFDE9F] hover:cursor-pointer mt-5 w-full py-2 text-lg lg:text-xl  font-medium hover:bg-zinc-800 border-[#FFDE9F] border hover:text-[#FFDE9F]"
             />
           </form>
-          <div
+          <button
+            type="button"
             onClick={handleGoogleSignIn}
-            className="flex items-center justify-center border border-zinc-800 hover:bg-zinc-800 hover:border-[#FFDE9F] mt-6 py-2 hover:cursor-pointer"
+            aria-label="Sign in with Google"
+            className="flex items-center justify-center w-full border border-zinc-800 hover:bg-zinc-800 hover:border-[#FFDE9F] mt-6 py-2 hover:cursor-pointer"
           >
             <FaGoogle className="text-[#FFDE9F] text-2xl" />
-          </div>
+          </button>
           <p className="text-white  mt-5">
             Don&apos;t have an account ? {" "}
             <Link to="/signup" className="text-[#FFDE9F] font-bold">

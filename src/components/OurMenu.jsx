@@ -6,7 +6,7 @@ import Button from "./buttons/Button";
 import { Link } from "react-router-dom";
 
 const OurMenu = () => {
-  const { menu, loading, error } = useMenu();
+  const { menu, loading, error, refetch } = useMenu();
   const [isActive, setIsActive] = useState(1);
   const [showMenu, setShowMenu] = useState([]);
   useEffect(() => {
@@ -84,7 +84,7 @@ const OurMenu = () => {
           <div className="col-span-2 flex flex-col items-center gap-3 py-16">
             <p className="text-red-400 text-center">{error}</p>
             <button
-              onClick={() => window.location.reload()}
+              onClick={refetch}
               className="border border-[#FFDE9F] px-5 py-2 text-sm text-[#FFDE9F] hover:bg-[#FFDE9F] hover:text-black transition-colors"
             >
               Retry

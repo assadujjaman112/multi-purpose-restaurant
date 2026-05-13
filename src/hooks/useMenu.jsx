@@ -1,28 +1,61 @@
 import { useEffect, useState } from "react";
 import api from "../lib/api";
 
+// Module-level cache — shared across all hook instances for the browser session.
+// On error the promise is cleared so the next retry can start a fresh request.
+let cachedMenu = null;
+let fetchPromise = null;
+
+const startFetch = () => {
+  if (fetchPromise) return fetchPromise;
+  fetchPromise = api
+    .get("/foods")
+    .then((res) => {
+      cachedMenu = Array.isArray(res.data.data) ? res.data.data : [];
+      return cachedMenu;
+    })
+    .catch((err) => {
+      fetchPromise = null; // allow a retry
+      throw err;
+    });
+  return fetchPromise;
+};
+
+export const clearMenuCache = () => {
+  cachedMenu = null;
+  fetchPromise = null;
+};
+
 const useMenu = () => {
-  const [menu, setMenu] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [menu, setMenu] = useState(() => cachedMenu ?? []);
+  const [loading, setLoading] = useState(cachedMenu === null);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+  const load = () => {
+    if (cachedMenu !== null) {
+      setMenu(cachedMenu);
+      setLoading(false);
+      return;
+    }
     setLoading(true);
     setError(null);
-    api
-      .get("/foods")
-      .then((result) => {
-        setMenu(Array.isArray(result.data.data) ? result.data.data : []);
-      })
-      .catch((err) => {
-        setError(err?.response?.data?.message || "Failed to load menu. Please try again.");
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+    startFetch()
+      .then((data) => setMenu(data))
+      .catch((err) =>
+        setError(err?.response?.data?.message || "Failed to load menu. Please try again.")
+      )
+      .finally(() => setLoading(false));
+  };
 
-  return { menu, loading, error };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { load(); }, []);
+
+  const refetch = () => {
+    clearMenuCache();
+    load();
+  };
+
+  return { menu, loading, error, refetch };
 };
 
 export default useMenu;

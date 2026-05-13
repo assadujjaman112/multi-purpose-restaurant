@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import api from "../../lib/api";
 import { AuthContext } from "../../providers/AuthProvider";
+import useMenu from "../../hooks/useMenu";
 import { FaStarOfLife } from "react-icons/fa6";
 import { BiPackage } from "react-icons/bi";
 import { STATUSES } from "../../components/my-orders/orderConfig";
@@ -58,24 +58,16 @@ const buildOrders = (foods) => {
 
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
+  const { menu, loading, error, refetch } = useMenu();
   const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [expandedId, setExpandedId] = useState(null);
   const [filter, setFilter] = useState("All");
 
   useEffect(() => {
-    setError(null);
-    api
-      .get("/foods")
-      .then((res) => {
-        setOrders(buildOrders(res.data?.data));
-      })
-      .catch(() => {
-        setError("Failed to load your orders. Please try again.");
-      })
-      .finally(() => setLoading(false));
-  }, []);
+    if (!loading && !error) {
+      setOrders(buildOrders(menu));
+    }
+  }, [menu, loading, error]);
 
   const filters = ["All", ...STATUSES];
   const filtered =
@@ -115,17 +107,7 @@ const MyOrders = () => {
             <BiPackage className="text-6xl text-zinc-700 mb-4" />
             <p className="text-red-400 text-lg mb-4">{error}</p>
             <button
-              onClick={() => {
-                setLoading(true);
-                setError(null);
-                api
-                  .get("/foods")
-                  .then((res) => setOrders(buildOrders(res.data?.data)))
-                  .catch(() =>
-                    setError("Failed to load your orders. Please try again.")
-                  )
-                  .finally(() => setLoading(false));
-              }}
+              onClick={refetch}
               className="px-6 py-2 border border-[#FFDE9F] text-[#FFDE9F] rounded-lg hover:bg-[#FFDE9F] hover:text-black transition-colors text-sm"
             >
               Try Again

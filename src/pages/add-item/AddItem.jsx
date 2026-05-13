@@ -1,4 +1,5 @@
 import api from "../../lib/api";
+import { clearMenuCache } from "../../hooks/useMenu";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -32,6 +33,7 @@ const AddItem = () => {
       const res = await api.post("/foods", food);
 
       if (res.data?.data?.insertedId) {
+        clearMenuCache();
         Swal.fire({
           title: "Good job!",
           text: "You have successfully added a food!!",

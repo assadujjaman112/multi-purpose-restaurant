@@ -7,7 +7,7 @@ import MenuBanner from "../../components/shared/banner/MenuBanner";
 import BookTable from "../../components/BookTable";
 
 const MenuPage = () => {
-  const { menu, loading, error } = useMenu();
+  const { menu, loading, error, refetch } = useMenu();
   const breakfast = menu?.filter((item) => item.category === "breakfast");
   const lunch = menu?.filter((item) => item.category === "lunch");
   const dinner = menu?.filter((item) => item.category === "dinner");
@@ -25,7 +25,7 @@ const MenuPage = () => {
       <div className="flex min-h-screen flex-col items-center justify-center gap-4">
         <p className="text-red-400 text-lg">{error}</p>
         <button
-          onClick={() => window.location.reload()}
+          onClick={refetch}
           className="border border-[#FFDE9F] px-6 py-2 text-[#FFDE9F] hover:bg-[#FFDE9F] hover:text-black transition-colors"
         >
           Retry
