@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { getAuth } from "firebase/auth";
@@ -19,6 +19,11 @@ const Profile = () => {
   const [nameValue, setNameValue] = useState(user?.displayName || "");
   const [photoValue, setPhotoValue] = useState(user?.photoURL || "");
   const [saving, setSaving] = useState(false);
+  const [avatarError, setAvatarError] = useState(false);
+
+  useEffect(() => {
+    setAvatarError(false);
+  }, [user?.photoURL]);
 
   const joinedDate = user?.metadata?.creationTime
     ? new Date(user.metadata.creationTime).toLocaleDateString("en-US", {
@@ -88,22 +93,18 @@ const Profile = () => {
         {/* Avatar */}
         <div className="flex flex-col items-center mb-10">
           <div className="relative mb-4">
-            {user?.photoURL ? (
+            {user?.photoURL && !avatarError ? (
               <img
                 src={user.photoURL}
                 alt="Profile"
                 className="w-28 h-28 md:w-36 md:h-36 rounded-full object-cover border-4 border-[#FFDE9F]"
-                onError={(e) => {
-                  e.target.style.display = "none";
-                  e.target.nextSibling.style.display = "flex";
-                }}
+                onError={() => setAvatarError(true)}
               />
-            ) : null}
-            <div
-              className={`w-28 h-28 md:w-36 md:h-36 rounded-full border-4 border-[#FFDE9F] items-center justify-center bg-zinc-800 ${user?.photoURL ? "hidden" : "flex"}`}
-            >
-              <CgProfile className="text-[#FFDE9F] text-7xl" />
-            </div>
+            ) : (
+              <div className="w-28 h-28 md:w-36 md:h-36 rounded-full border-4 border-[#FFDE9F] flex items-center justify-center bg-zinc-800">
+                <CgProfile className="text-[#FFDE9F] text-7xl" />
+              </div>
+            )}
           </div>
 
           {user?.emailVerified && (
