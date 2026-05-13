@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { IoReorderThreeSharp, IoClose } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
@@ -29,8 +29,30 @@ const Navbar = () => {
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   const cartItemCount = cartItems.length;
+  const profileRef = useRef(null);
 
   const close = () => setIsOpen(false);
+
+  useEffect(() => {
+    if (!isProfileMenuOpen) return;
+
+    const handleOutsideClick = (e) => {
+      if (profileRef.current && !profileRef.current.contains(e.target)) {
+        setIsProfileMenuOpen(false);
+      }
+    };
+
+    const handleEscape = (e) => {
+      if (e.key === "Escape") setIsProfileMenuOpen(false);
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [isProfileMenuOpen]);
 
   const desktopLinks = (
     <ul className="flex flex-row gap-8 text-white items-center">
@@ -76,12 +98,14 @@ const Navbar = () => {
           {/* Right: profile + cart */}
           <div className="flex items-center gap-5">
             {user ? (
-              <div className="flex items-center gap-4">
+              <div className="relative flex items-center gap-4" ref={profileRef}>
                 <p className="hidden lg:block text-white font-elsie text-lg">
                   Hello, {user.displayName}
                 </p>
                 <button
                   onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
+                  aria-haspopup="true"
+                  aria-expanded={isProfileMenuOpen}
                   className="text-[#FFDE9F] text-2xl md:text-3xl"
                 >
                   {user.photoURL ? (
@@ -94,6 +118,35 @@ const Navbar = () => {
                     <CgProfile />
                   )}
                 </button>
+
+                {/* Profile dropdown */}
+                {isProfileMenuOpen && (
+                  <div className="flex flex-col gap-2 bg-[#FFDE9F] py-5 absolute right-0 top-full mt-2 z-50 rounded-md px-5 shadow-xl min-w-[140px]">
+                    <Link
+                      onClick={() => setIsProfileMenuOpen(false)}
+                      to="/profile"
+                      className="text-black font-elsie text-lg hover:bg-[#f0c981] rounded-md px-2 py-0.5"
+                    >
+                      Profile
+                    </Link>
+                    <Link
+                      onClick={() => setIsProfileMenuOpen(false)}
+                      to="/myOrders"
+                      className="text-black font-elsie text-lg hover:bg-[#f0c981] rounded-md px-2 py-0.5"
+                    >
+                      My Orders
+                    </Link>
+                    <button
+                      onClick={() => {
+                        logOut();
+                        setIsProfileMenuOpen(false);
+                      }}
+                      className="text-black font-elsie text-lg hover:bg-[#f0c981] rounded-md px-2 py-0.5 text-left"
+                    >
+                      Log out
+                    </button>
+                  </div>
+                )}
               </div>
             ) : (
               <Link
@@ -116,35 +169,6 @@ const Navbar = () => {
       </div>
 
       <div className="bg-[#99A9AD1A] h-[1px]" />
-
-      {/* ── Profile dropdown ── */}
-      {isProfileMenuOpen && (
-        <div className="flex flex-col gap-2 bg-[#FFDE9F] py-5 absolute right-5 top-20 z-50 rounded-md px-5 shadow-xl">
-          <Link
-            onClick={() => setIsProfileMenuOpen(false)}
-            to="/profile"
-            className="text-black font-elsie text-lg hover:bg-[#f0c981] rounded-md px-2 py-0.5"
-          >
-            Profile
-          </Link>
-          <Link
-            onClick={() => setIsProfileMenuOpen(false)}
-            to="/myOrders"
-            className="text-black font-elsie text-lg hover:bg-[#f0c981] rounded-md px-2 py-0.5"
-          >
-            My Orders
-          </Link>
-          <button
-            onClick={() => {
-              logOut();
-              setIsProfileMenuOpen(false);
-            }}
-            className="text-black font-elsie text-lg hover:bg-[#f0c981] rounded-md px-2 py-0.5 text-left"
-          >
-            Log out
-          </button>
-        </div>
-      )}
 
       {/* ── Mobile drawer backdrop ── */}
       <div
