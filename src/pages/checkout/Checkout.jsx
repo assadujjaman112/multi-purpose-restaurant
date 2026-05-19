@@ -5,13 +5,11 @@ import MenuBanner from "../../components/shared/banner/MenuBanner";
 import useCart from "../../hooks/useCart";
 import { AuthContext } from "../../providers/AuthProvider";
 import { removeFromCart } from "../../lib/helper";
+import { TAX_RATE } from "../../lib/env";
 import ContactSection from "../../components/checkout/ContactSection";
 import DeliverySection from "../../components/checkout/DeliverySection";
 import PaymentSection from "../../components/checkout/PaymentSection";
 import CheckoutOrderReview from "../../components/checkout/CheckoutOrderReview";
-
-const _parsedTax = parseFloat(import.meta.env.VITE_TAX_RATE);
-const TAX_RATE = Number.isFinite(_parsedTax) ? _parsedTax : 0.1;
 const DEFAULT_DELIVERY = parseFloat(import.meta.env.VITE_DELIVERY_CHARGE) || 0;
 
 const Checkout = () => {

@@ -3,11 +3,10 @@ import Swal from "sweetalert2";
 import MenuBanner from "../../components/shared/banner/MenuBanner";
 import useCart from "../../hooks/useCart";
 import { removeFromCart, updateCartQuantity } from "../../lib/helper";
+import { TAX_RATE } from "../../lib/env";
 import CartRow from "../../components/cart/CartRow";
 import OrderSummary from "../../components/cart/OrderSummary";
 import EmptyCart from "../../components/cart/EmptyCart";
-
-const TAX_RATE = parseFloat(import.meta.env.VITE_TAX_RATE) || 0.1;
 
 export const Cart = () => {
   const [cartItems, loading, refetch, cartError] = useCart();

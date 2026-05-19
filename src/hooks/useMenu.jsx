@@ -11,7 +11,12 @@ const startFetch = () => {
   fetchPromise = api
     .get("/foods")
     .then((res) => {
-      cachedMenu = Array.isArray(res.data.data) ? res.data.data : [];
+      const payload = res.data;
+      cachedMenu = Array.isArray(payload)
+        ? payload
+        : Array.isArray(payload?.data)
+        ? payload.data
+        : [];
       return cachedMenu;
     })
     .catch((err) => {
@@ -40,7 +45,7 @@ const useMenu = () => {
     setLoading(true);
     setError(null);
     startFetch()
-      .then((data) => setMenu(data))
+      .then((data) => {setMenu(data), console.log("data from useMenu", data)})
       .catch((err) =>
         setError(err?.response?.data?.message || "Failed to load menu. Please try again.")
       )
