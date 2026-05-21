@@ -45,7 +45,7 @@ const useMenu = () => {
     setLoading(true);
     setError(null);
     startFetch()
-      .then((data) => {setMenu(data), console.log("data from useMenu", data)})
+      .then((data) => { setMenu(data); })
       .catch((err) =>
         setError(err?.response?.data?.message || "Failed to load menu. Please try again.")
       )

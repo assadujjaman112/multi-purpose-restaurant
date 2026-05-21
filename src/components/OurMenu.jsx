@@ -14,8 +14,6 @@ const OurMenu = () => {
     setIsActive(1);
   }, [menu]);
 
-  console.log("menu", menu);
-
   const handleMenu = (category, categoryNumber) => {
     setIsActive(categoryNumber);
     if (category === "all") {
