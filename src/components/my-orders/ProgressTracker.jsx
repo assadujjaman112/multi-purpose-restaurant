@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { STATUS_CONFIG, STEPS } from "./orderConfig";
 
 const ProgressTracker = ({ status }) => {
@@ -29,6 +30,10 @@ const ProgressTracker = ({ status }) => {
       })}
     </div>
   );
+};
+
+ProgressTracker.propTypes = {
+  status: PropTypes.string.isRequired,
 };
 
 export default ProgressTracker;

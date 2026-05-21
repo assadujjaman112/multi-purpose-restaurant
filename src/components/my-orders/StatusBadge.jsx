@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { STATUS_CONFIG } from "./orderConfig";
 
 const StatusBadge = ({ status }) => {
@@ -10,6 +11,10 @@ const StatusBadge = ({ status }) => {
       {status}
     </span>
   );
+};
+
+StatusBadge.propTypes = {
+  status: PropTypes.string.isRequired,
 };
 
 export default StatusBadge;
