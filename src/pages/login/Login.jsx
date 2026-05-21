@@ -83,7 +83,7 @@ const Login = () => {
             <div className="flex flex-col w-full mb-2">
               <span className="font-elsie text-[#FFDE9F] pl-2 mb-1">Email</span>
               <input
-                type="text"
+                type="email"
                 name="email"
                 placeholder="Enter Your Email"
                 className="w-full outline-none py-2 pl-3 placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
