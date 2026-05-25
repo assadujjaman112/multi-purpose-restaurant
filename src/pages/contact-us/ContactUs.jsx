@@ -40,42 +40,65 @@ const ContactUs = () => {
 
             <form onSubmit={handleSubmit} className="w-full mt-10">
               <div className="flex flex-col w-full mb-5">
+                <label htmlFor="contact-name" className="font-elsie text-[#FFDE9F] pl-2 mb-1">
+                  Name
+                </label>
                 <input
+                  id="contact-name"
                   type="text"
                   name="name"
                   placeholder="Enter Your Name"
+                  required
                   className="w-full outline-none py-5 pl-3 placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
                 />
               </div>
               <div className="flex flex-col w-full mb-5">
+                <label htmlFor="contact-email" className="font-elsie text-[#FFDE9F] pl-2 mb-1">
+                  Email
+                </label>
                 <input
+                  id="contact-email"
                   type="email"
                   name="email"
                   placeholder="Enter Your Email"
-                  className="w-full outline-none py-5 pl-3  placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
+                  autoComplete="email"
+                  required
+                  className="w-full outline-none py-5 pl-3 placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
                 />
               </div>
               <div className="flex flex-col w-full mb-5">
+                <label htmlFor="contact-phone" className="font-elsie text-[#FFDE9F] pl-2 mb-1">
+                  Phone
+                </label>
                 <input
-                  type="text"
+                  id="contact-phone"
+                  type="tel"
                   name="phone"
                   placeholder="Enter Your Phone No"
-                  className="w-full outline-none py-5 pl-3  placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
+                  autoComplete="tel"
+                  required
+                  className="w-full outline-none py-5 pl-3 placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
                 />
               </div>
               <div className="flex flex-col w-full mb-5">
+                <label htmlFor="contact-message" className="font-elsie text-[#FFDE9F] pl-2 mb-1">
+                  Message
+                </label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   placeholder="Enter Your Message"
                   rows={5}
+                  required
                   className="w-full outline-none pt-5 pb-5 pl-3 placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white resize-none"
                 />
               </div>
-              <input
+              <button
                 type="submit"
-                value="Send Your Message"
-                className="bg-[#FFDE9F] px-5 py-2 lg:px-10 lg:py-5 mt-10 text-lg lg:text-xl  font-medium hover:bg-black border-[#FFDE9F] border hover:text-[#FFDE9F]"
-              />
+                className="bg-[#FFDE9F] px-5 py-2 lg:px-10 lg:py-5 mt-10 text-lg lg:text-xl font-medium hover:bg-black border-[#FFDE9F] border hover:text-[#FFDE9F]"
+              >
+                Send Your Message
+              </button>
             </form>
           </div>
           <img

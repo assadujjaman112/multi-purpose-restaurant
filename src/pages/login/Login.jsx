@@ -75,30 +75,39 @@ const Login = () => {
           </h4>
           <form onSubmit={handleEmailLogin} className="w-full">
             <div className="flex flex-col w-full mb-2">
-              <span className="font-elsie text-[#FFDE9F] pl-2 mb-1">Email</span>
+              <label htmlFor="login-email" className="font-elsie text-[#FFDE9F] pl-2 mb-1">
+                Email
+              </label>
               <input
+                id="login-email"
                 type="email"
                 name="email"
                 placeholder="Enter Your Email"
+                autoComplete="email"
+                required
                 className="w-full outline-none py-2 pl-3 placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
               />
             </div>
             <div className="flex flex-col w-full mb-2">
-              <span className="font-elsie text-[#FFDE9F] pl-2 mb-1">
+              <label htmlFor="login-password" className="font-elsie text-[#FFDE9F] pl-2 mb-1">
                 Password
-              </span>
+              </label>
               <input
+                id="login-password"
                 type="password"
                 name="password"
                 placeholder="Enter Your Password"
+                autoComplete="current-password"
+                required
                 className="w-full outline-none py-2 pl-3  placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
               />
             </div>
-            <input
+            <button
               type="submit"
-              value="Login"
-              className="bg-[#FFDE9F] hover:cursor-pointer mt-5 w-full py-2 text-lg lg:text-xl  font-medium hover:bg-zinc-800 border-[#FFDE9F] border hover:text-[#FFDE9F]"
-            />
+              className="bg-[#FFDE9F] hover:cursor-pointer mt-5 w-full py-2 text-lg lg:text-xl font-medium hover:bg-zinc-800 border-[#FFDE9F] border hover:text-[#FFDE9F]"
+            >
+              Login
+            </button>
           </form>
           <button
             type="button"

@@ -76,47 +76,54 @@ const AddItem = () => {
             <form onSubmit={handleAddItem}>
               <div className="flex flex-col md:flex-row gap-3 md:gap-8 w-full mb-2">
                 <div className="flex flex-col w-full">
-                  <span className="font-elsie text-[#FFDE9F] pl-2 mb-1">
+                  <label htmlFor="add-item-name" className="font-elsie text-[#FFDE9F] pl-2 mb-1">
                     Name
-                  </span>
+                  </label>
                   <input
+                    id="add-item-name"
                     type="text"
                     name="name"
                     placeholder="Enter Item Name"
+                    required
                     className="w-full outline-none py-2 pl-3 placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
                   />
                 </div>
                 <div className="flex flex-col w-full">
-                  <span className="font-elsie text-[#FFDE9F] pl-2 mb-1">
-                    PhotoURL
-                  </span>
+                  <label htmlFor="add-item-image" className="font-elsie text-[#FFDE9F] pl-2 mb-1">
+                    Photo URL
+                  </label>
                   <input
+                    id="add-item-image"
                     type="text"
                     name="image"
-                    placeholder="Enter Item PhotoURL"
+                    placeholder="Enter Item Photo URL"
+                    required
                     className="w-full outline-none py-2 pl-3 placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
                   />
                 </div>
               </div>
               <div className="flex flex-col md:flex-row gap-3 md:gap-8 w-full mb-2">
                 <div className="flex flex-col w-full">
-                  <span className="font-elsie text-[#FFDE9F] pl-2 mb-1">
+                  <label htmlFor="add-item-price" className="font-elsie text-[#FFDE9F] pl-2 mb-1">
                     Price
-                  </span>
+                  </label>
                   <input
+                    id="add-item-price"
                     type="text"
                     name="price"
                     placeholder="Enter Item Price"
+                    required
                     className="w-full outline-none py-2 pl-3 placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
                   />
                 </div>
                 <div className="flex flex-col w-full">
-                  <span className="font-elsie text-[#FFDE9F] pl-2 mb-1">
-                    Select Category
-                  </span>
+                  <label htmlFor="add-item-category" className="font-elsie text-[#FFDE9F] pl-2 mb-1">
+                    Category
+                  </label>
                   <select
-                    id="category"
+                    id="add-item-category"
                     name="category"
+                    required
                     className="h-[43px] bg-transparent text-[#D3D3D3] border-2 border-[#FFDE9F]"
                   >
                     <option
@@ -142,13 +149,15 @@ const AddItem = () => {
               </div>
               <div className="flex flex-col md:flex-row gap-3 md:gap-8 w-full">
                 <div className="flex flex-col w-full">
-                  <span className="font-elsie text-[#FFDE9F] pl-2 mb-1">
+                  <label htmlFor="add-item-description" className="font-elsie text-[#FFDE9F] pl-2 mb-1">
                     Description
-                  </span>
+                  </label>
                   <input
+                    id="add-item-description"
                     type="text"
                     name="description"
                     placeholder="Enter Item Description"
+                    required
                     className="w-full outline-none py-2 pl-3 placeholder:text-[#D3D3D3] bg-transparent border-2 border-[#FFDE9F] text-white"
                   />
                 </div>
