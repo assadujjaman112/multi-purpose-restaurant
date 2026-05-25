@@ -131,7 +131,7 @@ const Navbar = () => {
                     </Link>
                     <Link
                       onClick={() => setIsProfileMenuOpen(false)}
-                      to="/myOrders"
+                      to="/my-orders"
                       className="text-black font-elsie text-lg hover:bg-[#f0c981] rounded-md px-2 py-0.5"
                     >
                       My Orders

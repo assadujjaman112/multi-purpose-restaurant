@@ -74,7 +74,7 @@ const Checkout = () => {
         background: "#1c2628",
         color: "#fff",
       });
-      navigate("/myOrders");
+      navigate("/my-orders");
     } catch {
       Swal.fire({
         title: "Something went wrong",
