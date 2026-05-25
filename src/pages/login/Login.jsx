@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { FaGoogle } from "react-icons/fa";
-import Swal from "sweetalert2";
+import { showAlert } from "../../lib/swal";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
@@ -31,13 +31,10 @@ const Login = () => {
       await signIn(email, password);
       navigate(redirectTo);
     } catch (error) {
-      Swal.fire({
+      showAlert({
         title: "Login Failed",
         text: error.message,
         icon: "error",
-        confirmButtonColor: "#FFDE9F",
-        background: "#1c2628",
-        color: "#fff",
       });
     }
   };
@@ -47,13 +44,10 @@ const Login = () => {
       await googleSignIn();
       navigate(redirectTo);
     } catch (error) {
-      Swal.fire({
+      showAlert({
         title: "Google Sign-In Failed",
         text: error.message,
         icon: "error",
-        confirmButtonColor: "#FFDE9F",
-        background: "#1c2628",
-        color: "#fff",
       });
     }
   };

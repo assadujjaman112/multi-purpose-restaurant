@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import { showAlert } from "../../lib/swal";
 import MenuBanner from "../../components/shared/banner/MenuBanner";
 import useCart from "../../hooks/useCart";
 import { AuthContext } from "../../providers/AuthProvider";
@@ -65,24 +65,18 @@ const Checkout = () => {
       const results = await Promise.all(cartItems.map((item) => removeFromCart(item._id)));
       if (results.some((r) => !r.success)) throw new Error("Failed to clear cart items");
       refetch();
-      await Swal.fire({
+      await showAlert({
         title: "Order Placed!",
         html: `<p style="color:#99A9AD;margin-top:4px">Your order has been placed successfully.<br/>We'll start preparing it right away.</p>`,
         icon: "success",
-        confirmButtonColor: "#FFDE9F",
         confirmButtonText: "View My Orders",
-        background: "#1c2628",
-        color: "#fff",
       });
       navigate("/my-orders");
     } catch {
-      Swal.fire({
+      showAlert({
         title: "Something went wrong",
         text: "Failed to place your order. Please try again.",
         icon: "error",
-        confirmButtonColor: "#FFDE9F",
-        background: "#1c2628",
-        color: "#fff",
       });
     } finally {
       setPlacing(false);

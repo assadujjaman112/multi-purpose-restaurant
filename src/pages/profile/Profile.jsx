@@ -3,7 +3,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 import app from "../../firebase/firebase.config";
-import Swal from "sweetalert2";
+import { showAlert } from "../../lib/swal";
 import { CgProfile } from "react-icons/cg";
 import { FiEdit2, FiCheck, FiX } from "react-icons/fi";
 import { MdEmail, MdVerified } from "react-icons/md";
@@ -35,16 +35,16 @@ const Profile = () => {
 
   const handleSaveName = async () => {
     if (!nameValue.trim()) {
-      Swal.fire({ title: "Error", text: "Name cannot be empty.", icon: "error" });
+      showAlert({ title: "Error", text: "Name cannot be empty.", icon: "error" });
       return;
     }
     setSaving(true);
     try {
       await updateProfile(auth.currentUser, { displayName: nameValue.trim() });
       setEditingName(false);
-      Swal.fire({ title: "Updated!", text: "Your name has been updated.", icon: "success" });
+      showAlert({ title: "Updated!", text: "Your name has been updated.", icon: "success" });
     } catch {
-      Swal.fire({ title: "Error", text: "Failed to update name.", icon: "error" });
+      showAlert({ title: "Error", text: "Failed to update name.", icon: "error" });
     } finally {
       setSaving(false);
     }
@@ -52,16 +52,16 @@ const Profile = () => {
 
   const handleSavePhoto = async () => {
     if (!photoValue.trim()) {
-      Swal.fire({ title: "Error", text: "Photo URL cannot be empty.", icon: "error" });
+      showAlert({ title: "Error", text: "Photo URL cannot be empty.", icon: "error" });
       return;
     }
     setSaving(true);
     try {
       await updateProfile(auth.currentUser, { photoURL: photoValue.trim() });
       setEditingPhoto(false);
-      Swal.fire({ title: "Updated!", text: "Your profile photo has been updated.", icon: "success" });
+      showAlert({ title: "Updated!", text: "Your profile photo has been updated.", icon: "success" });
     } catch {
-      Swal.fire({ title: "Error", text: "Failed to update photo.", icon: "error" });
+      showAlert({ title: "Error", text: "Failed to update photo.", icon: "error" });
     } finally {
       setSaving(false);
     }

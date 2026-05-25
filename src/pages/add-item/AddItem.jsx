@@ -2,7 +2,7 @@ import api from "../../lib/api";
 import { clearMenuCache } from "../../hooks/useMenu";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import { showAlert } from "../../lib/swal";
 
 const AddItem = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const AddItem = () => {
     const category = form?.category?.value;
     const description = form?.description?.value;
     if (!name || !image || !price || !category || !description) {
-      Swal.fire({
+      showAlert({
         title: "Error!",
         text: "Please fill in all the fields.",
         icon: "error",
@@ -34,21 +34,21 @@ const AddItem = () => {
 
       if (res.data?.data?.insertedId) {
         clearMenuCache();
-        Swal.fire({
+        showAlert({
           title: "Good job!",
           text: "You have successfully added a food!!",
           icon: "success",
         });
         navigate(`/menu/${res.data?.data?.insertedId}`);
       } else {
-        Swal.fire({
+        showAlert({
           title: "Error!",
           text: "Something went wrong. Please try again.",
           icon: "error",
         });
       }
     } catch (error) {
-      Swal.fire({
+      showAlert({
         title: "Error!",
         text:
           error?.response?.data?.message ||

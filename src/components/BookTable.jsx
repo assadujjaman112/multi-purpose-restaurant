@@ -8,7 +8,7 @@ import {
   IoCalendarOutline,
 } from "react-icons/io5";
 import "react-datepicker/dist/react-datepicker.css";
-import Swal from "sweetalert2";
+import { showAlert } from "../../lib/swal";
 import api from "../lib/api";
 import { PHONE } from "../lib/env";
 import { useContext } from "react";
@@ -29,7 +29,7 @@ const BookTable = () => {
     const time = form.time.value;
 
     if (!name || !email || !phone || !people || !selectedDate || !time) {
-      Swal.fire({
+      showAlert({
         title: "Error!",
         text: "Please fill in all the fields",
         icon: "error",
@@ -50,13 +50,10 @@ const BookTable = () => {
     try {
       const res = await api.post("/bookings", bookingData);
       if (res.data?.data?.insertedId) {
-        await Swal.fire({
+        await showAlert({
           title: "Success!",
           text: "Table booked successfully",
           icon: "success",
-          confirmButtonColor: "#FFDE9F",
-          background: "#1c2628",
-          color: "#fff",
         });
         form.reset();
         setSelectedDate("");
@@ -64,13 +61,10 @@ const BookTable = () => {
         throw new Error("Unexpected response from server");
       }
     } catch {
-      Swal.fire({
+      showAlert({
         title: "Error!",
         text: "Failed to book table. Please try again.",
         icon: "error",
-        confirmButtonColor: "#FFDE9F",
-        background: "#1c2628",
-        color: "#fff",
       });
     }
   };

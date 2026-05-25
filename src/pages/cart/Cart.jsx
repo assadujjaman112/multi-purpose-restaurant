@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Swal from "sweetalert2";
+import { showAlert } from "../../lib/swal";
 import MenuBanner from "../../components/shared/banner/MenuBanner";
 import useCart from "../../hooks/useCart";
 import { removeFromCart, updateCartQuantity } from "../../lib/helper";
@@ -22,16 +22,12 @@ export const Cart = () => {
   const total = subtotal + tax;
 
   const handleRemove = async (id, name) => {
-    const result = await Swal.fire({
+    const result = await showAlert({
       title: "Remove item?",
       text: `"${name}" will be removed from your cart.`,
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#FFDE9F",
-      cancelButtonColor: "#374151",
       confirmButtonText: "Remove",
-      background: "#1c2628",
-      color: "#fff",
     });
     if (!result.isConfirmed) return;
     const res = await removeFromCart(id);
@@ -42,19 +38,17 @@ export const Cart = () => {
         return next;
       });
       refetch();
-      Swal.fire({
+      showAlert({
         title: "Removed from cart",
         text: "Item removed from cart successfully",
         icon: "success",
-        confirmButtonColor: "#3085d6",
         confirmButtonText: "OK",
       });
     } else {
-      Swal.fire({
+      showAlert({
         title: "Error",
         text: res.error || "Failed to remove item from cart",
         icon: "error",
-        confirmButtonColor: "#FFDE9F",
         confirmButtonText: "OK",
       });
     }
@@ -78,11 +72,10 @@ export const Cart = () => {
     setQuantities((prev) => ({ ...prev, [item._id]: newQty }));
     const res = await updateCartQuantity(item._id, newQty);
     if (!res.success) {
-      Swal.fire({
+      showAlert({
         title: "Error",
         text: res.error || "Failed to update quantity",
         icon: "error",
-        confirmButtonColor: "#FFDE9F",
         confirmButtonText: "OK",
       });
     }

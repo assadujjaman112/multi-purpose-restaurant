@@ -7,7 +7,7 @@ import SuggestionCard from "../../components/shared/suggestion-card/SuggestionCa
 import Testimonials from "../../components/shared/testimonials/Testimonials";
 import { addToCart } from "../../lib/helper";
 import { AuthContext } from "../../providers/AuthProvider";
-import Swal from "sweetalert2";
+import { showAlert } from "../../lib/swal";
 
 const FoodDetails = () => {
   const { menu, loading, error, refetch } = useMenu();
@@ -62,22 +62,20 @@ const FoodDetails = () => {
     }
     const result = await addToCart(food, quantity, customerEmail);
     if (result.success) {
-      Swal.fire({
+      showAlert({
         title: result.type === "updated" ? "Cart updated" : "Added to cart",
         text:
           result.type === "updated"
             ? "Quantity updated in your cart"
             : "Item added to cart successfully",
         icon: "success",
-        confirmButtonColor: "#3085d6",
         confirmButtonText: "OK",
       });
     } else {
-      Swal.fire({
+      showAlert({
         title: "Error",
         text: result.error || "Failed to add item to cart",
         icon: "error",
-        confirmButtonColor: "#FFDE9F",
         confirmButtonText: "OK",
       });
     }

@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import api from "../../lib/api";
-import Swal from "sweetalert2";
+import { showAlert } from "../../lib/swal";
 
 const image =
   "https://i.postimg.cc/1tBJ4MxX/pngtree-group-of-fast-food-products-png-image-11219877-removebg-preview.png";
@@ -30,7 +30,7 @@ const SignUp = () => {
       firebaseUser = result.user;
       await updateProfile(firebaseUser, { displayName: name, photoURL: image });
       await api.post("/users", { name, email, image });
-      Swal.fire({
+      showAlert({
         title: "Good job!",
         text: "You have successfully registered!",
         icon: "success",
@@ -40,11 +40,10 @@ const SignUp = () => {
       if (firebaseUser) {
         await firebaseUser.delete().catch(() => {});
       }
-      Swal.fire({
+      showAlert({
         title: "Registration Failed",
         text: error.message,
         icon: "error",
-        confirmButtonColor: "#FFDE9F",
       });
     }
   };
@@ -54,18 +53,17 @@ const SignUp = () => {
       const result = await googleSignIn();
       const { displayName: name, email, photoURL: image } = result.user;
       await api.post("/users", { name, email, image });
-      Swal.fire({
+      showAlert({
         title: "Welcome!",
         text: "You have successfully signed up with Google!",
         icon: "success",
       });
       navigate(redirectTo);
     } catch (error) {
-      Swal.fire({
+      showAlert({
         title: "Google Sign-Up Failed",
         text: error.message,
         icon: "error",
-        confirmButtonColor: "#FFDE9F",
       });
     }
   };
