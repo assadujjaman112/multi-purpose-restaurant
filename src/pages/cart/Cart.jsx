@@ -7,6 +7,7 @@ import { TAX_RATE } from "../../lib/env";
 import CartRow from "../../components/cart/CartRow";
 import OrderSummary from "../../components/cart/OrderSummary";
 import EmptyCart from "../../components/cart/EmptyCart";
+import Spinner from "../../components/shared/spinner/Spinner";
 
 export const Cart = () => {
   const [cartItems, loading, refetch, cartError] = useCart();
@@ -89,7 +90,7 @@ export const Cart = () => {
           title="My Cart"
         />
         <div className="flex justify-center items-center py-32">
-          <div className="w-12 h-12 rounded-full border-4 border-[#FFDE9F] border-t-transparent animate-spin" />
+          <Spinner />
         </div>
       </div>
     );

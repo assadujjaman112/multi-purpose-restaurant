@@ -8,6 +8,7 @@ import Testimonials from "../../components/shared/testimonials/Testimonials";
 import { addToCart } from "../../lib/helper";
 import { AuthContext } from "../../providers/AuthProvider";
 import { showAlert } from "../../lib/swal";
+import Spinner from "../../components/shared/spinner/Spinner";
 
 const FoodDetails = () => {
   const { menu, loading, error, refetch } = useMenu();
@@ -22,7 +23,7 @@ const FoodDetails = () => {
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <span className="h-12 w-12 animate-spin rounded-full border-4 border-gray-200 border-t-yellow-500"></span>
+        <Spinner />
       </div>
     );
   }

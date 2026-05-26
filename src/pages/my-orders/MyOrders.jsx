@@ -6,6 +6,7 @@ import { BiPackage } from "react-icons/bi";
 import { STATUSES } from "../../components/my-orders/orderConfig";
 import StatusBadge from "../../components/my-orders/StatusBadge";
 import ProgressTracker from "../../components/my-orders/ProgressTracker";
+import Spinner from "../../components/shared/spinner/Spinner";
 
 const buildOrders = (foods) => {
   if (!foods || foods.length === 0) return [];
@@ -100,7 +101,7 @@ const MyOrders = () => {
 
         {loading ? (
           <div className="flex justify-center items-center py-32">
-            <div className="w-10 h-10 border-2 border-[#FFDE9F] border-t-transparent rounded-full animate-spin" />
+            <Spinner size="sm" />
           </div>
         ) : error ? (
           <div className="flex flex-col items-center justify-center py-20 text-center">

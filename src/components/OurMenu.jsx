@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { FaStarOfLife } from "react-icons/fa6";
 import useMenu from "../hooks/useMenu";
 import MenuCard from "./shared/menu-card/MenuCard";
+import Spinner from "./shared/spinner/Spinner";
 import Button from "./buttons/Button";
 import { Link } from "react-router-dom";
 
@@ -78,7 +79,7 @@ const OurMenu = () => {
       <div className="my-8 md:mt-10 lg:mt-14 grid grid-cols-1 md:grid-cols-2 gap-6">
         {loading ? (
           <div className="col-span-2 flex justify-center py-16">
-            <span className="h-12 w-12 animate-spin rounded-full border-4 border-gray-600 border-t-yellow-500"></span>
+            <Spinner />
           </div>
         ) : error ? (
           <div className="col-span-2 flex flex-col items-center gap-3 py-16">

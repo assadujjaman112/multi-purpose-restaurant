@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import AppPromotion from "../../components/AppPromotion";
 import MenuBanner from "../../components/shared/banner/MenuBanner";
 import BookTable from "../../components/BookTable";
+import Spinner from "../../components/shared/spinner/Spinner";
 
 const MenuPage = () => {
   const { menu, loading, error, refetch } = useMenu();
@@ -15,7 +16,7 @@ const MenuPage = () => {
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <span className="h-12 w-12 animate-spin rounded-full border-4 border-gray-200 border-t-yellow-500"></span>
+        <Spinner />
       </div>
     );
   }

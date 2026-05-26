@@ -10,6 +10,7 @@ import ContactSection from "../../components/checkout/ContactSection";
 import DeliverySection from "../../components/checkout/DeliverySection";
 import PaymentSection from "../../components/checkout/PaymentSection";
 import CheckoutOrderReview from "../../components/checkout/CheckoutOrderReview";
+import Spinner from "../../components/shared/spinner/Spinner";
 const DEFAULT_DELIVERY = parseFloat(import.meta.env.VITE_DELIVERY_CHARGE) || 0;
 
 const Checkout = () => {
@@ -91,7 +92,7 @@ const Checkout = () => {
           title="Checkout"
         />
         <div className="flex justify-center items-center py-32">
-          <div className="w-12 h-12 rounded-full border-4 border-[#FFDE9F] border-t-transparent animate-spin" />
+          <Spinner />
         </div>
       </div>
     );
