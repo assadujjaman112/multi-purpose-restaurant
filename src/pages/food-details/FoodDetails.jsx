@@ -1,4 +1,4 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import useMenu from "../../hooks/useMenu";
 import MenuBanner from "../../components/shared/banner/MenuBanner";
 import { FaStar } from "react-icons/fa6";
@@ -19,6 +19,7 @@ const FoodDetails = () => {
   const { user } = useContext(AuthContext);
   const customerEmail = user?.email;
   const navigate = useNavigate();
+  const location = useLocation();
 
   if (loading) {
     return (
@@ -58,7 +59,7 @@ const FoodDetails = () => {
 
   const handleAddToCart = async () => {
     if (!user) {
-      navigate("/login");
+      navigate("/login", { state: { from: location.pathname } });
       return;
     }
     const result = await addToCart(food, quantity, customerEmail);
