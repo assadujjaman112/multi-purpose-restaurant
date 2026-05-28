@@ -22,8 +22,13 @@ const Profile = () => {
   const [avatarError, setAvatarError] = useState(false);
 
   useEffect(() => {
+    if (!editingName) setNameValue(user?.displayName || "");
+  }, [user?.displayName, editingName]);
+
+  useEffect(() => {
     setAvatarError(false);
-  }, [user?.photoURL]);
+    if (!editingPhoto) setPhotoValue(user?.photoURL || "");
+  }, [user?.photoURL, editingPhoto]);
 
   const joinedDate = user?.metadata?.creationTime
     ? new Date(user.metadata.creationTime).toLocaleDateString("en-US", {
