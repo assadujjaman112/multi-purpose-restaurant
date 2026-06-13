@@ -14,6 +14,8 @@ import MyOrders from "../pages/my-orders/MyOrders";
 import Checkout from "../pages/checkout/Checkout";
 import SignUp from "../pages/sign-up/SignUp";
 import NotFound from "../pages/not-found/NotFound";
+import PrivacyPolicy from "../pages/legal/PrivacyPolicy";
+import TermsOfUse from "../pages/legal/TermsOfUse";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +74,14 @@ const router = createBrowserRouter([
       {
         path: "/contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "/privacy-policy",
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "/terms-of-use",
+        element: <TermsOfUse />,
       },
       {
         path: "*",

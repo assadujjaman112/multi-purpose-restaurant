@@ -1,6 +1,7 @@
 import { FaFacebookF, FaTwitter, FaYoutube } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
 import { GrSend } from "react-icons/gr";
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="py-8 md:py-14 lg:py-28">
@@ -80,12 +81,12 @@ const Footer = () => {
           &copy; Copyright Bermiz Theme for Restaurant & Cafe.
         </p>
         <div className="text-sm md:text-lg lg:text-xl text-[#99A9AD] flex gap-6">
-          <p className=" hover:text-[#FFDE9F] hover:cursor-pointer">
+          <Link to="/privacy-policy" className="hover:text-[#FFDE9F] transition-colors">
             Privacy Policy
-          </p>
-          <p className="text-sm md:text-lg lg:text-xl hover:text-[#FFDE9F] hover:cursor-pointer">
+          </Link>
+          <Link to="/terms-of-use" className="hover:text-[#FFDE9F] transition-colors">
             Terms Of Use
-          </p>
+          </Link>
         </div>
       </div>
     </footer>

@@ -8,11 +8,11 @@ import {
   IoCalendarOutline,
 } from "react-icons/io5";
 import "react-datepicker/dist/react-datepicker.css";
-import { showAlert } from "../../lib/swal";
 import api from "../lib/api";
 import { PHONE } from "../lib/env";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import { showAlert } from "../lib/swal";
 
 const BookTable = () => {
   const [selectedDate, setSelectedDate] = useState("");
