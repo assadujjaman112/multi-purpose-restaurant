@@ -10,9 +10,9 @@ const Footer = () => {
           <img src="https://i.postimg.cc/zvdD8PC3/logo.png" alt="" />
           <div>
             <p className="text-sm md:text-lg lg:text-xl mt-5 lg:mt-7 text-[#99A9AD]">
-              Vitae neque libero ullamcorper gravida fusce donec feugiat massa
-              dui. Turpis massa et ipsum orci, sem commodo. Sapien hendrerit
-              cursus eros.
+              Bermiz is a neighborhood restaurant & cafe serving fresh,
+              chef-crafted dishes made with quality local ingredients — dine
+              in, take out, or have it delivered to your door.
             </p>
             <div className="flex">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="mt-7 text-gray-300 hover:text-black w-12 h-12 hover:bg-[#f6dfb4] flex justify-center items-center rounded-full">

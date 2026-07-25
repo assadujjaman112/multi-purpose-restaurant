@@ -46,10 +46,9 @@ const MakeReservation = () => {
             data-aos="fade-up"
             data-aos-duration="1000"
           >
-            Nam turpis quis fermentum egestas nibh diam feugiat faucibus.
-            Commodo tellus lorem fames mauris, at praesent gravida. Porttitor eu
-            eu sed vestibulum, tortor cursus nunc. Sit egestas diam quam integer
-            augue cum erat egestas convallis.
+            Our chefs blend time-honored recipes with seasonal ingredients to
+            create dishes that feel both familiar and unforgettable. Reserve
+            your table and let us take care of the rest.
           </p>
           <h4
             className="mt-2 md:mt-3 lg:mt-5 text-white font-bold text-xl"

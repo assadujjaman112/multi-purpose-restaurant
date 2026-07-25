@@ -24,9 +24,9 @@ const AppPromotion = () => {
           data-aos="fade-up"
           data-aos-duration="1000"
         >
-          Vitae neque libero ullamcorper gravida fusce donec feugiat massa dui.
-          Turpis massa et ipsum orci, sem commodo. Sapien hendrerit cursus eros,
-          netus lacus, risus in quis vitae.
+          Browse the full menu, track your order in real time, and save your
+          favorite dishes for next time — ordering from Bermiz has never been
+          this quick or convenient.
         </p>
         <div className="flex gap-5 my-8 md:my-16">
           <img

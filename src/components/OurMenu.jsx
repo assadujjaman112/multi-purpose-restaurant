@@ -47,9 +47,8 @@ const OurMenu = () => {
         data-aos="fade-up"
         data-aos-duration="1000"
       >
-        Diam leo massa pellentesque a neque turpis cum mi gravida. Amet massa
-        adipiscing mi dictum urna commodo. Fringilla ipsum etiam habitasse dolor
-        lacus viverra.
+        From hearty breakfasts to indulgent desserts, every dish on our menu is
+        made fresh to order and priced for everyday enjoyment.
       </p>
       <div className="overflow-x-auto no-scrollbar mt-8 md:mt-10 lg:mt-12">
         <div className="flex gap-3 justify-start md:justify-center min-w-max md:min-w-0 mx-auto px-1 pb-1">

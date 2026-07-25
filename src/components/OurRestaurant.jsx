@@ -57,10 +57,10 @@ const OurRestaurant = () => {
             data-aos="fade-up"
             data-aos-duration="1000"
           >
-            Diam leo massa pellentesque a neque turpis cum mi gravida. Amet
-            massa adipiscing mi dictum urna commodo. Fringilla ipsum etiam
-            habitasse dolor lacus viverra. Leo ipsum libero at amet ipsum lacus,
-            amet non leo nisi, turpis nec.
+            Since day one, Bermiz has been about honest food served in a warm,
+            welcoming space. Whether it&apos;s a quiet weekday lunch or a
+            celebration with friends, our kitchen and staff are here to make
+            every visit memorable.
           </p>
           <div
             className="flex items-center gap-8 mt-14"
@@ -78,8 +78,9 @@ const OurRestaurant = () => {
                 Quiet Environment
               </h1>
               <p className="text-[#99A9AD] mt-4 text-sm md:text-lg lg:text-xl">
-                Objectively transition virtual functionaities via enterprise
-                widr benefits.
+                A relaxed, low-noise dining room designed for easy
+                conversation, whether you&apos;re catching up with friends or
+                settling in for a solo meal.
               </p>
             </div>
           </div>
@@ -100,9 +101,8 @@ const OurRestaurant = () => {
                 Hygienic Food
               </h1>
               <p className="text-[#99A9AD] mt-4 text-sm md:text-lg lg:text-xl">
-                Objectively transition virtual functionalities via enterprise
-                widr benefits Sagittis molestie nulla morbi ultrices. Mi ut nibh
-                faucibus risus viverra tellus purus. Ornare.
+                Every dish is prepared in a spotless kitchen under strict food
+                safety standards, using fresh ingredients sourced daily.
               </p>
             </div>
           </div>

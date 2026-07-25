@@ -18,23 +18,22 @@ const WhyChooseUs = () => {
           <ChooseCard
             icon={MdDinnerDining}
             title="Catering"
-            description="Lacus, risus, diam sit gravida phasellus pretium sodales. Cursus rutrum lorem nulla eu amet mattis."
+            description="From office lunches to large gatherings, we bring our full menu and service to your event, wherever it's held."
           />
           <ChooseCard
             icon={GiHotMeal}
             title="Dinner"
-            description="Amet, ac enim sed morbi pretium. Scelerisque id in nisi ullamcorper. Bibendum sit viverra enim."
+            description="A full evening menu of chef specials, paired with a curated wine list, served in a relaxed dining room."
           />
           <ChooseCard
             icon={GiRose}
             title="Wedding"
-            description="Nullam quis tristique scelerisque proin. Ultricies augue hac eu aliquet in. Urna mattis a gravida."
+            description="Custom menus and dedicated staff to make your wedding day feel effortless, from the first toast to the last course."
           />
           <ChooseCard
             icon={FaBirthdayCake}
             title="Birthday"
-            description="Lacus, risus, diam sit gravida phasellus pretium sodales. Cursus rutrum lorem nulla eu amet mattis."
-            
+            description="Reserve a table or a private space for your celebration, complete with a dessert menu worth saving room for."
           />
         </div>
       </div>
